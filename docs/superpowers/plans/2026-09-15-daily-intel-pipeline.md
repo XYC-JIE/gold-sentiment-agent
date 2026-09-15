@@ -12,7 +12,9 @@
 
 ## Global Constraints
 
-- Python **3.11+**（本地与 CI 一致，避免 f-string／typing 语法差异）
+- Python **3.10**（本地与 CI 必须一致，避免本地过、CI 挂）
+  - 本机只有 3.10.11 与 3.9，故取 3.10。所有模块均已加 `from __future__ import annotations`，`X | None` 与内建泛型在 3.10 下正常工作
+  - **虚拟环境必须用 `D:/金银舆情监控/.venv`**，不要装到全局 Python
 - 时间基准一律 **北京时间（Asia/Shanghai）**；所有 `date` 字段格式为 `YYYY-MM-DD`
 - 所有 HTTP 请求 **超时 15 秒**，失败重试 **2 次**（指数退避：1s、2s）
 - **不使用异步**（`async`/`await`）；单进程顺序执行，12 个源耗时在可接受范围内
@@ -212,7 +214,9 @@ from src.config import Config, load_sources
 def test_load_sources_returns_list():
     sources = load_sources()
     assert isinstance(sources, list)
-    assert len(sources) >= 10
+    # 初版配了 11 个源，但 Task 3 的信源核验会剔除失效的。
+    # 8 是底线：再少下去覆盖度就不够了。
+    assert len(sources) >= 8
 
 
 def test_every_source_has_required_keys():
@@ -440,9 +444,19 @@ git commit -m "feat: 数据模型与采集器基类（含重试）"
 - Consumes: `Collector`、`RawItem`
 - Produces: `RssCollector(name, category, url)`，其 `fetch()` 返回 `list[RawItem]`
 
-- [ ] **Step 1: 核验信源可用性（人工步骤，不可跳过）**
+- [ ] **Step 1: 探测信源可达性（人工步骤，不可跳过，但务必按下面的判读规则）**
 
-逐个执行，记录 HTTP 状态与条目数：
+> ⚠️ **本机在国内网络。被墙的源和真正失效的源，在 curl 看来一模一样——都是连不上。**
+> OpenAI、DeepMind、Hacker News 恰好是价值最高的几个 AI 源，误删它们等于砍掉项目最有用的部分。
+> 而流水线实际跑在 GitHub Actions（海外）上，那里的可达性才算数。所以本步**只记录、不删源**。
+
+**判读规则（照此分类，不要自行发挥）：**
+
+| curl 表现 | 含义 | 动作 |
+|---|---|---|
+| HTTP 403 / 404 / 410 等**具体错误码** | 源确实失效或被拒绝 | 替换为同类替代源 |
+| HTTP 200 但体积 < 1KB | 返回了空 feed | 替换为同类替代源 |
+| `http=000` / 超时 / `Connection reset` | **疑似被墙，不代表源失效** | **保留，结论记"待 CI 验证"** |
 
 ```bash
 for u in \
@@ -454,35 +468,43 @@ for u in \
   "https://www.qbitai.com/feed" \
   "https://www.federalreserve.gov/feeds/press_all.xml" \
   "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258" ; do
-  echo "=== $u"
-  curl -s -o /dev/null -w "%{http_code} %{size_download}\n" -m 15 "$u"
+  printf '=== %s\n' "$u"
+  curl -s -o /dev/null -m 15 \
+    -w 'http=%{http_code} size=%{size_download}\n' "$u" \
+    || echo "  curl 退出码 $? —— 连接失败（疑似被墙，保留）"
 done
 ```
 
-同时核验这两家能不能补进 `sources.yaml`：
+顺带探测这两家能不能补进 `sources.yaml`（结果同样只记录）：
 
 ```bash
-curl -s -m 15 "https://www.anthropic.com/news" | grep -c "<title"
-curl -s -m 15 "https://huggingface.co/api/daily_papers" | head -c 300
+curl -s -m 15 "https://www.anthropic.com/news" | grep -c "<title" || echo "Anthropic 连接失败（疑似被墙）"
+curl -s -m 15 "https://huggingface.co/api/daily_papers" | head -c 300 || echo "Hugging Face 连接失败（疑似被墙）"
 ```
 
-**处理规则：** 返回非 200 或体积 < 1KB 的源，从 `sources.yaml` 中删除或替换为同类替代源。
+**默认动作是「什么都不删」。** 只有收到具体 4xx/5xx 错误码时才替换该源；替换后总数**不得跌破 8 个**（`tests/test_config.py` 与 `tests/test_collectors_registry.py` 的下限）。若会跌破，停下来告知用户一起商量，不要硬删。
 
-把结果记进新建的 `docs/信源核验记录.md`，格式如下（记日期是为了日后能判断某个源是从哪天开始失效的）：
+把结果记进新建的 `docs/信源核验记录.md`（记日期是为了日后能判断某源从哪天起失效）：
 
 ```markdown
 # 信源核验记录
 
-## 2026-09-15
+## 2026-09-15（本机探测，国内网络）
 
-| 信源 | 状态码 | 体积 | 结论 |
-|---|---|---|---|
-| OpenAI News | 200 | 12KB | 可用 |
-| 量子位 | 403 | 0 | 不可用，已移除 |
+| 信源 | 本机结果 | 结论 |
+|---|---|---|
+| OpenAI News | 连接失败 | 待 CI 验证 |
+| 量子位 | 403 | 已替换为 XXX |
+
+## 待 CI 验证的源
+
+以下源在本机不可达，需在 GitHub Actions 首次运行后确认（见 Task 14 Step 7）：
+- OpenAI News
+- ...
 
 ## 替代源调研
 
-- Anthropic News：结果（可用/不可用，替代方案）
+- Anthropic News：结果
 - Hugging Face Daily Papers：结果
 ```
 
@@ -713,12 +735,12 @@ curl -s -m 15 -H "User-Agent: Mozilla/5.0" \
       {
         "id": 3188001,
         "content_text": "美国 8 月 CPI 同比升 2.4%，低于预期的 2.6%。",
-        "display_time": 1757901200
+        "display_time": 1789437200
       },
       {
         "id": 3188002,
         "content_text": "世界黄金协会：8 月全球黄金 ETF 净流入 21 亿美元。",
-        "display_time": 1757902400
+        "display_time": 1789438400
       }
     ]
   }
@@ -778,8 +800,8 @@ def test_wallstreetcn_parses_lives(requests_mock):
     assert len(items) == 2
     assert "CPI" in items[0].content
     assert items[0].url == "https://wallstreetcn.com/livenews/3188001"
-    # 1757901200 == 2026-09-15 09:53:20 UTC == 17:53:20 北京时间
-    assert items[0].published_at.startswith("2026-09-15T17:53:20+08:00")
+    # 1789437200 == 2026-09-15 01:53:20 UTC == 09:53:20 北京时间
+    assert items[0].published_at.startswith("2026-09-15T09:53:20+08:00")
 ```
 
 - [ ] **Step 5: 运行测试确认失败**
@@ -1022,7 +1044,8 @@ git commit -m "feat: 现货黄金日线采集器"
   - `build_collectors() -> list[Collector]`
   - `collect_all(collectors) -> tuple[list[RawItem], list[str]]` — 返回条目与失败源名列表
   - `dedupe(items: list[RawItem]) -> list[RawItem]`
-  - `within_hours(items: list[RawItem], hours: int) -> list[RawItem]`
+  - `within_hours(items: list[RawItem], hours: int, now: str) -> list[RawItem]`
+    （`now` 是必填的 ISO8601 字符串，由调用方传入而不是在函数内取当前时间——这样测试可以冻结时间）
 
 - [ ] **Step 1: 写失败测试 `tests/test_dedupe.py`**
 
@@ -1147,7 +1170,8 @@ from src.collectors import build_collectors, collect_all
 
 def test_build_collectors_covers_every_source():
     collectors = build_collectors()
-    assert len(collectors) >= 10
+    # 底线与 test_config.py 保持一致（见那里的注释）
+    assert len(collectors) >= 8
 
 
 def test_collect_all_survives_one_failing_source(requests_mock, monkeypatch):
@@ -1348,13 +1372,9 @@ def main(raw_items: str) -> dict:
 输出数组的长度必须与输入一致，且顺序一一对应。
 ````
 
-User Prompt：
+User Prompt：用变量选择器插入代码节点的输出 `items`（会写成 `{{#代码节点id.items#}}` 的形式，不要手打）。
 
-```
-{{items}}
-```
-
-> **关于输出变量名**：Dify 的 LLM 节点输出变量名固定为 `text`，在节点内改不了。所以这里不要纠结命名——后续节点用 `{{#节点A.text#}}` 引用它，最后在结束节点统一映射成 `events_json`（见 Step 7）。
+> **关于输出变量名**：Dify 的 LLM 节点输出变量名固定为 `text`，在节点内改不了。所以这里不要纠结命名——后续节点用变量选择器引用它，最后在结束节点统一映射成 `events_json`（见 Step 7）。
 
 - [ ] **Step 6: 添加 LLM 节点 B「日报生成」**
 
@@ -3076,7 +3096,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.10"
           cache: pip
 
       - name: 安装中文字体
@@ -3138,22 +3158,36 @@ git push -u origin main
 2. 飞书收到卡片
 3. 仓库 `data/` 下出现 `events.csv` 与 `daily_index.csv`，且有 bot 的提交
 4. 下载该次运行的 artifacts（或本地复跑）确认三张图的中文正常
+5. 日志里若有 `失败源 N 个`，记下是哪些
 
-- [ ] **Step 6: 更新 README.md**
+- [ ] **Step 6: 依据 CI 日志最终修剪信源**
+
+这一步是 Task 3 Step 1 的收尾——**只有在这里，源的可达性判断才是可信的**，因为这里就是流水线的真实运行环境。
+
+若 Step 5 的日志显示有失败源：
+
+- 打开该次运行的「运行流水线」这一步，确认失败的源名
+- 对每个失败源，**在 CI 环境里**单独验一次（临时加一步调试或本地挂代理跑同一个 URL），区分"被墙"与"真失效"
+- 真失效的从 `sources.yaml` 移除或换替代源；被墙的留着（CI 里本来就能通）
+- 更新 `docs/信源核验记录.md`，把"待 CI 验证"一行行结掉
+
+若日志显示全部源可用，把记录表里的"待 CI 验证"直接改成"已在 CI 验证可用"。
+
+- [ ] **Step 7: 更新 README.md**
 
 写清楚：项目做什么、三层架构与各自职责、如何本地运行（含 `--dry-run` / `--offline`）、`.env` 需要哪些变量、如何新增信源（改 `sources.yaml`）、数据与指标的定义和已知局限（引用设计文档）。
 
-- [ ] **Step 7: 连续观察三天**
+- [ ] **Step 8: 连续观察三天**
 
 每天收到卡片后核对一件事：**当天的情绪指数和当天金价涨跌方向是否大致一致**。目标是先积累感觉，不必急着下结论——一个星期七天里能有几天对不上是完全正常的（见设计文档「已知局限」）。
 
 三天的数据也是阶段 5「准确率验证」的第一批素材。
 
-- [ ] **Step 8: 提交**
+- [ ] **Step 9: 提交**
 
 ```bash
-git add .github/ .env.example README.md
-git commit -m "ci: GitHub Actions 每日定时任务"
+git add .github/ .env.example README.md config/sources.yaml docs/信源核验记录.md
+git commit -m "ci: GitHub Actions 每日定时任务，并按 CI 实测结果修剪信源"
 git push
 ```
 
