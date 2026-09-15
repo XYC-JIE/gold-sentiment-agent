@@ -110,6 +110,7 @@ LLM 节点 B：日报文案生成
 | `event_type` | **枚举**：货币政策 / 经济数据 / 地缘政治 / 央行购金 / 美元走势 / 通胀 / 就业 / 其他 |
 | `direction` | 利多金银 / 利空金银 / 中性 |
 | `strength` | 1–5 整数 |
+| `relevant` | 布尔值，该条是否与金银走势相关 |
 | `summary` | 中文一句话摘要 |
 | `source` / `url` / `published_at` | 溯源信息 |
 
@@ -134,8 +135,10 @@ Dify 工作流导出为 `dify/daily-intel-workflow.yml` 提交进仓库。这首
 ### 5.1 `data/events.csv`（原始资产）
 
 ```
-date, event_type, direction, strength, summary, source, url, published_at
+date, event_type, direction, strength, relevant, summary, source, url, published_at
 ```
+
+`relevant` 标记该事件是否与金银走势有关。情绪指数只统计 `relevant = true` 的事件——AI 技术类新闻不该影响金银的多空判断，但保留在表里可供回溯。
 
 ### 5.2 `data/daily_index.csv`（计算产物）
 
@@ -233,7 +236,7 @@ gold-sentiment-agent/
 |---|---|
 | `analysis.py` | 纯函数，给定事件样本断言指数计算结果。**这是 TDD 主要落点** |
 | `collectors/` | `requests_mock` 喂固定 RSS/JSON 样本，不依赖真实网络 |
-| 端到端 | `--dry-run` 模式：不调 Dify、不推飞书，仅打印结果，本地随时验证 |
+| 端到端 | 两个开关：`--offline` 用 `samples/` 样本替代 Dify 调用；`--dry-run` 跳过飞书推送。两者独立，可分别验证"智能层"和"分发层" |
 
 ---
 
