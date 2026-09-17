@@ -1,11 +1,14 @@
 """去重与时间窗筛选。"""
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import timedelta, timezone
 
 from dateutil import parser as date_parser
 
 from src.models import RawItem
+
+# 本项目全局时间基准为北京时间。
+BEIJING = timezone(timedelta(hours=8))
 
 
 def dedupe(items: list[RawItem]) -> list[RawItem]:
@@ -35,6 +38,9 @@ def within_hours(items: list[RawItem], hours: int, now: str) -> list[RawItem]:
     解析失败的时间戳一律保留——宁可多看一条，也不要因为格式问题丢新闻。
     """
     now_dt = date_parser.parse(now)
+    if now_dt.tzinfo is None:
+        # 给无时区的 now 赋予北京时间（不是换算，语义即"这就是北京时间"）
+        now_dt = now_dt.replace(tzinfo=BEIJING)
     cutoff = now_dt - timedelta(hours=hours)
 
     kept: list[RawItem] = []

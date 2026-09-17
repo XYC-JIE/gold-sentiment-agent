@@ -19,12 +19,22 @@ _BUILDERS = {
 __all__ = ["build_collectors", "collect_all", "Collector"]
 
 
+def _validate(cfg: dict) -> None:
+    """校验 type 与 category 的配套关系，配置错误要大声失败，不要静默降级。"""
+    if cfg["type"] == "gold_price" and cfg["category"] != "market":
+        raise ValueError(
+            f"信源「{cfg['name']}」配置错误：type 为 gold_price 时 "
+            f"category 必须是 market，当前为 {cfg['category']}"
+        )
+
+
 def build_collectors() -> list[Collector]:
     collectors: list[Collector] = []
     for cfg in load_sources():
         builder = _BUILDERS.get(cfg["type"])
         if builder is None:
             raise ValueError(f"未知的信源类型：{cfg['type']}")
+        _validate(cfg)
         collectors.append(
             builder(name=cfg["name"], category=cfg["category"], url=cfg["url"])
         )
