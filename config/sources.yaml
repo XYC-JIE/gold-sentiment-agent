@@ -22,10 +22,10 @@ sources:
     type: rss
     url: http://export.arxiv.org/rss/cs.AI
 
-  - name: 机器之心
+  - name: 雷锋网
     category: ai
     type: rss
-    url: https://www.jiqizhixin.com/rss
+    url: https://www.leiphone.com/feed
 
   - name: 量子位
     category: ai
