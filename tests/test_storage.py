@@ -67,6 +67,19 @@ def test_append_events_with_empty_list_does_nothing(tmp_path):
     assert not path.exists()
 
 
+def test_append_events_rejects_mixed_dates(tmp_path):
+    """跨日期的列表会让未被覆盖的那一天静默重复，必须在入口大声失败。"""
+    path = tmp_path / "events.csv"
+    later = Event(
+        date="2026-09-16", event_type="通胀", direction="利空金银", strength=2,
+        relevant=True, summary="后一天", source="金十数据快讯",
+        url="https://x.com/2", published_at="2026-09-16T10:00:00+08:00",
+    )
+
+    with pytest.raises(ValueError, match="同一日期"):
+        append_events([_event("前一天"), later], path)
+
+
 def test_append_index_row_appends(tmp_path):
     path = tmp_path / "daily_index.csv"
     append_index_row(_row("2026-09-15"), path)

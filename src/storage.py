@@ -33,9 +33,20 @@ def _write_with_replace(new_df: pd.DataFrame, path: Path, date: str, fields: lis
 
 
 def append_events(events: list[Event], path: Path) -> int:
-    """写入某一日的事件。返回写入条数。同日已有数据会被替换。"""
+    """写入某一日的事件。返回写入条数。同日已有数据会被替换。
+
+    events 必须同属一个日期；跨日期的列表会被拒绝，因为覆盖语义只认一个
+    日期键，其余日期的旧行不会被剔除，会静默重复。
+    """
     if not events:
         return 0
+
+    dates = {e.date for e in events}
+    if len(dates) > 1:
+        raise ValueError(
+            f"append_events 一次只能写入同一日期的事件，收到 {len(dates)} 个"
+            f"不同日期：{sorted(dates)}。请按日期分批调用。"
+        )
 
     date = events[0].date
     df = pd.DataFrame([e.__dict__ for e in events], columns=EVENT_FIELDS)
