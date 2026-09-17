@@ -1,0 +1,58 @@
+# 信源配置。新增/替换源只需改这里，不必动代码。
+# category: ai | finance | market
+
+sources:
+  - name: OpenAI News
+    category: ai
+    type: rss
+    url: https://openai.com/news/rss.xml
+
+  - name: Google DeepMind Blog
+    category: ai
+    type: rss
+    url: https://deepmind.google/blog/rss.xml
+
+  - name: Hacker News
+    category: ai
+    type: rss
+    url: https://hnrss.org/frontpage
+
+  - name: arXiv cs.AI
+    category: ai
+    type: rss
+    url: http://export.arxiv.org/rss/cs.AI
+
+  - name: 机器之心
+    category: ai
+    type: rss
+    url: https://www.jiqizhixin.com/rss
+
+  - name: 量子位
+    category: ai
+    type: rss
+    url: https://www.qbitai.com/feed
+
+  - name: 美联储新闻稿
+    category: finance
+    type: rss
+    url: https://www.federalreserve.gov/feeds/press_all.xml
+
+  - name: CNBC Markets
+    category: finance
+    type: rss
+    url: https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258
+
+  - name: 金十数据快讯
+    category: finance
+    type: jin10
+    url: https://flash-api.jin10.com/get_flash_list
+
+  - name: 华尔街见闻
+    category: finance
+    type: wallstreetcn
+    url: https://api-one.wallstcn.com/apiv1/content/lives
+
+  - name: 现货黄金日线
+    category: market
+    type: gold_price
+    url: https://stooq.com/q/d/l/?s=xauusd&i=d
