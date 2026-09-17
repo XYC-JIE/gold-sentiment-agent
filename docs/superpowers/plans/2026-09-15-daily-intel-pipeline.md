@@ -6,7 +6,7 @@
 
 **Architecture:** 三层分工。Dify 承担 LLM 编排（结构化抽取 + 文案生成），Python 承担采集／存储／指标计算／出图（Dify 代码节点跑不了 pandas），GitHub Actions 承担定时调度与结果回写（海外运行免代理，且不依赖本机开机）。三层之间的接口是两个 JSON 字符串。
 
-**Tech Stack:** Python 3.11 · requests · feedparser · PyYAML · pandas · matplotlib · pytest + requests-mock · Dify Cloud Workflow API · 飞书自定义机器人 Webhook · GitHub Actions
+**Tech Stack:** Python 3.10 · requests · feedparser · PyYAML · pandas · matplotlib · pytest + requests-mock · Dify Cloud Workflow API · 飞书自定义机器人 Webhook · GitHub Actions
 
 **Spec:** `docs/superpowers/specs/2026-09-15-daily-intel-design.md`
 
@@ -84,7 +84,10 @@ requests-mock>=1.11
 testpaths = tests
 python_files = test_*.py
 addopts = -q
+pythonpath = .
 ```
+
+> `pythonpath = .` 是必需的：`python -m pytest` 会把当前目录放进 `sys.path`，但 `pytest` 控制台脚本不会，`from src.xxx import` 会直接 ModuleNotFoundError。加上这行让两个入口等价。
 
 - [ ] **Step 3: 创建 `.gitignore`**
 
@@ -103,7 +106,7 @@ charts/*.png
 
 ```yaml
 # 信源配置。新增/替换源只需改这里，不必动代码。
-# category: ai | finance
+# category: ai | finance | market
 
 sources:
   - name: OpenAI News
