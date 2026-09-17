@@ -96,3 +96,27 @@ def test_to_events_skips_malformed_entries():
     events = to_events(raw, date="2026-09-15")
     assert len(events) == 1
     assert events[0].summary == "好的"
+
+
+def test_to_events_survives_overflow_published_at():
+    """超长数字串会让 dateutil 内部溢出，不能连累整天的事件。"""
+    raw = [{
+        "event_type": "通胀", "direction": "利空金银", "strength": 3,
+        "relevant": True, "summary": "畸形时间戳", "source": "s", "url": "u",
+        "published_at": "999999999999999999999",
+    }]
+    events = to_events(raw, date="2026-09-15")
+    assert len(events) == 1
+    assert events[0].published_at == "999999999999999999999"
+
+
+def test_to_events_coerces_non_string_published_at_to_str():
+    """非字符串的 published_at 兜底后必须是 str，不能违反类型注解。"""
+    raw = [{
+        "event_type": "通胀", "direction": "利空金银", "strength": 3,
+        "relevant": True, "summary": "整数时间戳", "source": "s", "url": "u",
+        "published_at": 12345,
+    }]
+    events = to_events(raw, date="2026-09-15")
+    assert len(events) == 1
+    assert isinstance(events[0].published_at, str)

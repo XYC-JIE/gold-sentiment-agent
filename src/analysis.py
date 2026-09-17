@@ -54,8 +54,11 @@ def _normalize_published_at(raw: str) -> str:
         return ""
     try:
         return date_parser.parse(raw).isoformat()
-    except (ValueError, TypeError):
-        return raw
+    except (ValueError, TypeError, OverflowError):
+        # 解析不了就把原始值原样保留下来（统一 str 化，满足返回类型注解）；
+        # OverflowError 是 dateutil 内部整数溢出的兜底，漏掉它会让一条畸形
+        # published_at 冒泡出 to_events，连累整天的事件。
+        return str(raw)
 
 
 def compute_sentiment_score(events: list[Event]) -> float:
