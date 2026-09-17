@@ -35,12 +35,34 @@ def _events_df():
     })
 
 
-def test_configure_chinese_font_sets_family():
-    configure_chinese_font()
-    import matplotlib.pyplot as plt
+def test_configure_chinese_font_resolves_a_real_font():
+    """不能只断言"候选列表第一项非空"——那对 ["完全没有这个字体"] 也成立。
 
-    assert plt.rcParams["font.sans-serif"][0]
+    缺字体时没有异常、PNG 照常生成，图上却全是方框。所以这里真的解析一次。
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.font_manager import FontProperties, findfont
+
+    from src.charts import FONT_CANDIDATES
+
+    configure_chinese_font()
     assert plt.rcParams["axes.unicode_minus"] is False
+
+    resolved = findfont(
+        FontProperties(family=FONT_CANDIDATES), fallback_to_default=False
+    )
+    assert resolved
+
+
+def test_plot_raises_clear_error_when_no_cjk_font(monkeypatch):
+    """字体全落空时必须抛错，而不是安静地产出一张豆腐块图。"""
+    import src.charts as charts_module
+
+    monkeypatch.setattr(
+        charts_module, "FONT_CANDIDATES", ["完全不存在的字体XYZ"]
+    )
+    with pytest.raises(ValueError, match="找不到任何可用中文字体"):
+        charts_module.configure_chinese_font()
 
 
 def test_plot_sentiment_trend_writes_file(tmp_path):

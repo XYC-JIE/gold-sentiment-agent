@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use("Agg")           # 无显示环境（CI）必须有，否则会报错
 import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib.font_manager import FontProperties, findfont
 
 # Ubuntu CI 上装的是 fonts-noto-cjk，Windows 本地是 SimHei；按序尝试
 FONT_CANDIDATES = ["Noto Sans CJK SC", "WenQuanYi Zen Hei", "Microsoft YaHei", "SimHei"]
@@ -18,9 +19,23 @@ COLOR_NEUTRAL = "#7f8c8d"
 
 
 def configure_chinese_font() -> None:
-    """设置中文字体。不设会得到一片方框（豆腐块），且不会有任何报错。"""
+    """设置中文字体，并**确认候选字体真的解析得到**。
+
+    缺字体时 matplotlib 只在 logging 里嘀咕一句 `findfont: Font family not found`，
+    图照画、PNG 照生成、测试照全绿，只是所有中文变成一片方框（豆腐块）。
+    这是本模块唯一无法靠断言捕获的失败模式——所以这里主动解析一次，
+    全落空就抛错，让问题当场暴露，而不是几天后在手机上看到一堆 □。
+    """
     plt.rcParams["font.sans-serif"] = FONT_CANDIDATES
     plt.rcParams["axes.unicode_minus"] = False
+
+    try:
+        findfont(FontProperties(family=FONT_CANDIDATES), fallback_to_default=False)
+    except ValueError as exc:
+        raise ValueError(
+            f"找不到任何可用中文字体，图表会渲染成方框。候选列表：{FONT_CANDIDATES}。"
+            "Linux 上请安装 fonts-noto-cjk；Windows 上确认已安装微软雅黑或黑体。"
+        ) from exc
 
 
 def _tail(df: pd.DataFrame, days: int) -> pd.DataFrame:
@@ -87,6 +102,9 @@ def plot_event_distribution(
         )
         order = [c for c in ["利多金银", "中性", "利空金银"] if c in pivot.columns]
         pivot = pivot[order]
+        # 不设这两行，pandas 会把列名直接当图例标题和 xtick 标签，图上出现英文
+        pivot.index.name = "事件类型"
+        pivot.columns.name = "方向"
         colors = [
             {"利多金银": COLOR_BULL, "中性": COLOR_NEUTRAL, "利空金银": COLOR_BEAR}[c]
             for c in order
