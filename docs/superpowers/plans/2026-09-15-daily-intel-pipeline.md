@@ -208,7 +208,7 @@ def get_secret(name: str) -> str:
 - [ ] **Step 7: 写失败测试 `tests/test_config.py`**
 
 ```python
-from src.config import Config, load_sources
+from src.config import load_sources
 
 
 def test_load_sources_returns_list():
