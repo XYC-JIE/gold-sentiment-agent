@@ -1,6 +1,6 @@
 import pytest
 
-from src.notifier import build_card, build_fallback_text, send_to_feishu
+from src.notifier import _tendency, build_card, build_fallback_text, send_to_feishu
 
 WEBHOOK = "https://open.feishu.cn/open-apis/bot/v2/hook/test-hook"
 
@@ -32,9 +32,25 @@ def _all_text(payload: dict) -> str:
     for el in card["elements"]:
         if el.get("content"):
             parts.append(el["content"])
-        for action in el.get("actions", []):
-            parts.append(action["text"]["content"])
+    parts.extend(button["text"]["content"] for button in _buttons(payload))
     return "\n".join(parts)
+
+
+def _buttons(payload: dict) -> list[dict]:
+    """取出卡片里所有按钮元素。
+
+    自定义机器人不能内嵌图片，看板按钮的 URL 是用户看图的唯一入口，
+    因此 URL 本身必须被断言，不能只断言按钮文案。
+    """
+    return [
+        button
+        for el in payload["card"]["elements"]
+        for button in el.get("actions", [])
+    ]
+
+
+def _button_urls(payload: dict) -> list[str]:
+    return [button["url"] for button in _buttons(payload)]
 
 
 def test_card_contains_all_sections():
@@ -55,7 +71,20 @@ def test_card_shows_sentiment_score_and_tendency():
     payload = build_card("2026-09-15", _digest(), _index_row(), failed_sources=[])
     text = _all_text(payload)
     assert "+0.42" in text
-    assert "偏多" in text
+    # 必须断言带括号的组合片段：夹具的 gold_conclusion="短期偏多" 本身就含"偏多"，
+    # 只断言裸"偏多"会被它掩盖，哪怕 _tendency 恒返回"中性"也照样通过。
+    assert "（偏多）" in text
+
+
+@pytest.mark.parametrize("score, expected", [
+    (0.15, "偏多"),      # 阈值下界，闭区间
+    (0.1499, "中性"),    # 阈值下方，微弱波动不标方向
+    (0.0, "中性"),
+    (-0.15, "偏空"),     # 阈值上界，闭区间
+    (-0.1501, "偏空"),
+])
+def test_tendency_thresholds(score, expected):
+    assert _tendency(score) == expected
 
 
 def test_card_warns_about_failed_sources():
@@ -76,8 +105,18 @@ def test_card_includes_dashboard_button_when_url_given():
         "2026-09-15", _digest(), _index_row(), failed_sources=[],
         dashboard_url="https://example.github.io/dashboard/",
     )
-    text = _all_text(payload)
-    assert "查看历史看板" in text
+    assert "查看历史看板" in _all_text(payload)
+    # 这是用户看图的唯一入口，URL 写错/为空测试必须能抓到
+    assert _button_urls(payload) == ["https://example.github.io/dashboard/"]
+
+
+def test_card_omits_dashboard_button_when_url_empty():
+    payload = build_card(
+        "2026-09-15", _digest(), _index_row(), failed_sources=[],
+        dashboard_url="",
+    )
+    assert "查看历史看板" not in _all_text(payload)
+    assert _button_urls(payload) == []
 
 
 def test_card_handles_empty_ai_and_gold_sections():

@@ -12,6 +12,8 @@ DASHBOARD_BUTTON_TEXT = "查看历史看板"
 
 
 def _tendency(score: float) -> str:
+    # ±0.15 是"值得标注方向"的最小强度：归一化区间里靠中间的微弱波动只算噪声，
+    # 不该被渲染成方向性判断，故归为"中性"。
     if score >= 0.15:
         return "偏多"
     if score <= -0.15:
