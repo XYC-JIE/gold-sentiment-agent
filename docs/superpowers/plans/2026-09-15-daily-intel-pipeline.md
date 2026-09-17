@@ -2968,6 +2968,16 @@ def run(dry_run: bool, offline: bool) -> int:
         events = to_events(result.events, date)
         digest = result.digest
         print(f"Dify 返回 {len(events)} 条有效事件，消耗 {result.total_tokens} token")
+
+        # to_events 对缺失 relevant 字段默认取 False，于是事件会被静默排除、
+        # 情绪指数恒为 0——卡片上只是"利多 0 条 / 利空 0 条"，看不出异常。
+        # 这道护栏把"悄悄降级"变成"看得见"。
+        if events and not any(e.relevant for e in events):
+            print(
+                "[警告] 全部事件 relevant=False，情绪指数将恒为 0 —— "
+                "检查 Dify 提示词是否仍输出 relevant 字段",
+                file=sys.stderr,
+            )
     except Exception as exc:  # noqa: BLE001
         print(f"[错误] Dify 环节失败：{exc}", file=sys.stderr)
         if not dry_run:
