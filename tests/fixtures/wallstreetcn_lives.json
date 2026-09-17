@@ -1,0 +1,32 @@
+{
+  "code": 20000,
+  "message": "OK",
+  "data": {
+    "items": [
+      {
+        "content": "<p>美国 8 月 CPI 同比升 2.4%，低于预期的 2.6%。</p>\n",
+        "content_more": "",
+        "content_text": "美国 8 月 CPI 同比升 2.4%，低于预期的 2.6%。",
+        "display_time": 1789437200,
+        "id": 3188001,
+        "score": 1,
+        "title": "",
+        "type": "live",
+        "uri": "https://wallstreetcn.com/livenews/3188001"
+      },
+      {
+        "content": "<p>世界黄金协会：8 月全球黄金 ETF 净流入 21 亿美元。</p>\n",
+        "content_more": "",
+        "content_text": "世界黄金协会：8 月全球黄金 ETF 净流入 21 亿美元。",
+        "display_time": 1789438400,
+        "id": 3188002,
+        "score": 1,
+        "title": "",
+        "type": "live",
+        "uri": "https://wallstreetcn.com/livenews/3188002"
+      }
+    ],
+    "next_cursor": 1789438399,
+    "polling_cursor": "1789438400"
+  }
+}

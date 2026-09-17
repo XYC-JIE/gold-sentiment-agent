@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "message": "OK",
+  "data": [
+    {
+      "channel": [4, 5],
+      "data": {
+        "content": "美联储官员沃勒表示，若通胀数据继续改善，年内可能进一步降息。",
+        "exclusive_to": [],
+        "pic": "",
+        "source": "",
+        "source_link": "",
+        "title": ""
+      },
+      "extras": {"ad": false},
+      "id": "20260915100001",
+      "important": 1,
+      "kinds": [{"cids": [125], "id": 3}],
+      "remark": [],
+      "tags": [],
+      "time": "2026-09-15 10:00:01",
+      "type": 0,
+      "voice_status": "pending",
+      "voices": null
+    },
+    {
+      "channel": [4, 5],
+      "data": {
+        "content": "现货黄金短线走高 5 美元，现报 2480 美元/盎司。",
+        "exclusive_to": [],
+        "pic": "",
+        "source": "",
+        "source_link": "",
+        "title": ""
+      },
+      "extras": {"ad": false},
+      "id": "20260915100002",
+      "important": 0,
+      "kinds": [{"cids": [17958], "id": 17952}],
+      "remark": [],
+      "tags": [],
+      "time": "2026-09-15 10:05:00",
+      "type": 0,
+      "voice_status": "pending",
+      "voices": null
+    }
+  ]
+}
