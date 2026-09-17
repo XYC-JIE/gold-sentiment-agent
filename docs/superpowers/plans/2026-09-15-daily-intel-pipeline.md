@@ -2178,6 +2178,7 @@ git commit -m "feat: CSV 存储（同日覆盖式写入）"
 - Consumes: `read_index()` 返回的 DataFrame、`CHARTS_DIR`
 - Produces:
   - `configure_chinese_font() -> None`
+  - `recent_event_rows(events_df, days: int) -> pd.DataFrame`（按**日期**切最近 N 天，不是按行数）
   - `plot_sentiment_trend(df, days: int, out_path: Path) -> Path`
   - `plot_event_distribution(events_df, days: int, out_path: Path) -> Path`
   - `plot_sentiment_vs_gold(df, days: int, out_path: Path) -> Path`
@@ -2193,6 +2194,7 @@ from src.charts import (
     plot_event_distribution,
     plot_sentiment_trend,
     plot_sentiment_vs_gold,
+    recent_event_rows,
 )
 
 
@@ -2239,6 +2241,32 @@ def test_plot_event_distribution_writes_file(tmp_path):
         _events_df(), days=7, out_path=tmp_path / "dist.png"
     )
     assert out.exists() and out.stat().st_size > 1000
+
+
+def test_recent_event_rows_slices_by_date_not_by_row_count():
+    """一天多行时，"最近 N 天"必须拿满这几天的全部事件行。
+
+    若实现退回成 df.tail(days)，本用例只会剩 2 行（且同属一天），断言失败。
+    """
+    df = pd.DataFrame({
+        "date": ["2026-09-13"] * 5 + ["2026-09-14"] * 5 + ["2026-09-15"] * 5,
+        "event_type": ["货币政策"] * 15,
+        "direction": ["利多金银"] * 15,
+        "strength": [3] * 15,
+        "relevant": [True] * 15,
+        "summary": [f"事件{i}" for i in range(15)],
+        "source": ["s"] * 15,
+        "url": ["u"] * 15,
+        "published_at": ["t"] * 15,
+    })
+    result = recent_event_rows(df, days=2)
+    assert len(result) == 10                  # 最近两天各 5 行，不是 2 行
+    assert set(result["date"]) == {"2026-09-14", "2026-09-15"}
+
+
+def test_recent_event_rows_handles_empty_frame():
+    empty = pd.DataFrame(columns=["date", "event_type", "direction"])
+    assert recent_event_rows(empty, days=7).empty
 
 
 def test_plot_sentiment_vs_gold_writes_file(tmp_path):
@@ -2329,6 +2357,21 @@ def plot_sentiment_trend(df: pd.DataFrame, days: int, out_path: Path) -> Path:
     return _save(fig, out_path)
 
 
+def recent_event_rows(events_df: pd.DataFrame, days: int) -> pd.DataFrame:
+    """取最近 days 个自然日的**全部**事件行。
+
+    注意这是按日期切，不是按行数切。这里**不能**用 `_tail()`：events 表一天
+    有多行，`df.tail(7)` 取的是"最后 7 条事件"而不是"最后 7 天"，实际可能只
+    覆盖一两天，图上却标着"近 7 日"。
+
+    单独抽成函数是为了能被直接断言——图表输出难以验证语义，这个选择可以。
+    """
+    if events_df.empty:
+        return events_df
+    recent_dates = sorted(events_df["date"].unique())[-days:]
+    return events_df[events_df["date"].isin(recent_dates)]
+
+
 def plot_event_distribution(
     events_df: pd.DataFrame, days: int, out_path: Path
 ) -> Path:
@@ -2336,7 +2379,7 @@ def plot_event_distribution(
     configure_chinese_font()
     fig, ax = plt.subplots(figsize=(9, 4))
 
-    data = _tail(events_df, days)
+    data = recent_event_rows(events_df, days)
     if not data.empty:
         pivot = (
             data.pivot_table(
@@ -2390,7 +2433,7 @@ def plot_sentiment_vs_gold(df: pd.DataFrame, days: int, out_path: Path) -> Path:
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_charts.py -v`
-Expected: PASS（6 个用例）
+Expected: PASS（8 个用例）
 
 - [ ] **Step 5: 人工检查中文是否正常显示**
 
@@ -2900,7 +2943,7 @@ from src.config import CHARTS_DIR, DATA_DIR, get_secret, load_sources
 from src.dedupe import dedupe, within_hours
 from src.dify_client import DifyClient, load_sample_result
 from src.notifier import build_card, build_fallback_text, send_to_feishu
-from src.storage import append_events, append_index_row, read_index
+from src.storage import EVENT_FIELDS, append_events, append_index_row, read_index
 
 BEIJING = timezone(timedelta(hours=8))
 WINDOW_HOURS = 30          # 覆盖一天多一点，避免因调度延迟漏掉新闻
@@ -3036,15 +3079,16 @@ def run(dry_run: bool, offline: bool) -> int:
 
 
 def read_index_events_df():
-    """读取 events.csv；不存在时返回空表。"""
+    """读取 events.csv；不存在时返回空表。
+
+    列名直接复用 storage 的 EVENT_FIELDS，不要在这里再抄一份字面量——
+    两处真相源会随字段演进悄悄漂移。
+    """
     import pandas as pd
 
     path = events_path()
     if not path.exists():
-        return pd.DataFrame(columns=[
-            "date", "event_type", "direction", "strength", "relevant",
-            "summary", "source", "url", "published_at",
-        ])
+        return pd.DataFrame(columns=EVENT_FIELDS)
     return pd.read_csv(path, dtype={"date": str})
 
 
