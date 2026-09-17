@@ -2770,7 +2770,7 @@ def patched_pipeline(monkeypatch, tmp_path):
             content="沃勒表示可能降息",
         )], []),
     )
-    monkeypatch.setattr(main_module, "fetch_gold_close", lambda: 2498.7)
+    monkeypatch.setattr(main_module, "fetch_gold_close", lambda: (2498.7, "现货黄金日线"))
     monkeypatch.setattr(
         main_module, "load_sample_result",
         lambda: DifyResult(
@@ -2849,6 +2849,27 @@ def test_run_sends_fallback_when_dify_fails(patched_pipeline, monkeypatch):
     assert code == 1
     assert sent["msg_type"] == "text"
     assert "model timeout" in sent["content"]["text"]
+
+
+def test_run_reports_gold_failure_in_card(patched_pipeline, monkeypatch):
+    """金价断供必须出现在卡片上——它只躺在 stderr 里等于没有告警。"""
+    sent = {}
+    monkeypatch.setattr(
+        main_module, "fetch_gold_close", lambda: (None, "现货黄金日线")
+    )
+    monkeypatch.setattr(
+        main_module, "send_to_feishu", lambda url, payload: sent.update(payload)
+    )
+    monkeypatch.setenv("FEISHU_WEBHOOK_URL", "https://open.feishu.cn/hook/x")
+
+    code = main_module.run(dry_run=False, offline=True)
+    assert code == 0
+
+    text = "\n".join(
+        el["content"] for el in sent["card"]["elements"] if el.get("content")
+    )
+    assert "现货黄金日线" in text
+    assert "抓取失败" in text
 ```
 
 - [ ] **Step 2: 运行测试确认失败**
@@ -2903,20 +2924,29 @@ def now_beijing_iso() -> str:
     return datetime.now(BEIJING).isoformat()
 
 
-def fetch_gold_close() -> float | None:
-    """取金价；失败返回 None，不阻塞主流程。"""
+def fetch_gold_close() -> tuple[float | None, str]:
+    """取金价。
+
+    返回 (收盘价或 None, 信源名)。
+
+    失败时返回 None 但不抛异常——金价缺失不该让整份日报失败。但**必须把
+    信源名带出去**，好让调用方把它并进失败源列表、在飞书卡片上显式告警。
+    否则金价断供只会留在 CI 日志的 stderr 里，而你不会去读那份日志：
+    daily_index.csv 的 gold_close 列会一直空着，双轴对照图会一直不出，
+    几天后才发现。这条通道的存在就是为了让这种情况当天就被看见。
+    """
     cfg = next((s for s in load_sources() if s["type"] == "gold_price"), None)
     if cfg is None:
-        return None
+        return None, ""
     try:
         collector = GoldPriceCollector(
             name=cfg["name"], category=cfg["category"], url=cfg["url"]
         )
         _, close = collector.fetch_latest()
-        return close
+        return close, cfg["name"]
     except Exception as exc:  # noqa: BLE001
         print(f"[警告] 金价获取失败，本次不写入：{exc}", file=sys.stderr)
-        return None
+        return None, cfg["name"]
 
 
 def run(dry_run: bool, offline: bool) -> int:
@@ -2950,7 +2980,10 @@ def run(dry_run: bool, offline: bool) -> int:
         return 1
 
     # 3. 计算与存储
-    gold_close = fetch_gold_close()
+    gold_close, gold_source = fetch_gold_close()
+    if gold_close is None and gold_source:
+        # 让金价断供出现在飞书卡片上，而不是只躺在 CI 日志里
+        failed_sources.append(gold_source)
     index_row = build_index_row(date, events, gold_close)
     print(f"情绪指数 {index_row['sentiment_score']:+.4f}，金价 {gold_close}")
 
@@ -3025,7 +3058,7 @@ if __name__ == "__main__":
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_main.py -v`
-Expected: PASS（4 个用例）
+Expected: PASS（5 个用例）
 
 - [ ] **Step 5: 本地端到端试跑（离线模式）**
 
@@ -3162,6 +3195,16 @@ git push -u origin main
 3. 仓库 `data/` 下出现 `events.csv` 与 `daily_index.csv`，且有 bot 的提交
 4. 下载该次运行的 artifacts（或本地复跑）确认三张图的中文正常
 5. 日志里若有 `失败源 N 个`，记下是哪些
+
+**另外必须单独确认「金价」这一项**——它是设计文档 §5.4 点名的分析价值支点，且已在开发期被证实有风险：本机（国内 IP）访问 stooq 时拿到的是 JS 反爬验证页而非 CSV。本机的探测结果**不能代表 CI**（stooq 的拦截像是按 IP 地域/信誉做的），但反过来也必须亲自验证，不能想当然。
+
+具体查三件事：
+
+1. 卡片上**没有**出现"现货黄金日线"这条失败告警
+2. `data/daily_index.csv` 最新一行的 `gold_close` **非空**
+3. `charts/` 下有 `sentiment_vs_gold.png`，且打开看两条线都画出来了
+
+只要有任一条不满足，就说明 stooq 在 CI 上也被拦了。应对：换一个金价源（新浪财经 `hq.sinajs.cn` 或 Yahoo `GC=F` 之类，需要改 `GoldPriceCollector` 的解析部分），改完把 `docs/信源核验记录.md` 记上。**好消息是历史行情随处可得，中间断的那几天可以事后回填**，所以这不紧急，但不能不查。
 
 - [ ] **Step 6: 依据 CI 日志最终修剪信源**
 
