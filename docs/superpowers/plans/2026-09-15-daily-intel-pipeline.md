@@ -1961,7 +1961,7 @@ def build_index_row(
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_analysis.py -v`
-Expected: PASS（12 个用例）
+Expected: PASS（11 个用例）
 
 - [ ] **Step 5: 提交**
 
