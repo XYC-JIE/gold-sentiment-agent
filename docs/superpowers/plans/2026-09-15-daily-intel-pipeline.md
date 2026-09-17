@@ -2223,12 +2223,34 @@ def _events_df():
     })
 
 
-def test_configure_chinese_font_sets_family():
-    configure_chinese_font()
-    import matplotlib.pyplot as plt
+def test_configure_chinese_font_resolves_a_real_font():
+    """不能只断言"候选列表第一项非空"——那对 ["完全没有这个字体"] 也成立。
 
-    assert plt.rcParams["font.sans-serif"][0]
+    缺字体时没有异常、PNG 照常生成，图上却全是方框。所以这里真的解析一次。
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.font_manager import FontProperties, findfont
+
+    from src.charts import FONT_CANDIDATES
+
+    configure_chinese_font()
     assert plt.rcParams["axes.unicode_minus"] is False
+
+    resolved = findfont(
+        FontProperties(family=FONT_CANDIDATES), fallback_to_default=False
+    )
+    assert resolved
+
+
+def test_plot_raises_clear_error_when_no_cjk_font(monkeypatch):
+    """字体全落空时必须抛错，而不是安静地产出一张豆腐块图。"""
+    import src.charts as charts_module
+
+    monkeypatch.setattr(
+        charts_module, "FONT_CANDIDATES", ["完全不存在的字体XYZ"]
+    )
+    with pytest.raises(ValueError, match="找不到任何可用中文字体"):
+        charts_module.configure_chinese_font()
 
 
 def test_plot_sentiment_trend_writes_file(tmp_path):
@@ -2310,6 +2332,7 @@ import matplotlib
 matplotlib.use("Agg")           # 无显示环境（CI）必须有，否则会报错
 import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib.font_manager import FontProperties, findfont
 
 # Ubuntu CI 上装的是 fonts-noto-cjk，Windows 本地是 SimHei；按序尝试
 FONT_CANDIDATES = ["Noto Sans CJK SC", "WenQuanYi Zen Hei", "Microsoft YaHei", "SimHei"]
@@ -2320,9 +2343,23 @@ COLOR_NEUTRAL = "#7f8c8d"
 
 
 def configure_chinese_font() -> None:
-    """设置中文字体。不设会得到一片方框（豆腐块），且不会有任何报错。"""
+    """设置中文字体，并**确认候选字体真的解析得到**。
+
+    缺字体时 matplotlib 只在 logging 里嘀咕一句 `findfont: Font family not found`，
+    图照画、PNG 照生成、测试照全绿，只是所有中文变成一片方框（豆腐块）。
+    这是本模块唯一无法靠断言捕获的失败模式——所以这里主动解析一次，
+    全落空就抛错，让问题当场暴露，而不是几天后在手机上看到一堆 □。
+    """
     plt.rcParams["font.sans-serif"] = FONT_CANDIDATES
     plt.rcParams["axes.unicode_minus"] = False
+
+    try:
+        findfont(FontProperties(family=FONT_CANDIDATES), fallback_to_default=False)
+    except ValueError as exc:
+        raise ValueError(
+            f"找不到任何可用中文字体，图表会渲染成方框。候选列表：{FONT_CANDIDATES}。"
+            "Linux 上请安装 fonts-noto-cjk；Windows 上确认已安装微软雅黑或黑体。"
+        ) from exc
 
 
 def _tail(df: pd.DataFrame, days: int) -> pd.DataFrame:
@@ -2389,6 +2426,9 @@ def plot_event_distribution(
         )
         order = [c for c in ["利多金银", "中性", "利空金银"] if c in pivot.columns]
         pivot = pivot[order]
+        # 不设这两行，pandas 会把列名直接当图例标题和 xtick 标签，图上出现英文
+        pivot.index.name = "事件类型"
+        pivot.columns.name = "方向"
         colors = [
             {"利多金银": COLOR_BULL, "中性": COLOR_NEUTRAL, "利空金银": COLOR_BEAR}[c]
             for c in order
@@ -2433,7 +2473,7 @@ def plot_sentiment_vs_gold(df: pd.DataFrame, days: int, out_path: Path) -> Path:
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_charts.py -v`
-Expected: PASS（8 个用例）
+Expected: PASS（9 个用例）
 
 - [ ] **Step 5: 人工检查中文是否正常显示**
 
@@ -3044,21 +3084,25 @@ def run(dry_run: bool, offline: bool) -> int:
     append_index_row(index_row, index_path())
 
     # 4. 出图
+    # 缺中文字体或金价都不该让日报失败，但都要在日志里说清楚。
+    # 外层捕获字体缺失（configure_chinese_font 会抛），内层捕获金价缺失。
     index_df = read_index(index_path())
-    plots = {
-        "sentiment_trend": plot_sentiment_trend(
-            index_df, 30, CHARTS_DIR / "sentiment_trend.png"
-        ),
-        "event_distribution": plot_event_distribution(
-            read_index_events_df(), 7, CHARTS_DIR / "event_distribution.png"
-        ),
-    }
+    plots: dict = {}
     try:
-        plots["sentiment_vs_gold"] = plot_sentiment_vs_gold(
-            index_df, 30, CHARTS_DIR / "sentiment_vs_gold.png"
+        plots["sentiment_trend"] = plot_sentiment_trend(
+            index_df, 30, CHARTS_DIR / "sentiment_trend.png"
         )
+        plots["event_distribution"] = plot_event_distribution(
+            read_index_events_df(), 7, CHARTS_DIR / "event_distribution.png"
+        )
+        try:
+            plots["sentiment_vs_gold"] = plot_sentiment_vs_gold(
+                index_df, 30, CHARTS_DIR / "sentiment_vs_gold.png"
+            )
+        except ValueError as exc:
+            print(f"[提示] 跳过金价对照图：{exc}", file=sys.stderr)
     except ValueError as exc:
-        print(f"[提示] 跳过金价对照图：{exc}")
+        print(f"[警告] 图表生成失败：{exc}", file=sys.stderr)
     print(f"已生成 {len(plots)} 张图")
 
     # 5. 推送
@@ -3196,6 +3240,14 @@ jobs:
 
       - name: 安装依赖
         run: pip install -r requirements.txt
+
+      - name: 校验中文字体可用
+        run: |
+          python -c "
+          from src.charts import configure_chinese_font
+          configure_chinese_font()
+          print('中文字体可用')
+          "
 
       - name: 运行测试
         run: python -m pytest
