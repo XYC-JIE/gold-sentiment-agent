@@ -2934,6 +2934,27 @@ def test_run_sends_fallback_when_dify_fails(patched_pipeline, monkeypatch):
     assert "model timeout" in sent["content"]["text"]
 
 
+def test_run_falls_back_to_text_when_card_build_fails(
+    patched_pipeline, monkeypatch
+):
+    """卡片构造失败也必须让人收到东西——静默无输出是最坏情况。"""
+    sent = {}
+
+    def _boom(*args, **kwargs):
+        raise TypeError("digest 结构畸形")
+
+    monkeypatch.setattr(main_module, "build_card", _boom)
+    monkeypatch.setattr(
+        main_module, "send_to_feishu", lambda url, payload: sent.update(payload)
+    )
+    monkeypatch.setenv("FEISHU_WEBHOOK_URL", "https://open.feishu.cn/hook/x")
+
+    code = main_module.run(dry_run=False, offline=True)
+    assert code == 0
+    assert sent["msg_type"] == "text"
+    assert "卡片构造失败" in sent["content"]["text"]
+
+
 def test_run_reports_gold_failure_in_card(patched_pipeline, monkeypatch):
     """金价断供必须出现在卡片上——它只躺在 stderr 里等于没有告警。"""
     sent = {}
@@ -3112,7 +3133,14 @@ def run(dry_run: bool, offline: bool) -> int:
 
     try:
         webhook_url = get_secret("FEISHU_WEBHOOK_URL")
-        card = build_card(date, digest, index_row, failed_sources)
+        try:
+            card = build_card(date, digest, index_row, failed_sources)
+        except Exception as exc:  # noqa: BLE001
+            # 卡片构造失败时（例如 Dify 返回的 digest 结构畸形）必须改发纯文本。
+            # 只把异常打进 stderr 就 return 的话，手机上今天**什么都收不到**——
+            # 那正是设计文档 §8"任何情况下都必须有输出"要防的情况。
+            print(f"[警告] 卡片构造失败，改发纯文本：{exc}", file=sys.stderr)
+            card = build_fallback_text(date, f"卡片构造失败：{exc}")
         send_to_feishu(webhook_url, card)
         print("已推送飞书")
     except Exception as exc:  # noqa: BLE001
@@ -3156,7 +3184,7 @@ if __name__ == "__main__":
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_main.py -v`
-Expected: PASS（5 个用例）
+Expected: PASS（6 个用例）
 
 - [ ] **Step 5: 本地端到端试跑（离线模式）**
 
