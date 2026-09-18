@@ -127,7 +127,7 @@ curl -s -X POST "你的webhook地址" \
 
 3. **输入变量**：添加一个 `raw_items`，类型 String，值选择 **开始节点的 raw_items**（用下拉选，不要手打）
 
-4. **输出变量**：添加一个 `items`，类型 **String**
+4. **输出变量**：添加两个，都是 **String** 类型——`items` 和 `note`
 
 5. 语言选 **Python3**，把下面的代码整个粘进去：
 
@@ -135,10 +135,17 @@ curl -s -X POST "你的webhook地址" \
 import json
 
 def main(raw_items: str) -> dict:
+    text = (raw_items or "").strip()
+    if not text:
+        return {"items": "[]", "note": "输入为空 —— raw_items 没传进来"}
+
     try:
-        items = json.loads(raw_items)
-    except Exception:
-        return {"items": "[]"}
+        items = json.loads(text)
+    except Exception as e:
+        return {"items": "[]", "note": "JSON 解析失败：" + str(e)[:120]}
+
+    if not isinstance(items, list):
+        return {"items": "[]", "note": "输入不是数组，而是 " + type(items).__name__}
 
     cut = []
     for it in items:
@@ -157,8 +164,17 @@ def main(raw_items: str) -> dict:
         if len(cut) >= 60:
             break
 
-    return {"items": json.dumps(cut, ensure_ascii=False)}
+    return {
+        "items": json.dumps(cut, ensure_ascii=False),
+        "note": "输入 " + str(len(items)) + " 条，保留 " + str(len(cut)) + " 条",
+    }
 ```
+
+> **输出变量要加两个**：`items` 和 `note`，都是 **String**。
+>
+> `note` 是诊断用的：出问题时它直接告诉你病因（输入为空 / JSON 坏了 / 输入不是数组），正常时显示「输入 47 条，保留 47 条」——每天瞄一眼就知道今天抓进来多少条。
+>
+> 最初那版把解析错误 `except` 掉、静默返回空数组，结果"输入为空"和"跑得挺好"长得一模一样，正是最难查的那类故障。
 
 > 这段做两件事：**去空条目**，以及**把每条截断到 800 字、总共最多 60 条**——控制 token 消耗。没有它，一次可能烧掉几十万 token。
 
@@ -299,11 +315,16 @@ def main(raw_items: str) -> dict:
 
 **`date` 填：** `2026-09-17`
 
-**`raw_items` 填这一整行**（已转义，直接粘，不要改）：
+**`raw_items` 填这一整行**（这是纯文本输入框，**不要加反斜杠**，直接原样粘）：
 
 ```
-[{\"title\":\"OpenAI 发布新模型\",\"content\":\"OpenAI 今日发布新一代推理模型，在数学与代码基准上大幅提升。\",\"url\":\"https://openai.com/index/demo\",\"source\":\"OpenAI News\",\"category\":\"ai\",\"published_at\":\"2026-09-17T09:00:00+08:00\"},{\"title\":\"谷歌开源新框架\",\"content\":\"Google DeepMind 开源了一个用于多模态训练的框架。\",\"url\":\"https://deepmind.google/blog/demo\",\"source\":\"Google DeepMind Blog\",\"category\":\"ai\",\"published_at\":\"2026-09-17T08:30:00+08:00\"},{\"title\":\"美联储官员放鸽\",\"content\":\"美联储官员沃勒表示，若通胀数据继续改善，年内可能进一步降息。\",\"url\":\"https://www.jin10.com/flash/1\",\"source\":\"金十数据快讯\",\"category\":\"finance\",\"published_at\":\"2026-09-17T10:00:00+08:00\"},{\"title\":\"美国 CPI 超预期\",\"content\":\"美国 8 月 CPI 同比升 3.1%，高于预期的 2.9%。\",\"url\":\"https://wallstreetcn.com/livenews/1\",\"source\":\"华尔街见闻\",\"category\":\"finance\",\"published_at\":\"2026-09-17T20:30:00+08:00\"},{\"title\":\"世界黄金协会报告\",\"content\":\"世界黄金协会称 8 月全球黄金 ETF 净流入 21 亿美元。\",\"url\":\"https://x.com/2\",\"source\":\"金十数据快讯\",\"category\":\"finance\",\"published_at\":\"2026-09-17T11:00:00+08:00\"}]
+[{"title":"OpenAI 发布新模型","content":"OpenAI 今日发布新一代推理模型，在数学与代码基准上大幅提升。","url":"https://openai.com/index/demo","source":"OpenAI News","category":"ai","published_at":"2026-09-17T09:00:00+08:00"},{"title":"谷歌开源新框架","content":"Google DeepMind 开源了一个用于多模态训练的框架。","url":"https://deepmind.google/blog/demo","source":"Google DeepMind Blog","category":"ai","published_at":"2026-09-17T08:30:00+08:00"},{"title":"美联储官员放鸽","content":"美联储官员沃勒表示，若通胀数据继续改善，年内可能进一步降息。","url":"https://www.jin10.com/flash/1","source":"金十数据快讯","category":"finance","published_at":"2026-09-17T10:00:00+08:00"},{"title":"美国 CPI 超预期","content":"美国 8 月 CPI 同比升 3.1%，高于预期的 2.9%。","url":"https://wallstreetcn.com/livenews/1","source":"华尔街见闻","category":"finance","published_at":"2026-09-17T20:30:00+08:00"},{"title":"世界黄金协会报告","content":"世界黄金协会称 8 月全球黄金 ETF 净流入 21 亿美元。","url":"https://x.com/2","source":"金十数据快讯","category":"finance","published_at":"2026-09-17T11:00:00+08:00"}]
 ```
+
+> ⚠️ **这里踩过一个坑**：如果粘的是带 `\"` 的转义版，预筛节点会报
+> `JSON 解析失败：Expecting property name enclosed in double quotes: line 1 column 3`。
+> 因为 `raw_items` 是纯文本字段，反斜杠会被原样保留，第 3 个字符变成 `\` 而不是 `"`。
+> 转义只在「把 JSON 塞进另一段 JSON 里」时才需要——第 4 步的 curl 那边是 Python 自动转义的，不用你管。
 
 > 这 5 条是故意设计的：2 条 AI + 3 条金银（一条明确利多、一条明确利空、一条中性偏多），一次测出模型有没有分清两边的路。
 
