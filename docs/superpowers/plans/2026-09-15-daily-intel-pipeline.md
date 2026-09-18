@@ -1600,6 +1600,31 @@ def test_run_workflow_raises_on_malformed_json_output(requests_mock):
         client.run(_raw_items(), date="2026-09-15")
 
 
+def test_run_workflow_strips_reasoning_blocks(requests_mock):
+    """推理型模型会把 <think>...</think> 拼在 JSON 前面，必须先剥掉再解析。
+
+    实测 DeepSeek 的推理型模型输出形如：
+        <think>\n<!--dify-deepseek-reasoning-->...\n</think>[]
+    不剥掉 json.loads 必挂。
+    """
+    payload = _dify_response()
+    payload["data"]["outputs"]["events_json"] = (
+        "<think>\n<!--dify-deepseek-reasoning-->Let me think.\n</think>"
+        + payload["data"]["outputs"]["events_json"]
+    )
+    payload["data"]["outputs"]["digest_json"] = (
+        "<think>\nthinking...\n</think>"
+        + payload["data"]["outputs"]["digest_json"]
+    )
+    requests_mock.post(URL, json=payload)
+
+    client = DifyClient(api_key="app-test", url=URL)
+    result = client.run(_raw_items(), date="2026-09-15")
+
+    assert result.events[0]["event_type"] == "货币政策"
+    assert result.digest["gold_conclusion"] == "偏多"
+
+
 def test_load_sample_result_reads_repo_sample():
     from src.dify_client import load_sample_result
 
@@ -1620,6 +1645,7 @@ Expected: FAIL — `ModuleNotFoundError: No module named 'src.dify_client'`
 from __future__ import annotations
 
 import json
+import re
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -1642,14 +1668,28 @@ class DifyResult:
     total_tokens: int
 
 
+_THINK_RE = re.compile(r"<think\b[^>]*>.*?</think\s*>", re.DOTALL | re.IGNORECASE)
+
+
+def _strip_reasoning(raw: str) -> str:
+    """剥掉推理型模型夹带的 <think>...</think> 块。
+
+    DeepSeek 的推理型模型（以及其他 thinking 模型）会把思考过程直接拼在
+    回复前面，形成 `<think>...</think>[]` 这样的输出。不剥掉，json.loads 必挂。
+    换模型能躲开，但代码不该赌下游换不换模型。
+    """
+    return _THINK_RE.sub("", raw).strip()
+
+
 def _parse_json_field(raw: str | None, field_name: str) -> object:
     if raw is None:
         raise RuntimeError(f"Dify 返回中缺少 {field_name}")
+    cleaned = _strip_reasoning(raw) if isinstance(raw, str) else raw
     try:
-        return json.loads(raw)
+        return json.loads(cleaned)
     except (json.JSONDecodeError, TypeError) as exc:
         raise RuntimeError(
-            f"{field_name} 解析失败，原始内容前 200 字：{str(raw)[:200]}"
+            f"{field_name} 解析失败，原始内容前 200 字：{str(cleaned)[:200]}"
         ) from exc
 
 
@@ -1725,7 +1765,7 @@ def load_sample_result() -> DifyResult:
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_dify_client.py -v`
-Expected: PASS（5 个用例）
+Expected: PASS（6 个用例）
 
 - [ ] **Step 5: 提交**
 
