@@ -1,0 +1,58 @@
+name: daily-digest
+
+on:
+  schedule:
+    # GitHub 的 cron 用 UTC。23:30 UTC = 次日 07:30 北京时间。
+    - cron: "30 23 * * *"
+  workflow_dispatch:        # 支持手动触发，便于调试
+
+permissions:
+  contents: write           # 需要写权限才能把数据回写进仓库
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - name: 安装中文字体
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 校验中文字体可用
+        run: |
+          python -c "
+          from src.charts import configure_chinese_font
+          configure_chinese_font()
+          print('中文字体可用')
+          "
+
+      - name: 运行测试
+        run: python -m pytest
+
+      - name: 运行流水线
+        env:
+          DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+        run: python -m src.main
+
+      - name: 回写数据与图表
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "无数据变更"
+          else
+            git commit -m "chore: 每日数据 $(date -u +%F)"
+            git push
+          fi
