@@ -1498,7 +1498,8 @@ git commit -m "feat: Dify 工作流（结构化抽取 + 日报生成）"
 
 **Interfaces:**
 - Consumes: `RawItem`、`SAMPLES_DIR`
-- Produces: `run_workflow(items: list[RawItem], date: str, api_key: str) -> DifyResult`；`DifyResult(events: list[dict], digest: dict, total_tokens: int)`；`load_sample_result() -> DifyResult`
+- Produces: `DifyClient(api_key: str, url: str = API_URL).run(items: list[RawItem], date: str) -> DifyResult`；`DifyResult(events: list[dict], digest: dict, total_tokens: int)`；`load_sample_result() -> DifyResult`
+  - **T13 请按这个签名消费**：`DifyClient(api_key=get_secret("DIFY_API_KEY")).run(items, date)`。没有独立的 `run_workflow()` 函数——调用形式以本行为准
 
 - [ ] **Step 1: 写失败测试 `tests/test_dify_client.py`**
 
@@ -1598,6 +1599,25 @@ def test_run_workflow_raises_on_malformed_json_output(requests_mock):
     client = DifyClient(api_key="app-test", url=URL)
     with pytest.raises(RuntimeError, match="events_json 解析失败"):
         client.run(_raw_items(), date="2026-09-15")
+
+
+def test_run_workflow_does_not_retry_4xx(requests_mock):
+    """4xx 是确定性失败（密钥错、参数错），重试只是白等 20 秒。
+
+    更要紧的是：`raise_for_status()` 抛出的异常只带状态码，而 Dify 把真正
+    的原因放在响应体里。这里验证原因被捞回来、且只发了一次请求。
+    """
+    requests_mock.post(
+        URL,
+        status_code=401,
+        text='{"code":"unauthorized","message":"invalid api key"}',
+    )
+    client = DifyClient(api_key="app-bad", url=URL)
+
+    with pytest.raises(RuntimeError, match="invalid api key"):
+        client.run(_raw_items(), date="2026-09-15")
+
+    assert len(requests_mock.request_history) == 1
 
 
 def test_run_workflow_strips_reasoning_blocks(requests_mock):
@@ -1737,6 +1757,22 @@ class DifyClient:
                 )
             except RuntimeError:
                 raise           # 业务错误不重试，重试也是同样结果
+            except requests.HTTPError as exc:
+                # 4xx 是确定性失败（密钥错、参数错、路径错），重试只是白等 20 秒；
+                # 而且 `raise_for_status()` 抛出的异常**只带 URL 和状态码**，
+                # Dify 把真正的原因放在响应体里（形如
+                # {"code":"invalid_param","message":"..."}），会被丢掉。
+                # 这里显式把它捞回来——错误信息里有没有原因，排查难度差一个数量级。
+                response = exc.response
+                status = response.status_code if response is not None else 0
+                if 400 <= status < 500:
+                    detail = (response.text or "")[:200] if response is not None else ""
+                    raise RuntimeError(
+                        f"Dify 返回 HTTP {status}：{detail}"
+                    ) from exc
+                last_error = exc            # 5xx 才重试
+                if attempt < MAX_ATTEMPTS - 1:
+                    time.sleep(BACKOFF_SECONDS[attempt])
             except Exception as exc:  # noqa: BLE001 - 网络类错误才重试
                 last_error = exc
                 if attempt < MAX_ATTEMPTS - 1:
@@ -1770,7 +1806,7 @@ def load_sample_result() -> DifyResult:
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_dify_client.py -v`
-Expected: PASS（6 个用例）
+Expected: PASS（7 个用例）
 
 - [ ] **Step 5: 提交**
 
