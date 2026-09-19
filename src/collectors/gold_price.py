@@ -19,7 +19,10 @@ from src.models import RawItem
 
 BEIJING = timezone(timedelta(hours=8))
 
-# 新浪要求带 Referer，否则返回空内容
+# 新浪要求带 Referer，否则返回 **HTTP 403 Forbidden**（实测响应体是 9 字节的
+# `Forbidden`）。注意这是 `raise_for_status()` 抛的 HTTPError，与下面那句
+# 「格式不符」的 ValueError（HTTP 200 但 body 不含行情串）是**两条不同分支**，
+# 排查时别把前者误判成后者。详见 docs/信源核验记录.md 的 2026-09-19 小节。
 SINA_HEADERS = {"Referer": "https://finance.sina.com.cn"}
 
 # var hq_str_hf_XAU="4378.29,4341.620,...,2026-09-19,伦敦金（现货黄金）";

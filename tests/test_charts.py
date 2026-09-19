@@ -123,6 +123,29 @@ def test_font_fallback_search_recovers_when_candidates_miss(monkeypatch):
     assert plt.rcParams["font.sans-serif"][0] != "完全不存在的字体XYZ"
 
 
+def test_fallback_search_rejects_fonts_without_han_glyphs(monkeypatch):
+    """字形校验必须作用在**搜索循环里**，不能只是躺在那儿的一个孤立函数。
+
+    上面那个 `test_plot_raises_clear_error_when_no_cjk_font` 把 ttflist 清空了，
+    循环一次都不进，于是**删掉 `_pick_available_cjk_font` 里那两行
+    `if not _has_cjk_glyphs(path): continue` 它照样绿**——它测的是"一个字体都
+    没有"，不是"字体有、但都没汉字"。本用例保持 ttflist 真实、只把字形判定
+    恒置为不可用，逼循环真的走完：守卫在，就一个都收不下、最终抛错；守卫没了，
+    函数会收下第一个关键字命中的字体并正常返回，于是这里变红。
+
+    为什么值得单独钉住：实测本机关键字命中列表按字母序第一项正是 `HYZhongHei`
+    （能被 findfont 解析、`char_index('中')==0`），所以守卫一旦被删，选中的就是
+    那个坏字体，而图会安静地变成一片空白。
+    """
+    import src.charts as charts_module
+
+    monkeypatch.setattr(charts_module, "FONT_CANDIDATES", ["完全不存在的字体XYZ"])
+    monkeypatch.setattr(charts_module, "_has_cjk_glyphs", lambda _path: False)
+
+    with pytest.raises(ValueError, match="找不到任何可用中文字体"):
+        charts_module.configure_chinese_font()
+
+
 def test_plot_sentiment_trend_writes_file(tmp_path):
     out = plot_sentiment_trend(_index_df(), days=30, out_path=tmp_path / "trend.png")
     assert out.exists() and out.stat().st_size > 1000
