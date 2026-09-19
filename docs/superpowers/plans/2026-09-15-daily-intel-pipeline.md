@@ -2609,6 +2609,40 @@ def test_plot_raises_clear_error_when_no_cjk_font(monkeypatch):
         charts_module.configure_chinese_font()
 
 
+def test_has_cjk_glyphs_rejects_unreadable_file(tmp_path):
+    """读不了的文件必须判为不可用（可移植，CI 上也能跑）。"""
+    import src.charts as charts_module
+
+    bogus = tmp_path / "not-a-font.ttf"
+    bogus.write_bytes(b"\x00\x01\x02\x03")
+    assert charts_module._has_cjk_glyphs(str(bogus)) is False
+
+
+def test_has_cjk_glyphs_rejects_resolvable_font_without_han():
+    """真实反例：能解析 ≠ 有汉字字形。
+
+    本机的 `HYZhongHei`（汉仪中黑）能被 findfont 解析，`char_index('中')` 却是
+    0——只看"能否解析"会把它当可用字体收下，然后安静地画出一片空白。
+
+    **这台机器上没有该字体时跳过**：它是本机特有的坏字体，不能把本机环境
+    固化成全局断言，否则 CI（Ubuntu）会直接报错。
+    """
+    import pytest
+    from matplotlib import font_manager
+    from matplotlib.font_manager import FontProperties
+
+    import src.charts as charts_module
+
+    try:
+        path = font_manager.findfont(
+            FontProperties(family=["HYZhongHei"]), fallback_to_default=False
+        )
+    except ValueError:
+        pytest.skip("本机没有 HYZhongHei，跳过真实反例（可移植性用例已覆盖读不了的情形）")
+
+    assert charts_module._has_cjk_glyphs(path) is False
+
+
 def test_font_fallback_search_recovers_when_candidates_miss(monkeypatch):
     """候选列表全不匹配时，兜底搜索应当找回一个能用的中文字体。
 
