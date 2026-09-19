@@ -55,14 +55,38 @@ def test_configure_chinese_font_resolves_a_real_font():
 
 
 def test_plot_raises_clear_error_when_no_cjk_font(monkeypatch):
-    """字体全落空时必须抛错，而不是安静地产出一张豆腐块图。"""
+    """一个中文字体都没有时必须抛错，而不是安静地产出一张豆腐块图。
+
+    兜底搜索也要一起屏蔽——否则本机的微软雅黑会被搜到，这个用例就不再是在
+    测「一个都没有」的场景了。
+    """
+    import src.charts as charts_module
+    from matplotlib import font_manager
+
+    monkeypatch.setattr(
+        charts_module, "FONT_CANDIDATES", ["完全不存在的字体XYZ"]
+    )
+    monkeypatch.setattr(font_manager.fontManager, "ttflist", [])
+    with pytest.raises(ValueError, match="找不到任何可用中文字体"):
+        charts_module.configure_chinese_font()
+
+
+def test_font_fallback_search_recovers_when_candidates_miss(monkeypatch):
+    """候选列表全不匹配时，兜底搜索应当找回一个能用的中文字体。
+
+    CI 上实测踩过：Ubuntu 的 fonts-noto-cjk 暴露的族名不在候选列表里，
+    精确匹配失败导致图表全变方框（护栏正确报错并拦下了）。这层搜索就是
+    为那种情况准备的。本机（Windows）用微软雅黑验证这条路径。
+    """
+    import matplotlib.pyplot as plt
+
     import src.charts as charts_module
 
     monkeypatch.setattr(
         charts_module, "FONT_CANDIDATES", ["完全不存在的字体XYZ"]
     )
-    with pytest.raises(ValueError, match="找不到任何可用中文字体"):
-        charts_module.configure_chinese_font()
+    charts_module.configure_chinese_font()      # 不抛异常即算通过
+    assert plt.rcParams["font.sans-serif"][0] != "完全不存在的字体XYZ"
 
 
 def test_plot_sentiment_trend_writes_file(tmp_path):
