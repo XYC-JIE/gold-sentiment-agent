@@ -1,0 +1,384 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: daily-intel
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.24@9e12eef09973667f0eaf4f082af883167e1de88740b22e71e71488d020c3778a
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1789648827705-source-1789649977337-target
+      source: '1789648827705'
+      sourceHandle: source
+      target: '1789649977337'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1789649977337-source-1789697925585-target
+      source: '1789649977337'
+      sourceHandle: source
+      target: '1789697925585'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1789697925585-source-1789699854064-target
+      source: '1789697925585'
+      sourceHandle: source
+      target: '1789699854064'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1789699854064-source-1789701273478-target
+      source: '1789699854064'
+      sourceHandle: source
+      target: '1789701273478'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: raw_items
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: raw_items
+        - default: ''
+          hint: ''
+          label: date
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: date
+      height: 134
+      id: '1789648827705'
+      position:
+        x: 0
+        y: 0
+      positionAbsolute:
+        x: 0
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import json\n\ndef main(raw_items: str) -> dict:\n      text = (raw_items\
+          \ or \"\").strip()\n      if not text:\n          return {\"items\": \"\
+          []\", \"note\": \"输入为空 —— raw_items 没传进来\"}\n\n      try:\n          items\
+          \ = json.loads(text)\n      except Exception as e:\n          return {\"\
+          items\": \"[]\", \"note\": \"JSON 解析失败：\" + str(e)[:120]}\n\n      if not\
+          \ isinstance(items, list):\n          return {\"items\": \"[]\", \"note\"\
+          : \"输入不是数组，而是 \" + type(items).__name__}\n\n      cut = []\n      for it\
+          \ in items:\n          content = (it.get(\"content\") or \"\").strip()\n\
+          \          title = (it.get(\"title\") or \"\").strip()\n          if not\
+          \ content and not title:\n              continue\n          cut.append({\n\
+          \              \"title\": title[:200],\n              \"content\": content[:800],\n\
+          \              \"url\": it.get(\"url\", \"\"),\n              \"source\"\
+          : it.get(\"source\", \"\"),\n              \"category\": it.get(\"category\"\
+          , \"\"),\n              \"published_at\": it.get(\"published_at\", \"\"\
+          ),\n          })\n          if len(cut) >= 60:\n              break\n\n\
+          \      return {\n          \"items\": json.dumps(cut, ensure_ascii=False),\n\
+          \          \"note\": \"输入 \" + str(len(items)) + \" 条，保留 \" + str(len(cut))\
+          \ + \" 条\",\n      }"
+        code_language: python3
+        outputs:
+          items:
+            children: null
+            type: string
+          note:
+            children: null
+            type: string
+        selected: false
+        title: 预筛
+        type: code
+        variables:
+        - value_selector:
+          - '1789648827705'
+          - raw_items
+          value_type: string
+          variable: raw_items
+      height: 51
+      id: '1789649977337'
+      position:
+        x: 342
+        y: 63.83333333333334
+      positionAbsolute:
+        x: 342
+        y: 63.83333333333334
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.1
+          mode: chat
+          name: deepseek-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 989f3054-6b8a-4c1a-855b-8316ee1ad3bd
+          role: system
+          text: '你是金融与 AI 新闻分析助手。输入是一批新闻条目（JSON 数组）。请对每一条输出结构化分析。
+
+                对每条新闻输出一个对象，字段如下：
+
+                - event_type：从以下枚举中选且只能选一个，禁止自创：
+
+                  货币政策 | 经济数据 | 地缘政治 | 央行购金 | 美元走势 | 通胀 | 就业 | 其他
+
+                  判定规则：
+
+                  * 利率决议、官员表态、缩表扩表 → 货币政策
+
+                  * GDP、PMI、零售销售等非通胀非就业数据 → 经济数据
+
+                  * 战争、制裁、选举、贸易摩擦 → 地缘政治
+
+                  * 央行买卖黄金、黄金储备变动 → 央行购金
+
+                  * 美元指数、美债收益率 → 美元走势
+
+                  * CPI、PCE、物价 → 通胀
+
+                  * 非农、失业率、初请失业金 → 就业
+
+                  * 无法归入上述任何一类 → 其他
+
+                - direction：利多金银 | 利空金银 | 中性
+
+                  判定：提升实际利率预期 → 利空金银；压低实际利率预期 → 利多金银；
+
+                  避险需求上升 → 利多金银；与金银无关 → 中性
+
+                - strength：  到   的整数。 =影响微弱， =中等， =重大冲击
+
+                - relevant：布尔值。该条是否与金银走势相关。AI 技术类新闻填 false
+
+                - summary：一句话中文摘要，不超过   字
+
+                - source / url / published_at：原样保留输入中的对应字段
+
+                只输出 JSON 数组，不要输出任何解释文字或 Markdown 代码块标记。
+
+                输出数组的长度必须与输入一致，且顺序一一对应。/'
+        - id: e4ee9c69-b915-4f84-87fa-23efa6fea870
+          role: user
+          text: '{{#1789649977337.items#}}'
+        selected: false
+        structured_output_enabled: false
+        title: 结构化抽取
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1789697925585'
+      position:
+        x: 684
+        y: 54.33333333333334
+      positionAbsolute:
+        x: 684
+        y: 54.33333333333334
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: deepseek-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: e9843c92-bd77-4130-9825-a31960768c0a
+          role: system
+          text: '你是金银与 AI 情报编辑。根据输入的结构化事件列表，生成一份中文日报。
+
+                输出严格 JSON，结构如下：
+
+                {
+
+                  "ai_news": [{"title": "标题", "why": "为什么重要", "url": "链接"}],
+
+                  "gold_news": [{"summary": "事件摘要", "direction": "利多金银", "strength":
+             , "url": "链接"}],
+
+                  "gold_conclusion": "一句综合判断",
+
+                  "calendar": [{"time": " : ", "event": "美国   月 CPI 同比"}]
+
+                }
+
+                要求：
+
+                - ai_news：挑   到   条与 AI 技术、模型、行业相关的（relevant 为 false 的那些）。
+
+                  why 字段用一句话说明为什么值得关注，不超过   字
+
+                - gold_news：挑   到   条与金银最相关的（relevant 为 true），按 strength 从高到低排列
+
+                - gold_conclusion：一句多空倾向判断，不超过 60 字。必须与事件统计一致：利多条数多于利空→说"偏多"；利空多于利多→说"偏空"；条数相同→说"多空交织"。强度可以用来补充说明理由，但不能用来推翻条数结论。
+
+                - calendar：只填输入中明确提到的今日宏观事件；没有就填空数组 []
+
+                - **严禁编造输入中不存在的信息**，url 必须来自输入
+
+                - 只输出 JSON，不要输出 Markdown 代码块标记'
+        - id: ba0dfea2-8116-4bca-a81e-c5de907b057d
+          role: user
+          text: '{{#1789697925585.text#}}}'
+        selected: false
+        title: 日报生成
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1789699854064'
+      position:
+        x: 1026
+        y: 68.83333333333334
+      positionAbsolute:
+        x: 1026
+        y: 68.83333333333334
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1789697925585'
+          - text
+          value_type: string
+          variable: events_json
+        - value_selector:
+          - '1789699854064'
+          - text
+          value_type: string
+          variable: digest_json
+        selected: false
+        title: 输出
+        type: end
+      height: 114
+      id: '1789701273478'
+      position:
+        x: 1328
+        y: 68.83333333333334
+      positionAbsolute:
+        x: 1328
+        y: 68.83333333333334
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    viewport:
+      x: -324.69565670574843
+      y: 298.2453162166045
+      zoom: 0.5305007982786394
+  rag_pipeline_variables: []
