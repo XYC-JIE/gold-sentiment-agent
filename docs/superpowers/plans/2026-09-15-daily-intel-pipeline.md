@@ -1747,15 +1747,20 @@ class DifyClient:
 
 
 def load_sample_result() -> DifyResult:
-    """读取 samples/dify_response.json，供 --offline 模式使用。"""
+    """读取 samples/dify_response.json，供 --offline 模式使用。
+
+    **必须复用 `_parse_json_field`，不要直接 json.loads。** 样本文件是真实
+    调用的产物，里面同样带 `<think>` 块；离线路径若不剥离，`--offline`
+    一跑就挂，而线上路径（`run()`）却是好的——两条路径行为必须一致。
+    """
     path = Path(SAMPLES_DIR) / "dify_response.json"
     with path.open("r", encoding="utf-8") as f:
         data = json.load(f)["data"]
 
     outputs = data["outputs"]
     return DifyResult(
-        events=json.loads(outputs["events_json"]),
-        digest=json.loads(outputs["digest_json"]),
+        events=_parse_json_field(outputs.get("events_json"), "events_json"),
+        digest=_parse_json_field(outputs.get("digest_json"), "digest_json"),
         total_tokens=data.get("total_tokens", 0),
     )
 ```
