@@ -52,7 +52,7 @@ sources:
     type: wallstreetcn
     url: https://api-one.wallstcn.com/apiv1/content/lives
 
-  - name: 现货黄金日线
+  - name: 现货黄金
     category: market
     type: gold_price
-    url: https://stooq.com/q/d/l/?s=xauusd&i=d
+    url: https://hq.sinajs.cn/list=hf_XAU
