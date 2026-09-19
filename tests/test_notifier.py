@@ -147,3 +147,18 @@ def test_fallback_text_mentions_reason():
     assert payload["msg_type"] == "text"
     assert "Dify 调用失败" in payload["content"]["text"]
     assert "2026-09-15" in payload["content"]["text"]
+
+
+def test_both_card_and_fallback_contain_feishu_keyword():
+    """关键词是飞书侧的安全设置，消息不含它就发不出去（19024）。
+
+    真实联调踩过：标题从「每日日报」改成别的词，推送会静默全挂——
+    而单元测试仍然全绿。所以这里把它钉死。
+    """
+    from src.notifier import FEISHU_KEYWORD
+
+    card = build_card("2026-09-15", _digest(), _index_row(), failed_sources=[])
+    assert FEISHU_KEYWORD in _all_text(card)
+
+    fallback = build_fallback_text("2026-09-15", "Dify 调用失败")
+    assert FEISHU_KEYWORD in fallback["content"]["text"]

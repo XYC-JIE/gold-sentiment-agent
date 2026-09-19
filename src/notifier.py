@@ -10,6 +10,10 @@ import requests
 TIMEOUT_SECONDS = 15
 DASHBOARD_BUTTON_TEXT = "查看历史看板"
 
+# 飞书自定义机器人的「自定义关键词」安全设置要求消息必须含此词，
+# 否则返回 19024 Key Words Not Found。改文案时务必同步飞书后台的设置。
+FEISHU_KEYWORD = "每日日报"
+
 
 def _tendency(score: float) -> str:
     # ±0.15 是"值得标注方向"的最小强度：归一化区间里靠中间的微弱波动只算噪声，
@@ -66,7 +70,7 @@ def build_card(
     dashboard_url: str = "",
 ) -> dict:
     score = float(index_row.get("sentiment_score") or 0.0)
-    header = f"📊 每日情报 · {date}"
+    header = f"📊 {FEISHU_KEYWORD} · {date}"
 
     blocks: list[str] = []
 
@@ -126,7 +130,7 @@ def build_fallback_text(date: str, reason: str) -> dict:
         "msg_type": "text",
         "content": {
             "text": (
-                f"📊 每日情报 · {date}\n\n"
+                f"📊 {FEISHU_KEYWORD} · {date}\n\n"
                 f"⚠️ 今日日报生成失败：{reason}\n"
                 f"请查看 GitHub Actions 运行日志。"
             )
