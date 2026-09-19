@@ -15,7 +15,7 @@ from src.charts import (
 from src.collectors import build_collectors, collect_all
 from src.collectors.gold_price import GoldPriceCollector
 from src.config import CHARTS_DIR, DATA_DIR, get_secret, load_sources
-from src.dedupe import dedupe, within_hours
+from src.dedupe import dedupe, interleave_by_category, within_hours
 from src.dify_client import DifyClient, load_sample_result
 from src.notifier import build_card, build_fallback_text, send_to_feishu
 from src.storage import EVENT_FIELDS, append_events, append_index_row, read_index
@@ -68,12 +68,39 @@ def fetch_gold_close() -> tuple[float | None, str]:
 
 
 def run(dry_run: bool, offline: bool) -> int:
+    """对外入口。任何未预期的异常都要变成一条飞书告警，而不是一声不响地崩掉。
+
+    设计文档 §8 的原则是「任何情况下都必须有输出」。光在主流程各段加 try 不够
+    ——配置读不到（`build_collectors` 抛 FileNotFoundError）、磁盘写不进去
+    （`append_events` 抛 OSError）、既有 CSV 被写坏（`read_index` 抛 ParserError）
+    这类上游故障都会在推送之前穿透出去，结果就是**当天手机上什么都收不到**。
+    所以这里用一层外壳兜住整条流水线。
+    """
     date = today_beijing()
+    try:
+        return _run_pipeline(date, dry_run=dry_run, offline=offline)
+    except Exception as exc:  # noqa: BLE001 - 兜底就是要广
+        print(f"[错误] 未预期的失败：{exc}", file=sys.stderr)
+        if not dry_run:
+            try:
+                send_to_feishu(
+                    get_secret("FEISHU_WEBHOOK_URL"),
+                    build_fallback_text(date, f"未预期的失败：{exc}"),
+                )
+                print("已发送降级告警")
+            except Exception as notify_exc:  # noqa: BLE001
+                print(f"[错误] 连降级告警都发不出去：{notify_exc}", file=sys.stderr)
+        return 1
+
+
+def _run_pipeline(date: str, dry_run: bool, offline: bool) -> int:
     print(f"=== 每日情报 {date} | dry_run={dry_run} offline={offline}")
 
     # 1. 采集
     items, failed_sources = collect_all(build_collectors())
     items = within_hours(dedupe(items), hours=WINDOW_HOURS, now=now_beijing_iso())
+    # 交替排列后再送 Dify：预筛节点按位置截断，不交替的话排在后面的源会被整类截掉
+    items = interleave_by_category(items)
     print(f"采集到 {len(items)} 条（去重与时间窗筛选后），失败源 {len(failed_sources)} 个")
 
     # 2. Dify

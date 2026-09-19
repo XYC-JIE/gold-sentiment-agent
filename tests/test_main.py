@@ -150,3 +150,43 @@ def test_run_reports_gold_failure_in_card(patched_pipeline, monkeypatch):
     )
     assert "现货黄金日线" in text
     assert "抓取失败" in text
+
+
+def test_run_actually_interleaves_before_sending(patched_pipeline, monkeypatch):
+    """编排必须**真的调用** interleave_by_category。
+
+    背景：这个函数写好、单测全绿，但 main.py 漏掉了调用点，于是修复完全失效
+    而 6 个用例照样全过——因为桩数据只有单条 finance 条目，交替与否结果相同。
+    所以这里断言调用**发生过**，而不是断言它的效果。
+    """
+    called = {}
+
+    def _spy(items):
+        called["arg"] = list(items)
+        return items
+
+    monkeypatch.setattr(main_module, "interleave_by_category", _spy)
+    monkeypatch.setattr(main_module, "send_to_feishu", lambda url, p: None)
+    monkeypatch.setenv("FEISHU_WEBHOOK_URL", "https://open.feishu.cn/hook/x")
+
+    main_module.run(dry_run=False, offline=True)
+    assert "arg" in called, "run() 没有调用 interleave_by_category"
+
+
+def test_run_sends_fallback_on_unexpected_failure(patched_pipeline, monkeypatch):
+    """上游炸了（配置读不到、磁盘写不进）也必须发出告警，不能静默崩掉。"""
+    sent = {}
+
+    def _boom(*args, **kwargs):
+        raise FileNotFoundError("config/sources.yaml 不见了")
+
+    monkeypatch.setattr(main_module, "build_collectors", _boom)
+    monkeypatch.setattr(
+        main_module, "send_to_feishu", lambda url, payload: sent.update(payload)
+    )
+    monkeypatch.setenv("FEISHU_WEBHOOK_URL", "https://open.feishu.cn/hook/x")
+
+    code = main_module.run(dry_run=False, offline=True)
+    assert code == 1
+    assert sent["msg_type"] == "text"
+    assert "未预期的失败" in sent["content"]["text"]
