@@ -3333,6 +3333,46 @@ def test_run_falls_back_to_text_when_card_build_fails(
     assert "卡片构造失败" in sent["content"]["text"]
 
 
+def test_run_actually_interleaves_before_sending(patched_pipeline, monkeypatch):
+    """编排必须**真的调用** interleave_by_category。
+
+    背景：这个函数写好、单测全绿，但 main.py 漏掉了调用点，于是修复完全失效
+    而 6 个用例照样全过——因为桩数据只有单条 finance 条目，交替与否结果相同。
+    所以这里断言调用**发生过**，而不是断言它的效果。
+    """
+    called = {}
+
+    def _spy(items):
+        called["arg"] = list(items)
+        return items
+
+    monkeypatch.setattr(main_module, "interleave_by_category", _spy)
+    monkeypatch.setattr(main_module, "send_to_feishu", lambda url, p: None)
+    monkeypatch.setenv("FEISHU_WEBHOOK_URL", "https://open.feishu.cn/hook/x")
+
+    main_module.run(dry_run=False, offline=True)
+    assert "arg" in called, "run() 没有调用 interleave_by_category"
+
+
+def test_run_sends_fallback_on_unexpected_failure(patched_pipeline, monkeypatch):
+    """上游炸了（配置读不到、磁盘写不进）也必须发出告警，不能静默崩掉。"""
+    sent = {}
+
+    def _boom(*args, **kwargs):
+        raise FileNotFoundError("config/sources.yaml 不见了")
+
+    monkeypatch.setattr(main_module, "build_collectors", _boom)
+    monkeypatch.setattr(
+        main_module, "send_to_feishu", lambda url, payload: sent.update(payload)
+    )
+    monkeypatch.setenv("FEISHU_WEBHOOK_URL", "https://open.feishu.cn/hook/x")
+
+    code = main_module.run(dry_run=False, offline=True)
+    assert code == 1
+    assert sent["msg_type"] == "text"
+    assert "未预期的失败" in sent["content"]["text"]
+
+
 def test_run_reports_gold_failure_in_card(patched_pipeline, monkeypatch):
     """金价断供必须出现在卡片上——它只躺在 stderr 里等于没有告警。"""
     sent = {}
@@ -3432,7 +3472,32 @@ def fetch_gold_close() -> tuple[float | None, str]:
 
 
 def run(dry_run: bool, offline: bool) -> int:
+    """对外入口。任何未预期的异常都要变成一条飞书告警，而不是一声不响地崩掉。
+
+    设计文档 §8 的原则是「任何情况下都必须有输出」。光在主流程各段加 try 不够
+    ——配置读不到（`build_collectors` 抛 FileNotFoundError）、磁盘写不进去
+    （`append_events` 抛 OSError）、既有 CSV 被写坏（`read_index` 抛 ParserError）
+    这类上游故障都会在推送之前穿透出去，结果就是**当天手机上什么都收不到**。
+    所以这里用一层外壳兜住整条流水线。
+    """
     date = today_beijing()
+    try:
+        return _run_pipeline(date, dry_run=dry_run, offline=offline)
+    except Exception as exc:  # noqa: BLE001 - 兜底就是要广
+        print(f"[错误] 未预期的失败：{exc}", file=sys.stderr)
+        if not dry_run:
+            try:
+                send_to_feishu(
+                    get_secret("FEISHU_WEBHOOK_URL"),
+                    build_fallback_text(date, f"未预期的失败：{exc}"),
+                )
+                print("已发送降级告警")
+            except Exception as notify_exc:  # noqa: BLE001
+                print(f"[错误] 连降级告警都发不出去：{notify_exc}", file=sys.stderr)
+        return 1
+
+
+def _run_pipeline(date: str, dry_run: bool, offline: bool) -> int:
     print(f"=== 每日情报 {date} | dry_run={dry_run} offline={offline}")
 
     # 1. 采集
@@ -3564,7 +3629,7 @@ if __name__ == "__main__":
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_main.py -v`
-Expected: PASS（6 个用例）
+Expected: PASS（8 个用例）
 
 - [ ] **Step 5: 本地端到端试跑（离线模式）**
 
