@@ -1034,6 +1034,216 @@ git commit -m "feat: 现货黄金日线采集器"
 
 ---
 
+## Task 5b: 更换金价源（stooq → 新浪财经）
+
+**Files:**
+- Modify: `src/collectors/gold_price.py`
+- Modify: `config/sources.yaml`
+- Modify: `tests/fixtures/stooq_xauusd.csv` → 删除，新建 `tests/fixtures/sina_gold.txt`
+- Modify: `tests/test_collectors_gold.py`
+
+**Interfaces:**
+- Consumes: `Collector`、`RawItem`
+- Produces: `GoldPriceCollector(name, category, url)` 的 `fetch_latest() -> tuple[str, float]`，签名不变
+
+**为什么换**：T13 端到端联调实测，stooq 端点 `https://stooq.com/q/d/l/?s=xauusd&i=d` 已**长期失效**——本机直连返回 JS 反爬验证页，CI 侧返回 HTTP 404 "does not exist or has been moved"（两个环境都复现，不是抖动）。后果是 `gold_close` 恒空、双轴对照图永不生成，而 T5 的单测是打桩的所以照样全绿——正是设计文档 §5.4 点名的那类失败。
+
+新浪财经 `hq.sinajs.cn` 已实测可用，国内外均可达。
+
+- [ ] **Step 1: 确认新源可用（人工步骤）**
+
+```bash
+curl -s -m 15 -H "Referer: https://finance.sina.com.cn" "https://hq.sinajs.cn/list=hf_XAU" | iconv -f gbk -t utf-8
+```
+
+预期形如：
+
+```
+var hq_str_hf_XAU="4378.29,4341.620,4378.29,4378.69,4399.49,4334.23,04:54:00,4341.62,4343.47,0,0,0,2026-09-19,伦敦金（现货黄金）";
+```
+
+**同时验证不带 Referer 会怎样**（这决定 Referer 是不是必需）：
+
+```bash
+curl -s -m 15 "https://hq.sinajs.cn/list=hf_XAU" | head -c 200
+```
+
+把两次结果都记进 `docs/信源核验记录.md`。
+
+- [ ] **Step 2: 写 fixture `tests/fixtures/sina_gold.txt`**
+
+```
+var hq_str_hf_XAU="4378.29,4341.620,4378.29,4378.69,4399.49,4334.23,04:54:00,4341.62,4343.47,0,0,0,2026-09-19,伦敦金（现货黄金）";
+```
+
+**注意编码**：这个文件要存成 **GBK**，因为真实响应就是 GBK。用 Python 写：
+
+```bash
+python -c "
+import pathlib
+s = 'var hq_str_hf_XAU=\"4378.29,4341.620,4378.29,4378.69,4399.49,4334.23,04:54:00,4341.62,4343.47,0,0,0,2026-09-19,伦敦金（现货黄金）\";'
+pathlib.Path('tests/fixtures/sina_gold.txt').write_bytes(s.encode('gbk'))
+"
+```
+
+- [ ] **Step 3: 改写 `tests/test_collectors_gold.py`**
+
+```python
+from pathlib import Path
+
+import pytest
+
+from src.collectors.gold_price import GoldPriceCollector
+
+FIXTURE = Path(__file__).parent / "fixtures" / "sina_gold.txt"
+URL = "https://hq.sinajs.cn/list=hf_XAU"
+
+
+def test_fetch_latest_parses_sina_payload(requests_mock):
+    requests_mock.get(URL, content=FIXTURE.read_bytes())
+    c = GoldPriceCollector(name="现货黄金", category="market", url=URL)
+    date, price = c.fetch_latest()
+    assert date == "2026-09-19"
+    assert price == 4378.29
+
+
+def test_fetch_latest_sends_referer(requests_mock):
+    """新浪不带 Referer 会返回空——这个请求头是必需的，不是可选优化。"""
+    requests_mock.get(URL, content=FIXTURE.read_bytes())
+    c = GoldPriceCollector(name="现货黄金", category="market", url=URL)
+    c.fetch_latest()
+    assert "finance.sina.com.cn" in requests_mock.request_history[0].headers["Referer"]
+
+
+def test_fetch_latest_raises_on_unexpected_body(requests_mock):
+    requests_mock.get(URL, content="<html>反爬页面</html>".encode("gbk"))
+    c = GoldPriceCollector(name="现货黄金", category="market", url=URL)
+    with pytest.raises(ValueError, match="格式不符"):
+        c.fetch_latest()
+
+
+def test_fetch_latest_raises_on_non_numeric_price(requests_mock):
+    body = 'var hq_str_hf_XAU="abc,1,2,3,4,5,6,7,8,0,0,0,2026-09-19,伦敦金";'
+    requests_mock.get(URL, content=body.encode("gbk"))
+    c = GoldPriceCollector(name="现货黄金", category="market", url=URL)
+    with pytest.raises(ValueError, match="不是数字"):
+        c.fetch_latest()
+```
+
+- [ ] **Step 4: 运行测试确认失败**
+
+Run: `python -m pytest tests/test_collectors_gold.py -v`
+Expected: FAIL（旧实现读 CSV，解析不出新格式）
+
+- [ ] **Step 5: 改写 `src/collectors/gold_price.py`**
+
+```python
+"""现货黄金价格采集器（新浪财经）。
+
+**为什么不用 stooq**：原用的 `stooq.com/q/d/l/?s=xauusd&i=d` 已长期失效——
+本机直连返回 JS 反爬验证页，CI 侧返回 HTTP 404，两个环境都复现。改用新浪
+财经的现货黄金报价，国内外均可达。
+
+**取到的是什么**：`fetch_latest()` 返回的是**取数时刻的最新价**，不是当日
+收盘价。流水线每天早上跑，拿到的就是那时市场的最新成交价——用它做
+「情绪 vs 金价」的对照比用前一日收盘更贴合，因为前者已包含到取数时刻为止
+的信息。列名仍沿用 `gold_close`（改它要动 T9/T10/T11 三处，不值当）。
+"""
+from __future__ import annotations
+
+import re
+from datetime import datetime, timezone, timedelta
+
+from src.collectors.base import Collector
+from src.models import RawItem
+
+BEIJING = timezone(timedelta(hours=8))
+
+# 新浪要求带 Referer，否则返回空内容
+SINA_HEADERS = {"Referer": "https://finance.sina.com.cn"}
+
+# var hq_str_hf_XAU="4378.29,4341.620,...,2026-09-19,伦敦金（现货黄金）";
+_PAYLOAD_RE = re.compile(r'"([^"]*)"')
+_DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
+
+
+class GoldPriceCollector(Collector):
+    def fetch(self) -> list[RawItem]:
+        raise NotImplementedError("金价是数值数据，请调用 fetch_latest()")
+
+    def fetch_latest(self) -> tuple[str, float]:
+        """返回 (日期, 最新价)。"""
+        resp = self.get(headers=SINA_HEADERS)
+        # 响应是 GBK；用 resp.content 自己解码，不要指望 requests 猜对
+        text = resp.content.decode("gbk", errors="replace")
+
+        matched = _PAYLOAD_RE.search(text)
+        if not matched:
+            raise ValueError(f"新浪返回格式不符，无法解析：{text[:200]}")
+        payload = matched.group(1)
+
+        fields = payload.split(",")
+        if len(fields) < 13:
+            raise ValueError(
+                f"新浪返回字段数不足（{len(fields)}）：{payload[:200]}"
+            )
+
+        try:
+            price = float(fields[0])
+        except ValueError as exc:
+            raise ValueError(f"新浪返回的最新价不是数字：{fields[0]!r}") from exc
+
+        # 日期用正则找而不是按下标取：字段顺序若变，下标会静默取错值，
+        # 而"取到一个像日期的字符串"这个判据不会。
+        date_hits = _DATE_RE.findall(payload)
+        if not date_hits:
+            raise ValueError(f"新浪返回里找不到日期：{payload[:200]}")
+
+        return date_hits[-1], price
+```
+
+- [ ] **Step 6: 改 `config/sources.yaml`**
+
+把金价那一条改成：
+
+```yaml
+  - name: 现货黄金
+    category: market
+    type: gold_price
+    url: https://hq.sinajs.cn/list=hf_XAU
+```
+
+同时**删掉** `tests/fixtures/stooq_xauusd.csv`。
+
+- [ ] **Step 7: 运行测试确认通过，并做一次真实取数**
+
+Run: `python -m pytest tests/test_collectors_gold.py -v`
+Expected: PASS（4 个用例）
+
+真实取数验证（**不要跳过**——金价这次就是"打桩全绿、线上全死"翻的车）：
+
+```bash
+cd "D:/金银舆情监控" && PYTHONIOENCODING=utf-8 .venv/Scripts/python.exe -c "
+from src.collectors.gold_price import GoldPriceCollector
+from src.config import load_sources
+cfg = next(s for s in load_sources() if s['type'] == 'gold_price')
+date, price = GoldPriceCollector(cfg['name'], cfg['category'], cfg['url']).fetch_latest()
+print('真实取数成功:', date, price)
+"
+```
+
+**把真实价格记进报告**，并核对它和当天的金价行情大致对得上（差几美元正常，差几百就是取错字段了）。
+
+- [ ] **Step 8: 提交**
+
+```bash
+git add src/collectors/gold_price.py config/sources.yaml tests/fixtures/ tests/test_collectors_gold.py docs/信源核验记录.md
+git rm --cached tests/fixtures/stooq_xauusd.csv
+git commit -m "fix: 金价源由失效的 stooq 换为新浪财经"
+```
+
+---
+
 ## Task 6: 采集编排与去重
 
 **Files:**
