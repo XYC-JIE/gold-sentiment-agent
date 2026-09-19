@@ -2593,14 +2593,38 @@ def test_configure_chinese_font_resolves_a_real_font():
 
 
 def test_plot_raises_clear_error_when_no_cjk_font(monkeypatch):
-    """字体全落空时必须抛错，而不是安静地产出一张豆腐块图。"""
+    """一个中文字体都没有时必须抛错，而不是安静地产出一张豆腐块图。
+
+    兜底搜索也要一起屏蔽——否则本机的微软雅黑会被搜到，这个用例就不再是在
+    测「一个都没有」的场景了。
+    """
+    import src.charts as charts_module
+    from matplotlib import font_manager
+
+    monkeypatch.setattr(
+        charts_module, "FONT_CANDIDATES", ["完全不存在的字体XYZ"]
+    )
+    monkeypatch.setattr(font_manager.fontManager, "ttflist", [])
+    with pytest.raises(ValueError, match="找不到任何可用中文字体"):
+        charts_module.configure_chinese_font()
+
+
+def test_font_fallback_search_recovers_when_candidates_miss(monkeypatch):
+    """候选列表全不匹配时，兜底搜索应当找回一个能用的中文字体。
+
+    CI 上实测踩过：Ubuntu 的 fonts-noto-cjk 暴露的族名不在候选列表里，
+    精确匹配失败导致图表全变方框（护栏正确报错并拦下了）。这层搜索就是
+    为那种情况准备的。本机（Windows）用微软雅黑验证这条路径。
+    """
+    import matplotlib.pyplot as plt
+
     import src.charts as charts_module
 
     monkeypatch.setattr(
         charts_module, "FONT_CANDIDATES", ["完全不存在的字体XYZ"]
     )
-    with pytest.raises(ValueError, match="找不到任何可用中文字体"):
-        charts_module.configure_chinese_font()
+    charts_module.configure_chinese_font()      # 不抛异常即算通过
+    assert plt.rcParams["font.sans-serif"][0] != "完全不存在的字体XYZ"
 
 
 def test_plot_sentiment_trend_writes_file(tmp_path):
@@ -2682,6 +2706,7 @@ import matplotlib
 matplotlib.use("Agg")           # 无显示环境（CI）必须有，否则会报错
 import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib import font_manager
 from matplotlib.font_manager import FontProperties, findfont
 
 # Ubuntu CI 上装的是 fonts-noto-cjk，Windows 本地是 SimHei；按序尝试
@@ -2692,24 +2717,62 @@ COLOR_BEAR = "#27ae60"
 COLOR_NEUTRAL = "#7f8c8d"
 
 
+def _pick_available_cjk_font() -> str | None:
+    """按候选列表找中文字体；都不匹配就在系统字体里搜一个 CJK 字体。
+
+    **为什么需要兜底搜索**：同一份字体在不同发行版下的族名不一样。Ubuntu 的
+    `fonts-noto-cjk` 装的是 `.ttc` 字体集合，里面 SC/JP/KR 多张字面，而
+    matplotlib 未必把 "Noto Sans CJK SC" 这个名字枚举出来——实测 CI 上就只
+    暴露了别的名字。靠精确族名匹配会在换环境时突然失效，而失效形态是
+    "安静地出一张方框图"。
+
+    返回选中的族名；真找不到返回 None。
+    """
+    try:
+        findfont(FontProperties(family=FONT_CANDIDATES), fallback_to_default=False)
+        return FONT_CANDIDATES[0]
+    except ValueError:
+        pass
+
+    keywords = ("CJK", "WenQuanYi", "Source Han", "Noto Sans SC", "Hei", "Ming", "Kai")
+    names = {f.name for f in font_manager.fontManager.ttflist}
+    for name in sorted(names):
+        if not any(k.lower() in name.lower() for k in keywords):
+            continue
+        try:
+            findfont(FontProperties(family=[name]), fallback_to_default=False)
+        except ValueError:
+            continue
+        # 找到了就把它放到候选列表最前，后续绘图都用它
+        plt.rcParams["font.sans-serif"] = [name] + FONT_CANDIDATES
+        return name
+    return None
+
+
 def configure_chinese_font() -> None:
-    """设置中文字体，并**确认候选字体真的解析得到**。
+    """设置中文字体，并**确认真的解析得到**。
 
     缺字体时 matplotlib 只在 logging 里嘀咕一句 `findfont: Font family not found`，
     图照画、PNG 照生成、测试照全绿，只是所有中文变成一片方框（豆腐块）。
     这是本模块唯一无法靠断言捕获的失败模式——所以这里主动解析一次，
     全落空就抛错，让问题当场暴露，而不是几天后在手机上看到一堆 □。
+
+    CI 上实测踩过：精确族名匹配失败，护栏正确报错。故加了一层按关键字
+    搜索系统字体的兜底（见 `_pick_available_cjk_font`）。
     """
     plt.rcParams["font.sans-serif"] = FONT_CANDIDATES
     plt.rcParams["axes.unicode_minus"] = False
 
-    try:
-        findfont(FontProperties(family=FONT_CANDIDATES), fallback_to_default=False)
-    except ValueError as exc:
-        raise ValueError(
-            f"找不到任何可用中文字体，图表会渲染成方框。候选列表：{FONT_CANDIDATES}。"
-            "Linux 上请安装 fonts-noto-cjk；Windows 上确认已安装微软雅黑或黑体。"
-        ) from exc
+    if _pick_available_cjk_font() is not None:
+        return
+
+    available = sorted({f.name for f in font_manager.fontManager.ttflist})
+    raise ValueError(
+        f"找不到任何可用中文字体，图表会渲染成方框。候选列表：{FONT_CANDIDATES}。"
+        f"系统现有字体（{len(available)} 个）：{available[:40]}。"
+        "Linux 上请安装 fonts-noto-cjk 或 fonts-wqy-zenhei；"
+        "Windows 上确认已安装微软雅黑或黑体。"
+    )
 
 
 def _tail(df: pd.DataFrame, days: int) -> pd.DataFrame:
@@ -2823,7 +2886,7 @@ def plot_sentiment_vs_gold(df: pd.DataFrame, days: int, out_path: Path) -> Path:
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_charts.py -v`
-Expected: PASS（9 个用例）
+Expected: PASS（10 个用例）
 
 - [ ] **Step 5: 人工检查中文是否正常显示**
 
@@ -3709,7 +3772,7 @@ jobs:
       - name: 安装中文字体
         run: |
           sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk
+          sudo apt-get install -y fonts-noto-cjk fonts-wqy-zenhei
 
       - name: 安装依赖
         run: pip install -r requirements.txt
