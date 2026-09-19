@@ -54,6 +54,28 @@ def test_configure_chinese_font_resolves_a_real_font():
     assert resolved
 
 
+def test_has_cjk_glyphs_rejects_font_without_han_glyphs():
+    """能解析 ≠ 有汉字字形。
+
+    本机 HYZhongHei（汉仪中黑，HYZhongHeiTi-197.ttf）能被 findfont 解析，
+    但 `get_char_index('中')` 返回 0（.notdef）——收下它会让渲染刷屏
+    "Glyph missing"，护栏却不报错。所以兜底搜索必须验字形覆盖。
+    """
+    from matplotlib.font_manager import FontProperties, findfont
+
+    from src.charts import _has_cjk_glyphs
+
+    hy_path = findfont(
+        FontProperties(family=["HYZhongHei"]), fallback_to_default=False
+    )
+    assert _has_cjk_glyphs(hy_path) is False
+
+    yahei_path = findfont(
+        FontProperties(family=["Microsoft YaHei"]), fallback_to_default=False
+    )
+    assert _has_cjk_glyphs(yahei_path) is True
+
+
 def test_plot_raises_clear_error_when_no_cjk_font(monkeypatch):
     """一个中文字体都没有时必须抛错，而不是安静地产出一张豆腐块图。
 

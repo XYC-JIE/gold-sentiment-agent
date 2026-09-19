@@ -19,6 +19,21 @@ COLOR_BEAR = "#27ae60"
 COLOR_NEUTRAL = "#7f8c8d"
 
 
+def _has_cjk_glyphs(font_path: str) -> bool:
+    """字体能解析 ≠ 字体有汉字字形。
+
+    实测：本机的 `HYZhongHeiTi-197.ttf`（汉仪中黑）`get_char_index('中')` 返回
+    **0**（.notdef，即没有这个字形），而微软雅黑返回 1048。前者能被 findfont
+    解析，画出来却是一片空白——只看"能否解析"会把它当可用字体收下。
+    """
+    try:
+        from matplotlib.ft2font import FT2Font
+
+        return FT2Font(font_path).get_char_index(ord("中")) != 0
+    except Exception:  # noqa: BLE001 - 读不了就认为不可用
+        return False
+
+
 def _pick_available_cjk_font() -> str | None:
     """按候选列表找中文字体；都不匹配就在系统字体里搜一个 CJK 字体。
 
@@ -42,8 +57,14 @@ def _pick_available_cjk_font() -> str | None:
         if not any(k.lower() in name.lower() for k in keywords):
             continue
         try:
-            findfont(FontProperties(family=[name]), fallback_to_default=False)
+            path = findfont(FontProperties(family=[name]), fallback_to_default=False)
         except ValueError:
+            continue
+        # **能解析 ≠ 有汉字**。实测本机的 HYZhongHei（汉仪中黑）能被 findfont
+        # 解析出来，但一个汉字字形都没有，渲染时刷屏 "Glyph missing"——
+        # 等于把"安静出方框图"以更隐蔽的形式重新引入：护栏不会报错，因为搜索
+        # "成功"了。所以这里必须验字形覆盖，而不是只验能否解析。
+        if not _has_cjk_glyphs(path):
             continue
         # 找到了就把它放到候选列表最前，后续绘图都用它
         plt.rcParams["font.sans-serif"] = [name] + FONT_CANDIDATES
