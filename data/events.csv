@@ -1,0 +1,6 @@
+﻿date,event_type,direction,strength,relevant,summary,source,url,published_at
+2026-09-19,其他,中性,1,False,OpenAI发布新一代推理模型，数学与代码能力大幅提升。,OpenAI News,https://openai.com/index/demo,2026-09-17T09:00:00+08:00
+2026-09-19,其他,中性,1,False,谷歌DeepMind开源多模态训练框架。,Google DeepMind Blog,https://deepmind.google/blog/demo,2026-09-17T08:30:00+08:00
+2026-09-19,货币政策,利多金银,3,True,美联储官员沃勒放鸽，称通胀改善则年内或再降息。,金十数据快讯,https://www.jin10.com/flash/1,2026-09-17T10:00:00+08:00
+2026-09-19,通胀,利空金银,4,True,美国8月CPI同比3.1%高于预期2.9%，削弱降息预期。,华尔街见闻,https://wallstreetcn.com/livenews/1,2026-09-17T20:30:00+08:00
+2026-09-19,其他,利多金银,2,True,世界黄金协会称8月全球黄金ETF净流入21亿美元。,金十数据快讯,https://x.com/2,2026-09-17T11:00:00+08:00
