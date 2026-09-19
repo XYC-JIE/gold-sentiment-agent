@@ -45,6 +45,19 @@ jobs:
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         run: python -m src.main
 
+      # 图表被 gitignore（每次现算、不进版本库），所以只能靠 artifact 留痕。
+      # 没有这一步，Task 14 Step 5 那条「看图确认中文正常」就无据可查——
+      # 而中文字体正是本项目唯一会"不报错地安静失败"的地方。
+      # always() 是为了流水线失败时也能拿到已生成的那几张图，便于归因。
+      - name: 上传图表产物
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: charts-${{ github.run_id }}
+          path: charts/
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: 回写数据与图表
         run: |
           git config user.name "github-actions[bot]"
