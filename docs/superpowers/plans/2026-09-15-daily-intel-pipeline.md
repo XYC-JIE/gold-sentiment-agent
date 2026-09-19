@@ -1053,15 +1053,52 @@ git commit -m "feat: 现货黄金日线采集器"
 - [ ] **Step 1: 写失败测试 `tests/test_dedupe.py`**
 
 ```python
-from src.dedupe import dedupe, within_hours
+from src.dedupe import dedupe, interleave_by_category, within_hours
 from src.models import RawItem
 
 
-def _item(title, url, source="源A", published_at="2026-09-15T08:00:00+08:00"):
+def _item(title, url, source="源A", published_at="2026-09-15T08:00:00+08:00",
+          category="ai"):
     return RawItem(
-        title=title, url=url, source=source, category="ai",
+        title=title, url=url, source=source, category=category,
         published_at=published_at, content="",
     )
+
+
+def test_interleave_alternates_ai_and_finance():
+    """AI 与金融交替排列，同类内部保持原顺序。"""
+    items = [
+        _item("AI1", "https://a.com/1"),
+        _item("AI2", "https://a.com/2"),
+        _item("AI3", "https://a.com/3"),
+        _item("FIN1", "https://b.com/1", category="finance"),
+        _item("FIN2", "https://b.com/2", category="finance"),
+    ]
+    assert [i.title for i in interleave_by_category(items)] == [
+        "AI1", "FIN1", "AI2", "FIN2", "AI3",
+    ]
+
+
+def test_interleave_keeps_positional_truncation_balanced():
+    """这是它存在的理由：截掉后一半时两侧都还留有代表。
+
+    实测背景：115 条里 Hacker News 的 20 条全被截掉，而排在 sources.yaml
+    末尾的华尔街见闻留下 16 条——纯位置截断会让某一类整类消失。
+    """
+    items = [_item(f"AI{i}", f"https://a.com/{i}") for i in range(10)]
+    items += [
+        _item(f"FIN{i}", f"https://b.com/{i}", category="finance")
+        for i in range(10)
+    ]
+    kept = interleave_by_category(items)[:10]
+    assert sum(1 for i in kept if i.category == "ai") == 5
+    assert sum(1 for i in kept if i.category != "ai") == 5
+
+
+def test_interleave_handles_empty_and_single_sided():
+    assert interleave_by_category([]) == []
+    only_ai = [_item("AI", "https://a.com/1")]
+    assert [i.title for i in interleave_by_category(only_ai)] == ["AI"]
 
 
 def test_dedupe_removes_same_url():
@@ -1116,6 +1153,28 @@ from dateutil import parser as date_parser
 from src.models import RawItem
 
 
+def interleave_by_category(items: list[RawItem]) -> list[RawItem]:
+    """把 AI 类与金融类交替排列，同类内部保持原顺序。
+
+    **为什么需要它**：Dify 预筛节点是按**位置**截断的（上限 60 条），而采集
+    结果是按 sources.yaml 顺序拼接的——同一类的条目扎堆，排在后面的源会被
+    整类截掉。实测就发生过：115 条里 Hacker News 的 20 条全没进预筛，而排在
+    文件末尾的华尔街见闻留下 16 条。交替排列让位置截断天然保持两侧都有代表。
+
+    注意这只是"让截断公平"，不改变截断本身——控制 token 是它的本职。
+    """
+    ai = [i for i in items if i.category == "ai"]
+    other = [i for i in items if i.category != "ai"]
+
+    result: list[RawItem] = []
+    for idx in range(max(len(ai), len(other))):
+        if idx < len(ai):
+            result.append(ai[idx])
+        if idx < len(other):
+            result.append(other[idx])
+    return result
+
+
 def dedupe(items: list[RawItem]) -> list[RawItem]:
     """按 URL 去重；标题归一化后相同也视为重复。保留首次出现的顺序。"""
     seen_urls: set[str] = set()
@@ -1163,7 +1222,7 @@ def within_hours(items: list[RawItem], hours: int, now: str) -> list[RawItem]:
 - [ ] **Step 4: 运行测试确认通过**
 
 Run: `python -m pytest tests/test_dedupe.py -v`
-Expected: PASS（5 个用例）
+Expected: PASS（8 个用例）
 
 - [ ] **Step 5: 写失败测试 `tests/test_collectors_registry.py`**
 
@@ -2977,7 +3036,11 @@ def patched_pipeline(monkeypatch, tmp_path):
     return tmp_path
 
 
-def test_run_offline_writes_data_and_charts(patched_pipeline):
+def test_run_offline_writes_data_and_charts(patched_pipeline, monkeypatch):
+    # 必须给 webhook：run() 走完流程会调 get_secret("FEISHU_WEBHOOK_URL")，
+    # 缺了会抛异常使 run 返回 1，而本用例的真正断言（数据与图表）其实都过了
+    monkeypatch.setenv("FEISHU_WEBHOOK_URL", "https://open.feishu.cn/hook/x")
+
     code = main_module.run(dry_run=False, offline=True)
     assert code == 0
 
@@ -3021,7 +3084,9 @@ def test_run_dry_run_skips_sending(patched_pipeline, monkeypatch):
 def test_run_sends_fallback_when_dify_fails(patched_pipeline, monkeypatch):
     sent = {}
 
-    def _boom(items, date):
+    def _boom(*args, **kwargs):
+        # 用 *args 而不是 (items, date)：run() 调的是零参 load_sample_result()，
+        # 写死两参会 TypeError 而不是我们想测的那个 RuntimeError
         raise RuntimeError("Dify 工作流未成功：model timeout")
 
     monkeypatch.setattr(main_module, "load_sample_result", _boom)
@@ -3104,7 +3169,7 @@ from src.charts import (
 from src.collectors import build_collectors, collect_all
 from src.collectors.gold_price import GoldPriceCollector
 from src.config import CHARTS_DIR, DATA_DIR, get_secret, load_sources
-from src.dedupe import dedupe, within_hours
+from src.dedupe import dedupe, interleave_by_category, within_hours
 from src.dify_client import DifyClient, load_sample_result
 from src.notifier import build_card, build_fallback_text, send_to_feishu
 from src.storage import EVENT_FIELDS, append_events, append_index_row, read_index
@@ -3163,6 +3228,8 @@ def run(dry_run: bool, offline: bool) -> int:
     # 1. 采集
     items, failed_sources = collect_all(build_collectors())
     items = within_hours(dedupe(items), hours=WINDOW_HOURS, now=now_beijing_iso())
+    # 交替排列后再送 Dify：预筛节点按位置截断，不交替的话排在后面的源会被整类截掉
+    items = interleave_by_category(items)
     print(f"采集到 {len(items)} 条（去重与时间窗筛选后），失败源 {len(failed_sources)} 个")
 
     # 2. Dify
