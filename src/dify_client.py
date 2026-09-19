@@ -94,6 +94,22 @@ class DifyClient:
                 )
             except RuntimeError:
                 raise           # 业务错误不重试，重试也是同样结果
+            except requests.HTTPError as exc:
+                # 4xx 是确定性失败（密钥错、参数错、路径错），重试只是白等 20 秒；
+                # 而且 `raise_for_status()` 抛出的异常**只带 URL 和状态码**，
+                # Dify 把真正的原因放在响应体里（形如
+                # {"code":"invalid_param","message":"..."}），会被丢掉。
+                # 这里显式把它捞回来——错误信息里有没有原因，排查难度差一个数量级。
+                response = exc.response
+                status = response.status_code if response is not None else 0
+                if 400 <= status < 500:
+                    detail = (response.text or "")[:200] if response is not None else ""
+                    raise RuntimeError(
+                        f"Dify 返回 HTTP {status}：{detail}"
+                    ) from exc
+                last_error = exc            # 5xx 才重试
+                if attempt < MAX_ATTEMPTS - 1:
+                    time.sleep(BACKOFF_SECONDS[attempt])
             except Exception as exc:  # noqa: BLE001 - 网络类错误才重试
                 last_error = exc
                 if attempt < MAX_ATTEMPTS - 1:

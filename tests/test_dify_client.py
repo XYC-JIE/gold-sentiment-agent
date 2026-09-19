@@ -95,6 +95,25 @@ def test_run_workflow_raises_on_malformed_json_output(requests_mock):
         client.run(_raw_items(), date="2026-09-15")
 
 
+def test_run_workflow_does_not_retry_4xx(requests_mock):
+    """4xx 是确定性失败（密钥错、参数错），重试只是白等 20 秒。
+
+    更要紧的是：`raise_for_status()` 抛出的异常只带状态码，而 Dify 把真正
+    的原因放在响应体里。这里验证原因被捞回来、且只发了一次请求。
+    """
+    requests_mock.post(
+        URL,
+        status_code=401,
+        text='{"code":"unauthorized","message":"invalid api key"}',
+    )
+    client = DifyClient(api_key="app-bad", url=URL)
+
+    with pytest.raises(RuntimeError, match="invalid api key"):
+        client.run(_raw_items(), date="2026-09-15")
+
+    assert len(requests_mock.request_history) == 1
+
+
 def test_run_workflow_strips_reasoning_blocks(requests_mock):
     """推理型模型会把 <think>...</think> 拼在 JSON 前面，必须先剥掉再解析。
 
