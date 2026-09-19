@@ -26,10 +26,15 @@ def _tendency(score: float) -> str:
 
 
 def _format_ai_news(items: list[dict]) -> str:
+    # digest 来自 LLM，元素本应是对象；但实测 CI 上出现过元素是数组的畸形输出
+    # （LLM 偶尔把数组元素返回成数组）。这是外部输入边界，跳过坏元素即可，
+    # 不能让一次畸形输出把整张卡片构造搞崩。
     if not items:
         return "**暂无**"
     lines = []
     for idx, item in enumerate(items, start=1):
+        if not isinstance(item, dict):
+            continue
         title = item.get("title", "")
         why = item.get("why", "")
         url = item.get("url", "")
@@ -37,14 +42,17 @@ def _format_ai_news(items: list[dict]) -> str:
         if url:
             line += f" [原文]({url})"
         lines.append(line)
-    return "\n".join(lines)
+    return "\n".join(lines) if lines else "**暂无**"
 
 
 def _format_gold_news(items: list[dict]) -> str:
+    # 同 _format_ai_news：容忍 LLM 返回的非对象元素。
     if not items:
         return "**暂无**"
     lines = []
     for idx, item in enumerate(items, start=1):
+        if not isinstance(item, dict):
+            continue
         summary = item.get("summary", "")
         direction = item.get("direction", "")
         strength = item.get("strength", "")
@@ -53,13 +61,19 @@ def _format_gold_news(items: list[dict]) -> str:
         if url:
             line += f" [原文]({url})"
         lines.append(line)
-    return "\n".join(lines)
+    return "\n".join(lines) if lines else "**暂无**"
 
 
 def _format_calendar(items: list[dict]) -> str:
+    # 同 _format_ai_news：容忍 LLM 返回的非对象元素。
     if not items:
         return "今日无明确宏观事件"
-    return "\n".join(f"· {i.get('time', '')} {i.get('event', '')}".strip() for i in items)
+    lines = [
+        f"· {i.get('time', '')} {i.get('event', '')}".strip()
+        for i in items
+        if isinstance(i, dict)
+    ]
+    return "\n".join(lines) if lines else "今日无明确宏观事件"
 
 
 def build_card(

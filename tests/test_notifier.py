@@ -162,3 +162,40 @@ def test_both_card_and_fallback_contain_feishu_keyword():
 
     fallback = build_fallback_text("2026-09-15", "Dify 调用失败")
     assert FEISHU_KEYWORD in fallback["content"]["text"]
+
+
+def test_card_survives_non_dict_items_from_llm():
+    """LLM 偶尔把数组元素返回成数组/字符串而非对象，实测 CI 上出现过。
+
+    这类畸形输出属于外部输入边界，必须容错：跳过坏元素即可，
+    绝不能让整张卡片构造失败（否则只能降级发纯文本，丢掉全部内容）。
+    """
+    digest = {
+        "ai_news": [
+            ["OpenAI", "发布新模型"],                       # 元素是数组
+            {"title": "正常标题", "why": "正常理由",
+             "url": "https://openai.com/ok"},
+            None,                                          # 元素是 null
+        ],
+        "gold_news": [
+            "纯字符串元素",
+            {"summary": "正常摘要", "direction": "利多金银",
+             "strength": 4, "url": "https://x.com/ok"},
+        ],
+        "gold_conclusion": "短期偏多",
+        "calendar": [
+            "20:30 美国 CPI 同比",                          # 元素是字符串
+            {"time": "21:00", "event": "美联储讲话"},
+        ],
+    }
+
+    payload = build_card("2026-09-15", digest, _index_row(), failed_sources=[])
+    text = _all_text(payload)
+
+    # 正常元素仍在
+    assert "正常标题" in text
+    assert "正常理由" in text
+    assert "正常摘要" in text
+    assert "美联储讲话" in text
+    # 坏元素被跳过，不产生空壳占位
+    assert "OpenAI" not in text
