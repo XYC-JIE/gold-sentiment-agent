@@ -54,26 +54,38 @@ def test_configure_chinese_font_resolves_a_real_font():
     assert resolved
 
 
-def test_has_cjk_glyphs_rejects_font_without_han_glyphs():
-    """能解析 ≠ 有汉字字形。
+def test_has_cjk_glyphs_rejects_unreadable_file(tmp_path):
+    """读不了的文件必须判为不可用（可移植，CI 上也能跑）。"""
+    import src.charts as charts_module
 
-    本机 HYZhongHei（汉仪中黑，HYZhongHeiTi-197.ttf）能被 findfont 解析，
-    但 `get_char_index('中')` 返回 0（.notdef）——收下它会让渲染刷屏
-    "Glyph missing"，护栏却不报错。所以兜底搜索必须验字形覆盖。
+    bogus = tmp_path / "not-a-font.ttf"
+    bogus.write_bytes(b"\x00\x01\x02\x03")
+    assert charts_module._has_cjk_glyphs(str(bogus)) is False
+
+
+def test_has_cjk_glyphs_rejects_resolvable_font_without_han():
+    """真实反例：能解析 ≠ 有汉字字形。
+
+    本机的 `HYZhongHei`（汉仪中黑）能被 findfont 解析，`char_index('中')` 却是
+    0——只看"能否解析"会把它当可用字体收下，然后安静地画出一片空白。
+
+    **这台机器上没有该字体时跳过**：它是本机特有的坏字体，不能把本机环境
+    固化成全局断言，否则 CI（Ubuntu）会直接报错。
     """
-    from matplotlib.font_manager import FontProperties, findfont
+    import pytest
+    from matplotlib import font_manager
+    from matplotlib.font_manager import FontProperties
 
-    from src.charts import _has_cjk_glyphs
+    import src.charts as charts_module
 
-    hy_path = findfont(
-        FontProperties(family=["HYZhongHei"]), fallback_to_default=False
-    )
-    assert _has_cjk_glyphs(hy_path) is False
+    try:
+        path = font_manager.findfont(
+            FontProperties(family=["HYZhongHei"]), fallback_to_default=False
+        )
+    except ValueError:
+        pytest.skip("本机没有 HYZhongHei，跳过真实反例（可移植性用例已覆盖读不了的情形）")
 
-    yahei_path = findfont(
-        FontProperties(family=["Microsoft YaHei"]), fallback_to_default=False
-    )
-    assert _has_cjk_glyphs(yahei_path) is True
+    assert charts_module._has_cjk_glyphs(path) is False
 
 
 def test_plot_raises_clear_error_when_no_cjk_font(monkeypatch):
