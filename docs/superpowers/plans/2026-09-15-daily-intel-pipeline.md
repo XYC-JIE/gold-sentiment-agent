@@ -3154,6 +3154,8 @@ def _format_ai_news(items: list[dict]) -> str:
         return "**暂无**"
     lines = []
     for idx, item in enumerate(items, start=1):
+        if not isinstance(item, dict):
+            continue
         title = item.get("title", "")
         why = item.get("why", "")
         url = item.get("url", "")
@@ -3161,7 +3163,7 @@ def _format_ai_news(items: list[dict]) -> str:
         if url:
             line += f" [原文]({url})"
         lines.append(line)
-    return "\n".join(lines)
+    return "\n".join(lines) if lines else "**暂无**"
 
 
 def _format_gold_news(items: list[dict]) -> str:
@@ -3169,6 +3171,8 @@ def _format_gold_news(items: list[dict]) -> str:
         return "**暂无**"
     lines = []
     for idx, item in enumerate(items, start=1):
+        if not isinstance(item, dict):
+            continue
         summary = item.get("summary", "")
         direction = item.get("direction", "")
         strength = item.get("strength", "")
@@ -3177,13 +3181,18 @@ def _format_gold_news(items: list[dict]) -> str:
         if url:
             line += f" [原文]({url})"
         lines.append(line)
-    return "\n".join(lines)
+    return "\n".join(lines) if lines else "**暂无**"
 
 
 def _format_calendar(items: list[dict]) -> str:
     if not items:
         return "今日无明确宏观事件"
-    return "\n".join(f"· {i.get('time', '')} {i.get('event', '')}".strip() for i in items)
+    lines = [
+        f"· {i.get('time', '')} {i.get('event', '')}".strip()
+        for i in items
+        if isinstance(i, dict)
+    ]
+    return "\n".join(lines) if lines else "今日无明确宏观事件"
 
 
 def build_card(
