@@ -1,12 +1,49 @@
-from src.dedupe import dedupe, within_hours
+from src.dedupe import dedupe, interleave_by_category, within_hours
 from src.models import RawItem
 
 
-def _item(title, url, source="源A", published_at="2026-09-15T08:00:00+08:00"):
+def _item(title, url, source="源A", published_at="2026-09-15T08:00:00+08:00",
+          category="ai"):
     return RawItem(
-        title=title, url=url, source=source, category="ai",
+        title=title, url=url, source=source, category=category,
         published_at=published_at, content="",
     )
+
+
+def test_interleave_alternates_ai_and_finance():
+    """AI 与金融交替排列，同类内部保持原顺序。"""
+    items = [
+        _item("AI1", "https://a.com/1"),
+        _item("AI2", "https://a.com/2"),
+        _item("AI3", "https://a.com/3"),
+        _item("FIN1", "https://b.com/1", category="finance"),
+        _item("FIN2", "https://b.com/2", category="finance"),
+    ]
+    assert [i.title for i in interleave_by_category(items)] == [
+        "AI1", "FIN1", "AI2", "FIN2", "AI3",
+    ]
+
+
+def test_interleave_keeps_positional_truncation_balanced():
+    """这是它存在的理由：截掉后一半时两侧都还留有代表。
+
+    实测背景：115 条里 Hacker News 的 20 条全被截掉，而排在 sources.yaml
+    末尾的华尔街见闻留下 16 条——纯位置截断会让某一类整类消失。
+    """
+    items = [_item(f"AI{i}", f"https://a.com/{i}") for i in range(10)]
+    items += [
+        _item(f"FIN{i}", f"https://b.com/{i}", category="finance")
+        for i in range(10)
+    ]
+    kept = interleave_by_category(items)[:10]
+    assert sum(1 for i in kept if i.category == "ai") == 5
+    assert sum(1 for i in kept if i.category != "ai") == 5
+
+
+def test_interleave_handles_empty_and_single_sided():
+    assert interleave_by_category([]) == []
+    only_ai = [_item("AI", "https://a.com/1")]
+    assert [i.title for i in interleave_by_category(only_ai)] == ["AI"]
 
 
 def test_dedupe_removes_same_url():

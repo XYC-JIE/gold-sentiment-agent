@@ -11,6 +11,28 @@ from src.models import RawItem
 BEIJING = timezone(timedelta(hours=8))
 
 
+def interleave_by_category(items: list[RawItem]) -> list[RawItem]:
+    """把 AI 类与金融类交替排列，同类内部保持原顺序。
+
+    **为什么需要它**：Dify 预筛节点是按**位置**截断的（上限 60 条），而采集
+    结果是按 sources.yaml 顺序拼接的——同一类的条目扎堆，排在后面的源会被
+    整类截掉。实测就发生过：115 条里 Hacker News 的 20 条全没进预筛，而排在
+    文件末尾的华尔街见闻留下 16 条。交替排列让位置截断天然保持两侧都有代表。
+
+    注意这只是"让截断公平"，不改变截断本身——控制 token 是它的本职。
+    """
+    ai = [i for i in items if i.category == "ai"]
+    other = [i for i in items if i.category != "ai"]
+
+    result: list[RawItem] = []
+    for idx in range(max(len(ai), len(other))):
+        if idx < len(ai):
+            result.append(ai[idx])
+        if idx < len(other):
+            result.append(other[idx])
+    return result
+
+
 def dedupe(items: list[RawItem]) -> list[RawItem]:
     """按 URL 去重；标题归一化后相同也视为重复。保留首次出现的顺序。"""
     seen_urls: set[str] = set()
